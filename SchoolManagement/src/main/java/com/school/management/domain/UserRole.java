@@ -21,10 +21,6 @@ public class UserRole {
 	@Column(name = "ROLE")
 	private String role;
 	
-	@ManyToMany(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "USER_ID", referencedColumnName = "ID")
-	private long userId;
-
 	public long getId() {
 		return id;
 	}
@@ -41,12 +37,4 @@ public class UserRole {
 		this.role = role;
 	}
 
-	public long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(long userId) {
-		this.userId = userId;
-	}
-	
 }

@@ -1,6 +1,5 @@
 package com.school.management.domain;
 
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +8,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,11 +23,16 @@ public class User {
 	@Column(name = "USER_NAME")
 	private String userName;
 	
-	@Column(name = "EMAIL")
-	private String email;
+	@Column(name = "PASSWORD")
+	private String password;
 	
-	@OneToMany(targetEntity = UserRole.class, mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<UserRole> userRoles;
+	@OneToOne(targetEntity = UserRole.class, cascade = CascadeType.ALL )
+	@JoinColumn(name = "USER_ROLE", referencedColumnName = "id")
+	private UserRole userRole;
+	
+	@OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID", nullable = true)
+	private Employee employee;
 	
 	public int getID() {
 		return ID;
@@ -45,19 +50,36 @@ public class User {
 		this.userName = userName;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getPASSWORD() {
+		return password;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setPASSWORD(String password) {
+		this.password = password;
 	}
 
-	public List<UserRole> getUserRoles() {
-		return userRoles;
+	public UserRole getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRoles(List<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
 }
