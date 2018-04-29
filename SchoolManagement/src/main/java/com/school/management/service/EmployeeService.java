@@ -70,6 +70,7 @@ public class EmployeeService {
 			User user = new User();
 			user.setUserName(employee.getFirstName() + employee.getLastName());
 			user.setPASSWORD(employee.getFirstName() + "@123");
+			user.setEmployee(employee);
 			user.setUserRole(userRole);
 			userDaoImpl.saveUser(user);
 			
