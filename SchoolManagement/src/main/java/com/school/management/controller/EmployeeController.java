@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.school.management.service.EmployeeService;
 
 @RestController
 @RequestMapping(value =  UriConstants.EMPLOYEES)
+@CrossOrigin( origins = {"http://www.cloudscripts.co.in"}, maxAge = 4800, allowCredentials = "false")
 public class EmployeeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -29,6 +31,11 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 
+	/**
+	 *  Enpoint to Add Employee
+	 * @param 		addToEmployeeRequest
+	 * @return		Return SmResponseStatus which is the response message
+	 */
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.POST, produces = AppConstants.JSON)
 	public SmResponseStatus addEmployee(@RequestBody AddToEmployeeRequest addToEmployeeRequest) {
 
@@ -47,6 +54,35 @@ public class EmployeeController {
 
 	}
 	
+	/**
+	 * Enpoint to update Employee
+	 * @param 		employeeId
+	 * @param 		addToEmployeeRequest
+	 * @return		Return SmResponseStatus which is the response message  
+	 */
+	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.PUT, produces = AppConstants.JSON)
+	public SmResponseStatus updateEmployee(@PathVariable Long employeeId, @RequestBody AddToEmployeeRequest addToEmployeeRequest) {
+
+		logger.info("Request received to add Employee with first name [{}] and last name [{}]",addToEmployeeRequest.getFirstName(), addToEmployeeRequest.getLastName());
+		
+		SmResponseStatus smResponseStatus = null;
+		if (addToEmployeeRequest.getFirstName() == null || addToEmployeeRequest.getLastName() == null) {
+			String error = String.format("Employee first name or last name can not empty");
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		smResponseStatus = employeeService.updateEmployee(employeeId, addToEmployeeRequest);
+		
+		logger.info("Employee Sucessfully added with first name [{}] and last name [{}]",addToEmployeeRequest.getFirstName(), addToEmployeeRequest.getLastName());
+		return smResponseStatus;
+
+	}
+	
+	/**
+	 * Endpoint to delete employee
+	 * @param 		employeeId
+	 * @return		Return SmResponseStatus which is the response message
+	 */
 	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.DELETE)
 	public SmResponseStatus deleteEmployee(@PathVariable Long employeeId) {
 		
@@ -73,6 +109,30 @@ public class EmployeeController {
 		
 	}
 	
+	/**
+	 * Endpoint to get employee details by id
+	 * @param 		employeeId
+	 * @return 		Employee
+	 */
+	/*@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
+	public Employee getEmployee(@PathVariable Long employeeId) {
+
+		logger.info("Request received to fetch Employee List");
+		
+		Employee employee = new Employee();
+
+		employee = employeeService.getEmployee(employeeId);
+		
+		logger.info("Employee List fetched successfully");
+		
+		return employee;
+
+	}*/
+	
+	/**
+	 * ondpoint tp get employee list
+	 * @return		List<Employee>
+	 */
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public List<Employee> getEmployeeList() {
 
@@ -85,6 +145,26 @@ public class EmployeeController {
 		logger.info("Employee List fetched successfully");
 		
 		return employeeList;
+
+	}
+	
+	/**
+	 * Endpoint to get employee details by id
+	 * @param 		employeeId
+	 * @return``
+	 */
+	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
+	public Employee updateEmployee(@PathVariable Long employeeId) {
+
+		logger.info("Request received to fetch Employee List");
+		
+		Employee employee = new Employee();
+
+		employee = employeeService.getEmployee(employeeId);
+		
+		logger.info("Employee List fetched successfully");
+		
+		return employee;
 
 	}
 

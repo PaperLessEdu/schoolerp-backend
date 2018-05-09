@@ -1,8 +1,8 @@
 package com.school.management.model;
 
-import java.sql.Timestamp;
-
 public class AddToEmployeeRequest {
+	
+	private Long id;
 	
 	private String firstName;
 	
@@ -46,9 +46,18 @@ public class AddToEmployeeRequest {
 	
 	private String state;
 	
-	private long postalCode;
+	private String postalCode;
 	
 	private long roleId;
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -218,11 +227,11 @@ public class AddToEmployeeRequest {
 		this.state = state;
 	}
 
-	public long getPostalCode() {
+	public String getPostalCode() {
 		return postalCode;
 	}
 
-	public void setPostalCode(long postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 

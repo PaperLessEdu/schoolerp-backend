@@ -13,7 +13,7 @@ public class Employee {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private Long id;
 	
 	@Column(name = "FIRST_NAME")
 	private String firstName;
@@ -53,12 +53,37 @@ public class Employee {
 	
 	@Column(name = "ADHAR_CARD_NUMBER")
 	private String aadharCardNumber;
+	
+	@Column(name = "EMAIL_ID")
+	private String emailId;
+	
+	@Column(name = "PHONE_NUMBER")
+	private String phoneNumber;
+	
+	@Column(name = "ALTERNATE_PHONE_NUMBER")
+	private String alternatePhoneNumber;
+	
+	@Column(name = "PERMANENT_ADDRESS")
+	private String permanentAddress;
+	
+	@Column(name = "CORRESPONSENCE_ADDRESS")
+	private String correspondenceAddress;
+	
+	@Column(name = "CITY")
+	private String city;
+	
+	@Column(name = "STATE")
+	private String state;
+	
+	@Column(name = "POSTAL_CODE")
+	private String postalCode;
+	
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -165,7 +190,69 @@ public class Employee {
 	public void setAadharCardNumber(String aadharCardNumber) {
 		this.aadharCardNumber = aadharCardNumber;
 	}
-	
-	
+
+	public String getEmailId() {
+		return emailId;
+	}
+
+	public void setEmailId(String emailId) {
+		this.emailId = emailId;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getAlternatePhoneNumber() {
+		return alternatePhoneNumber;
+	}
+
+	public void setAlternatePhoneNumber(String alternatePhoneNumber) {
+		this.alternatePhoneNumber = alternatePhoneNumber;
+	}
+
+	public String getPermanentAddress() {
+		return permanentAddress;
+	}
+
+	public void setPermanentAddress(String permanentAddress) {
+		this.permanentAddress = permanentAddress;
+	}
+
+	public String getCorrespondenceAddress() {
+		return correspondenceAddress;
+	}
+
+	public void setCorrespondenceAddress(String correspondenceAddress) {
+		this.correspondenceAddress = correspondenceAddress;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
+	}
 
 }

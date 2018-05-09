@@ -39,20 +39,8 @@ public class EmployeeService {
 
 		try {
 
-			Employee employee = new Employee();
-			employee.setFirstName(addToEmployeeRequest.getFirstName());
-			employee.setMiddleName(addToEmployeeRequest.getMiddleName());
-			employee.setLastName(addToEmployeeRequest.getLastName());
-			employee.setGender(addToEmployeeRequest.getGender());
-			employee.setAadharCardNumber(addToEmployeeRequest.getAadharCardNumber());
-			employee.setBloodGroup(addToEmployeeRequest.getBloodGroup());
-			employee.setDateOfJoining(addToEmployeeRequest.getDateOfJoining());
-			employee.setDob(addToEmployeeRequest.getDob());;
-			employee.setJobType(addToEmployeeRequest.getJobType());
-			employee.setMaritalStatus(addToEmployeeRequest.getMaritalStatus());
-			employee.setNationality(addToEmployeeRequest.getNationality());
-			employee.setOccupation(addToEmployeeRequest.getOccupation());
-			employee.setQualification(addToEmployeeRequest.getQualification());
+			Employee employee = wrapEmployee(null, addToEmployeeRequest);
+			
 			employeeImpl.saveEmployee(employee);
 
 			logger.info("Employee saved Sucessfully with First name [{}] and Last name [{}]",employee.getFirstName(), employee.getLastName());
@@ -146,6 +134,61 @@ public class EmployeeService {
 		}
 		return employee;
 
+	}
+	
+	public SmResponseStatus updateEmployee(Long employeeId, AddToEmployeeRequest addToEmployeeRequest) {
+		String message = null;
+
+		try {
+
+			Employee employee = wrapEmployee(employeeId,addToEmployeeRequest);
+			
+			employeeImpl.saveEmployee(employee);
+
+			logger.info("Employee updated Sucessfully with First name [{}] and Last name [{}]",employee.getFirstName(), employee.getLastName());
+			
+			message = String.format("Employee updated Sucessfully with id [%s]",employee.getId());
+			
+		} catch (Exception e) {
+			String error = String.format(
+					"Error occured while saving employee data with first name [%s] and last time [%s]",
+					addToEmployeeRequest.getFirstName(), addToEmployeeRequest.getLastName());
+			logger.error(error, e);
+			throw e;
+		}
+		return new SmResponseStatus(message);
+
+	}
+	
+	private Employee wrapEmployee(Long employeeId, AddToEmployeeRequest addToEmployeeRequest) {
+		Employee employee = new Employee();
+		
+		if(employeeId != null ) {
+			employee.setId(addToEmployeeRequest.getId());
+		}
+		employee.setFirstName(addToEmployeeRequest.getFirstName());
+		employee.setMiddleName(addToEmployeeRequest.getMiddleName());
+		employee.setLastName(addToEmployeeRequest.getLastName());
+		employee.setGender(addToEmployeeRequest.getGender());
+		employee.setAadharCardNumber(addToEmployeeRequest.getAadharCardNumber());
+		employee.setBloodGroup(addToEmployeeRequest.getBloodGroup());
+		employee.setDateOfJoining(addToEmployeeRequest.getDateOfJoining());
+		employee.setDob(addToEmployeeRequest.getDob());;
+		employee.setJobType(addToEmployeeRequest.getJobType());
+		employee.setMaritalStatus(addToEmployeeRequest.getMaritalStatus());
+		employee.setNationality(addToEmployeeRequest.getNationality());
+		employee.setOccupation(addToEmployeeRequest.getOccupation());
+		employee.setQualification(addToEmployeeRequest.getQualification());
+		employee.setEmailId(addToEmployeeRequest.getEmailId());
+		employee.setPermanentAddress(addToEmployeeRequest.getPermanentAddress());
+		employee.setPhoneNumber(addToEmployeeRequest.getPhoneNumber());
+		employee.setAlternatePhoneNumber(addToEmployeeRequest.getAlternatePhoneNumber());
+		employee.setCorrespondenceAddress(addToEmployeeRequest.getCorrespondenceAddress());
+		employee.setCity(addToEmployeeRequest.getCity());
+		employee.setState(addToEmployeeRequest.getState());
+		employee.setPostalCode(addToEmployeeRequest.getPostalCode());
+		
+		return employee;
 	}
 
 }
