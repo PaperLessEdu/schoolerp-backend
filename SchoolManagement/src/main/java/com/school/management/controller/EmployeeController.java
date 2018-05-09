@@ -114,7 +114,7 @@ public class EmployeeController {
 	 * @param 		employeeId
 	 * @return 		Employee
 	 */
-	/*@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
+	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public Employee getEmployee(@PathVariable Long employeeId) {
 
 		logger.info("Request received to fetch Employee List");
@@ -127,7 +127,7 @@ public class EmployeeController {
 		
 		return employee;
 
-	}*/
+	}
 	
 	/**
 	 * ondpoint tp get employee list
@@ -153,7 +153,7 @@ public class EmployeeController {
 	 * @param 		employeeId
 	 * @return``
 	 */
-	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
+	/*@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public Employee updateEmployee(@PathVariable Long employeeId) {
 
 		logger.info("Request received to fetch Employee List");
@@ -166,6 +166,6 @@ public class EmployeeController {
 		
 		return employee;
 
-	}
+	}*/
 
 }

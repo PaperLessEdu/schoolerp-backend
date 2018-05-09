@@ -13,5 +13,7 @@ public class UriConstants {
 	
 	public static final String ADD = "/addEmployee";
 	
-
+	public static final String USERROLES = "/userRoles";
+	
+	public static final String ROLEID = "/{roleId}";
 }
