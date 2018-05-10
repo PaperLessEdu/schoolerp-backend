@@ -3,6 +3,7 @@ package com.school.management.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.school.management.dao.UserRoleDaoImpl;
@@ -10,6 +11,7 @@ import com.school.management.domain.Employee;
 import com.school.management.domain.UserRole;
 import com.school.management.model.SmResponseStatus;
 
+@Service
 public class UserRoleService {
 	
 	@Autowired
