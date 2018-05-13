@@ -12,6 +12,8 @@ public interface UserRoleDao {
 	
 	public UserRole getUserRole(Long userRoleId);
 	
+	public List<UserRole> getUserRoleList();
+	
 	public void deleteRole(Long roleId);
 	
 	public void updateRole(UserRole userRole);

@@ -1,5 +1,6 @@
 package com.school.management.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -63,6 +64,20 @@ public class UserRoleDaoImpl implements UserRoleDao{
 	public void deleteRole(Long roleId) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	@Override
+	public List<UserRole> getUserRoleList() {
+		
+		List<UserRole> userRoleList = new ArrayList<>();
+		try {
+			userRoleList = userRoleRepository.findAll();
+		} catch(Exception e) {
+			String error = String.format("Error occured while fetching userRole list");
+			logger.error(error);
+			throw e;
+		}
+		return userRoleList;
 	}
 
 	/*@Override

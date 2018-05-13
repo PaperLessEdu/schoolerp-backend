@@ -1,5 +1,8 @@
 package com.school.management.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
+import com.school.management.domain.Employee;
+import com.school.management.domain.UserRole;
 import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.UserRoleService;
@@ -40,6 +45,25 @@ public class UserRoleController {
 		
 		logger.info("User Role Sucessfully added with role [{}]",role);
 		return smResponseStatus;
+	}
+	
+	/**
+	 * Endpoint tp get UserRole list
+	 * @return		List<UserRole>
+	 */
+	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
+	public List<UserRole> getUserRoleList() {
+
+		logger.info("Request received to fetch UserRole List");
+		
+		List<UserRole> userRoleList = new ArrayList<>();
+
+		userRoleList = userRoleService.getUserRoleList();
+		
+		logger.info("UserRole List fetched successfully");
+		
+		return userRoleList;
+
 	}
 	
 	@RequestMapping(value = UriConstants.ROLEID, method = RequestMethod.DELETE, produces = AppConstants.JSON)

@@ -1,5 +1,8 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +20,7 @@ public class UserRoleService {
 	@Autowired
 	private UserRoleDaoImpl userRoleDaoImpl;
 
-	public static final Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+	public static final Logger logger = LoggerFactory.getLogger(UserRoleService.class);
 	
 	public SmResponseStatus AddRole(@PathVariable String role) {
 		String message = null;
@@ -38,6 +41,20 @@ public class UserRoleService {
 			throw e;
 		}
 		return new SmResponseStatus(message);
+
+	}
+	
+	public List<UserRole> getUserRoleList() {
+
+		List<UserRole> userRoleList = new ArrayList<>();
+		try {
+			userRoleList = userRoleDaoImpl.getUserRoleList();
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching employee List");
+			logger.error(error, e);
+			throw e;
+		}
+		return userRoleList;
 
 	}
 	
