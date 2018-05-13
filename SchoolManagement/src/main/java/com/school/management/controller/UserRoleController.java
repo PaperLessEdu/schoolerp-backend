@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,9 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
-import com.school.management.domain.Employee;
 import com.school.management.domain.UserRole;
-import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.UserRoleService;
 
