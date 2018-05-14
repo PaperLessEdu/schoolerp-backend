@@ -26,10 +26,6 @@ public class User {
 	@Column(name = "PASSWORD")
 	private String password;
 	
-	@OneToOne(targetEntity = UserRole.class, cascade = CascadeType.ALL )
-	@JoinColumn(name = "USER_ROLE", referencedColumnName = "id")
-	private UserRole userRole;
-	
 	@OneToOne(targetEntity = Employee.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "ID", nullable = true)
 	private Employee employee;
@@ -56,14 +52,6 @@ public class User {
 
 	public void setPASSWORD(String password) {
 		this.password = password;
-	}
-
-	public UserRole getUserRole() {
-		return userRole;
-	}
-
-	public void setUserRole(UserRole userRole) {
-		this.userRole = userRole;
 	}
 
 	public String getPassword() {

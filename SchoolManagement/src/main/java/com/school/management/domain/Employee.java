@@ -1,16 +1,27 @@
 package com.school.management.domain;
 
+import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Employee")
-public class Employee {
+public class Employee implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -48,6 +59,9 @@ public class Employee {
 	@Column(name = "JOB_TYPE")
 	private String jobType;
 	
+	@Column(name = "EMPLOYEE_TYPE")
+	private String employeeType;
+	
 	@Column(name = "DOJ")
 	private String dateOfJoining;
 	
@@ -78,7 +92,11 @@ public class Employee {
 	@Column(name = "POSTAL_CODE")
 	private String postalCode;
 	
+	@ManyToOne(targetEntity = UserRole.class, cascade = CascadeType.ALL )
+	@JoinColumn(name = "USER_ROLE", referencedColumnName = "id")
+	private UserRole userRole;
 
+	
 	public Long getId() {
 		return id;
 	}
@@ -255,4 +273,20 @@ public class Employee {
 		this.postalCode = postalCode;
 	}
 
+	public String getEmployeeType() {
+		return employeeType;
+	}
+
+	public void setEmployeeType(String employeeType) {
+		this.employeeType = employeeType;
+	}
+
+	public UserRole getUserRole() {
+		return userRole;
+	}
+
+	public void setUserRole(UserRole userRole) {
+		this.userRole = userRole;
+	}
+	
 }

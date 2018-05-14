@@ -41,6 +41,10 @@ public class EmployeeService {
 
 			Employee employee = wrapEmployee(null, addToEmployeeRequest);
 			
+			UserRole userRole = userRoleDaoImpl.getUserRole(addToEmployeeRequest.getRoleId());
+			
+			employee.setUserRole(userRole);
+			
 			employeeImpl.saveEmployee(employee);
 
 			logger.info("Employee saved Sucessfully with First name [{}] and Last name [{}]",employee.getFirstName(), employee.getLastName());
@@ -53,13 +57,10 @@ public class EmployeeService {
 				throw new CustomException(error);
 			}
 			
-			UserRole userRole = userRoleDaoImpl.getUserRole(addToEmployeeRequest.getRoleId());
-			
 			User user = new User();
 			user.setUserName(employee.getFirstName() + employee.getLastName());
 			user.setPASSWORD(employee.getFirstName() + "@123");
 			user.setEmployee(employee);
-			user.setUserRole(userRole);
 			userDaoImpl.saveUser(user);
 			
 			logger.info("User data sucessfully saved with User Name [{}]",user.getUserName());
@@ -122,17 +123,21 @@ public class EmployeeService {
 
 	}
 
-	public Employee getEmployee(Long id) {
+	public AddToEmployeeRequest getEmployee(Long id) {
 
 		Employee employee = null;
+		AddToEmployeeRequest addToEmployeeRequest = new AddToEmployeeRequest();
+
 		try {
 			employee = employeeImpl.getEmployee(id);
+			
+			addToEmployeeRequest.wrapDetails(employee);
 		} catch (Exception e) {
 			String error = String.format("Error occured while fetching employee List");
 			logger.error(error, e);
 			throw e;
 		}
-		return employee;
+		return addToEmployeeRequest;
 
 	}
 	

@@ -1,5 +1,7 @@
 package com.school.management.model;
 
+import com.school.management.domain.Employee;
+
 public class AddToEmployeeRequest {
 	
 	private Long id;
@@ -241,6 +243,33 @@ public class AddToEmployeeRequest {
 
 	public void setRoleId(long roleId) {
 		this.roleId = roleId;
+	}
+	
+	public void wrapDetails(Employee employee) {
+		this.id = employee.getId();
+		this.firstName = employee.getFirstName();
+		this.middleName = employee.getMiddleName();
+		this.lastName = employee.getLastName();
+		this.nationality = employee.getNationality();
+		this.gender = employee.getGender();
+		this.dob = employee.getDob();
+		this.aadharCardNumber = employee.getAadharCardNumber();
+		this.alternatePhoneNumber = employee.getAlternatePhoneNumber();
+		this.bloodGroup = employee.getBloodGroup();
+		this.city = employee.getCity();
+		this.correspondenceAddress = employee.getCorrespondenceAddress();
+		this.dateOfJoining = this.getDateOfJoining();
+		this.emailId = employee.getEmailId();
+		this.state = employee.getState();
+		this.maritalStatus = employee.getMaritalStatus();
+		this.jobType = employee.getJobType();
+		this.occupation = employee.getOccupation();
+		this.permanentAddress = employee.getPermanentAddress();
+		this.phoneNumber = employee.getPhoneNumber();
+		this.qualification = employee.getQualification();
+		this.roleId = employee.getUserRole().getId();
+		this.employeeType = employee.getEmployeeType();
+		this.dateOfJoining = employee.getDateOfJoining();
 	}
 	
 }

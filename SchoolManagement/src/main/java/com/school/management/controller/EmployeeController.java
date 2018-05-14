@@ -114,18 +114,16 @@ public class EmployeeController {
 	 * @param 		employeeId
 	 * @return 		Employee
 	 */
-	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public Employee getEmployee(@PathVariable Long employeeId) {
+	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET,produces = AppConstants.JSON)
+	public AddToEmployeeRequest getEmployee(@PathVariable Long employeeId) {
 
-		logger.info("Request received to fetch Employee List");
+		logger.info("Request received to fetch Employee details by employeeId");
 		
-		Employee employee = new Employee();
-
-		employee = employeeService.getEmployee(employeeId);
+		AddToEmployeeRequest addToEmployeeRequest = employeeService.getEmployee(employeeId);
 		
 		logger.info("Employee List fetched successfully");
 		
-		return employee;
+		return addToEmployeeRequest;
 
 	}
 	
@@ -147,25 +145,6 @@ public class EmployeeController {
 		return employeeList;
 
 	}
-	
-	/**
-	 * Endpoint to get employee details by id
-	 * @param 		employeeId
-	 * @return``
-	 */
-	/*@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public Employee updateEmployee(@PathVariable Long employeeId) {
 
-		logger.info("Request received to fetch Employee List");
-		
-		Employee employee = new Employee();
-
-		employee = employeeService.getEmployee(employeeId);
-		
-		logger.info("Employee List fetched successfully");
-		
-		return employee;
-
-	}*/
 
 }
