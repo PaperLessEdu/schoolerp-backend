@@ -23,7 +23,7 @@ import com.school.management.service.EmployeeService;
 
 @RestController
 @RequestMapping(value =  UriConstants.EMPLOYEES)
-// @CrossOrigin( origins = {"http://dev.cloudscripts.co.in"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = {"http://dev.cloudscripts.co.in"}, maxAge = 4800, allowCredentials = "false")
 public class EmployeeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
@@ -104,7 +104,7 @@ public class EmployeeController {
 		}
 		smResponseStatus = employeeService.deleteEmployee(employeeId);
 		
-		logger.info("Employee deleted Successfully with id [{}]",employeeId);
+		logger.info("Employee deleted Successfully with id [{}]", employeeId);
 		return smResponseStatus;
 		
 	}
@@ -114,21 +114,21 @@ public class EmployeeController {
 	 * @param 		employeeId
 	 * @return 		Employee
 	 */
-	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET,produces = AppConstants.JSON)
+	@RequestMapping(value = UriConstants.EMPLOYEEID, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public AddToEmployeeRequest getEmployee(@PathVariable Long employeeId) {
 
 		logger.info("Request received to fetch Employee details by employeeId");
 		
 		AddToEmployeeRequest addToEmployeeRequest = employeeService.getEmployee(employeeId);
 		
-		logger.info("Employee List fetched successfully");
+		logger.info("Employee by id [{}] fetched successfully", employeeId);
 		
 		return addToEmployeeRequest;
 
 	}
 	
 	/**
-	 * ondpoint tp get employee list
+	 * Endpoint tp get employee list
 	 * @return		List<Employee>
 	 */
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
