@@ -16,4 +16,8 @@ public class UriConstants {
 	public static final String USERROLES = "/userRoles";
 	
 	public static final String ROLEID = "/{roleId}";
+	
+	public static final String NOTIFICATION = "/notification";
+	public static final String SEND_EMAIL = "/sendEmail";
+	
 }
