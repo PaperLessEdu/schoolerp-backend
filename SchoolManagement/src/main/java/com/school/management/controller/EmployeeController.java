@@ -23,7 +23,7 @@ import com.school.management.service.EmployeeService;
 
 @RestController
 @RequestMapping(value =  UriConstants.EMPLOYEES)
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in:8081"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class EmployeeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
