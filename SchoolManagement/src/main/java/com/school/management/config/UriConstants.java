@@ -20,4 +20,5 @@ public class UriConstants {
 	public static final String NOTIFICATION = "/notification";
 	public static final String SEND_EMAIL = "/sendEmail";
 	
+	public static final String SUBJECTS = "/subjects";
 }
