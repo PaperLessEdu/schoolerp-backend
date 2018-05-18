@@ -92,9 +92,15 @@ public class Employee implements Serializable{
 	@Column(name = "POSTAL_CODE")
 	private String postalCode;
 	
-	@ManyToOne(targetEntity = UserRole.class, cascade = CascadeType.ALL )
+	@OneToOne(targetEntity = UserRole.class)
 	@JoinColumn(name = "USER_ROLE", referencedColumnName = "id")
 	private UserRole userRole;
+	
+	@Column(name = "USER_NAME")
+	private String userName;
+	
+	@Column(name = "PASSWORD")
+	private String password;
 
 	
 	public Long getId() {
@@ -287,6 +293,22 @@ public class Employee implements Serializable{
 
 	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	
 }
