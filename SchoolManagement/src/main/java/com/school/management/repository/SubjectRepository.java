@@ -6,4 +6,6 @@ import com.school.management.domain.Subject;
 
 public interface SubjectRepository extends JpaRepository<Subject, Long> {
 
+	boolean existsByName(String name);
+
 }

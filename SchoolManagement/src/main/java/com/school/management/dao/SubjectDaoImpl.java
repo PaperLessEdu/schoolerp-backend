@@ -32,10 +32,10 @@ public class SubjectDaoImpl implements SubjectDao {
 	}
 
 	@Override
-	public boolean isExist(Long subject_id) {
+	public boolean isExist(String name) {
 		boolean isExist = false;
 		try {
-			isExist = subjectRepository.existsById(subject_id);
+			isExist = subjectRepository.existsByName(name);
 		} catch(Exception e) {
 			String error = String.format("Error occured while checking subject existance");
 			logger.error(error);
@@ -51,7 +51,7 @@ public class SubjectDaoImpl implements SubjectDao {
 		try {
 			subject = subjectRepository.getOne(subject_id);
 		} catch(Exception e) {
-			String error = String.format("Error occured while fetching subject");
+			String error = String.format("Error occured while fetching subject details.");
 			logger.error(error);
 			throw e;
 		}
@@ -65,7 +65,7 @@ public class SubjectDaoImpl implements SubjectDao {
 		try {
 			subjectList = subjectRepository.findAll();
 		} catch(Exception e) {
-			String error = String.format("Error occured while fetching subject list");
+			String error = String.format("Error occured while fetching subject list.");
 			logger.error(error);
 			throw e;
 		}

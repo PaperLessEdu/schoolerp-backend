@@ -8,7 +8,7 @@ public interface SubjectDao {
 
 	public void saveSubject(Subject subject);
 	
-	public boolean isExist(Long subject_id);
+	public boolean isExist(String name);
 	
 	public Subject getSubject(Long subject_id);
 	

@@ -8,9 +8,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.school.management.core.CustomException;
 import com.school.management.dao.SubjectDaoImpl;
+import com.school.management.domain.Employee;
 import com.school.management.domain.Subject;
+import com.school.management.domain.UserRole;
+import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
+import com.school.management.model.SubjectModel;
+
+import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class SubjectService {
@@ -20,25 +27,25 @@ public class SubjectService {
 	
 	public static final Logger logger = LoggerFactory.getLogger(SubjectService.class);
 	
-	public SmResponseStatus addSubject(Subject subject) {
+	public SmResponseStatus addSubject(SubjectModel subjectModel) {
 		String message = null;
-
-		try {
-
+		Boolean isSubjectExist = null;
+		Subject subject = wrapSubject(null, subjectModel);
+		
+		isSubjectExist = subjectDaoImpl.isExist(subjectModel.getName());
+		logger.info("Is Subject exist: [{}]",isSubjectExist);
+		if(isSubjectExist.equals(Boolean.FALSE)) {
 			subjectDaoImpl.saveSubject(subject);
-
-			logger.info("Subject Added Sucessfully with name [{}]", subject.getName());
-
-			
-			
-			message = String.format("Subject saved Sucessfully with name [%s]",	subject.getName());
-			
-		} catch (Exception e) {
-			String error = String.format(
-					"Error occured while saving subject data with name [%s] ", subject.getName());
-			logger.error(error, e);
-			throw e;
+		} else {
+			String error = String.format("Subject is already exist with name [%s]", subjectModel.getName());
+			logger.error(error);
+			throw new CustomException(error);
 		}
+		
+		logger.info("Subject saved Sucessfully with name [{}]", subject.getName());
+		
+		message = String.format("Subject saved Sucessfully with name [%s]", subject.getName());
+		
 		return new SmResponseStatus(message);
 
 	}
@@ -76,7 +83,24 @@ public class SubjectService {
 
 	}
 	
-	public SmResponseStatus deleteRole(Long subject_id) {
+	public SubjectModel getSubject(Long subject_id) {
+
+		Subject subject = null;
+		SubjectModel subjectModel = new SubjectModel();
+
+		try {
+			subject = subjectDaoImpl.getSubject(subject_id);
+			subjectModel.wrapDetails(subject);
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching subject details");
+			logger.error(error, e);
+			throw e;
+		}
+		return subjectModel;
+
+	}
+	
+	public SmResponseStatus deleteSubject(Long subject_id) {
 		
 		String message = null;
 		
@@ -95,4 +119,17 @@ public class SubjectService {
 		}
 		return new SmResponseStatus(message);
 	}
+	
+	private Subject wrapSubject(Long subject_id, SubjectModel subjectModel) {
+		Subject subject = new Subject();
+		
+		if(subject_id != null ) {
+			subject.setSubject_id(subjectModel.getSubject_id());
+		}
+		
+		subject.setName(subjectModel.getName());
+		
+		return subject;
+	}
+	
 }
