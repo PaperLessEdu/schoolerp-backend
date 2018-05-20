@@ -10,14 +10,9 @@ import org.springframework.stereotype.Service;
 
 import com.school.management.core.CustomException;
 import com.school.management.dao.SubjectDaoImpl;
-import com.school.management.domain.Employee;
 import com.school.management.domain.Subject;
-import com.school.management.domain.UserRole;
-import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.SubjectModel;
-
-import net.bytebuddy.implementation.bytecode.Throw;
 
 @Service
 public class SubjectService {
