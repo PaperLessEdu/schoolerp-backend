@@ -16,6 +16,7 @@ import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
 import com.school.management.domain.Subject;
+import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.SubjectModel;
 import com.school.management.service.SubjectService;
@@ -71,6 +72,50 @@ public class SubjectController {
 		logger.info("Subject by id [{}] fetched successfully", subject_id);
 		
 		return subjectModel;
+	}
+	
+	@RequestMapping(value = UriConstants.SUBJECT_ID, method = RequestMethod.PUT, produces = AppConstants.JSON)
+	public SmResponseStatus updateSubject(@PathVariable Long subject_id, @RequestBody SubjectModel subjectModel) {
+
+		logger.info("Request received to update Subject with name [{}]",subjectModel.getName());
+		
+		SmResponseStatus smResponseStatus = null;
+		if (subjectModel.getName() == null) {
+			String error = String.format("Subject name can not empty.");
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		smResponseStatus = subjectService.updateSubject(subject_id, subjectModel);
+		
+		logger.info("Subject Sucessfully added with name [{}]",subjectModel.getName());
+		return smResponseStatus;
+
+	}
+	
+	@RequestMapping(value = UriConstants.SUBJECT_ID, method = RequestMethod.DELETE)
+	public SmResponseStatus deleteSubject(@PathVariable Long subject_id) {
+		
+		logger.info("Request received to delete Subject with id [{}]", subject_id);
+		
+		SmResponseStatus smResponseStatus = null;
+		
+		if(subject_id == null) {
+			String error = String.format("subject_id can not be null/empty or zero");
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		Boolean isExist = subjectService.existsById(subject_id);
+		
+		if(isExist.equals(Boolean.FALSE)) {
+			String error = String.format("Subject with id [%s] is not exist so aborting the delete subject operation",subject_id);
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		smResponseStatus = subjectService.deleteSubject(subject_id);
+		
+		logger.info("Subject deleted Successfully with id [{}]", subject_id);
+		return smResponseStatus;
+		
 	}
 
 }

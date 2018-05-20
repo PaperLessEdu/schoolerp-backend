@@ -43,6 +43,22 @@ public class SubjectDaoImpl implements SubjectDao {
 		}
 		return isExist;
 	}
+	
+	@Override
+	public boolean existsById(Long id) {
+		
+		Boolean isExist = Boolean.FALSE;
+		try {
+			isExist = subjectRepository.existsById(id);
+			
+		} catch(Exception e) {
+			String error = String.format("Error occured while checking subject with id [%s]", id);
+			logger.error(error);
+			isExist = Boolean.FALSE;
+			throw e;
+		}
+		return isExist;
+	}
 
 	@Override
 	public Subject getSubject(Long subject_id) {

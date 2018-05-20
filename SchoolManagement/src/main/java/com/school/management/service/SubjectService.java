@@ -50,18 +50,19 @@ public class SubjectService {
 
 	}
 	
-	public SmResponseStatus updateSubject(Subject subject) {
+	public SmResponseStatus updateSubject(Long subject_id, SubjectModel subjectModel) {
 		String message = null;
 
 		try {
+			Subject subject = wrapSubject(subject_id, subjectModel);
 			subjectDaoImpl.updateSubject(subject);
 
-			logger.info("Subject updated Sucessfully with name [{}] ",subject.getName());
+			logger.info("Subject updated Sucessfully with name [{}] ",subjectModel.getName());
 			
-			message = String.format("Subject updated Sucessfully with id [%s]",subject.getSubject_id());
+			message = String.format("Subject updated Sucessfully with id [%s]",subjectModel.getSubject_id());
 			
 		} catch (Exception e) {
-			String error = String.format("Error occured while updating subject data with name [%s]", subject.getName());
+			String error = String.format("Error occured while updating subject data with name [%s]", subjectModel.getName());
 			logger.error(error, e);
 			throw e;
 		}
@@ -118,6 +119,19 @@ public class SubjectService {
 			throw e;
 		}
 		return new SmResponseStatus(message);
+	}
+	
+	public Boolean existsById(Long subject_id) {
+
+		Boolean isExist = Boolean.FALSE;
+		try {
+			isExist = subjectDaoImpl.existsById(subject_id);
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching subject data with id [%s]", subject_id);
+			logger.error(error, e);
+			throw e;
+		}
+		return isExist;
 	}
 	
 	private Subject wrapSubject(Long subject_id, SubjectModel subjectModel) {

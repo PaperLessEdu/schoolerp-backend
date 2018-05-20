@@ -10,6 +10,8 @@ public interface SubjectDao {
 	
 	public boolean isExist(String name);
 	
+	public boolean existsById(Long subject_id);
+	
 	public Subject getSubject(Long subject_id);
 	
 	public List<Subject> getSubjectList();
@@ -17,5 +19,7 @@ public interface SubjectDao {
 	public void deleteSubject(Long subject_id);
 	
 	public void updateSubject(Subject subject);
+
+	
 	
 }
