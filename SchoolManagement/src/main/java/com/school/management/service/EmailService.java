@@ -1,5 +1,9 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,12 +41,11 @@ public class EmailService {
 		try {
 			AmazonSimpleEmailService client = AmazonSimpleEmailServiceClientBuilder.standard()
 					.withRegion(Regions.US_EAST_1).build();
+
+			List<String> emailList = Arrays.asList(emailModel.getToEmailId().split("\\s*,\\s*"));
 			SendEmailRequest request = new SendEmailRequest()
 					.withDestination(
-							new Destination()
-									.withToAddresses(
-											emailModel
-													.getToEmailId()))
+							new Destination().withToAddresses(emailList))
 					.withMessage(new Message()
 							.withBody(new Body()
 									.withHtml(new Content().withCharset("UTF-8").withData(emailModel.getBody()))
