@@ -25,4 +25,9 @@ public class UriConstants {
 	
 	public static final String STANDARDS = "/standards";
 	public static final String STANDARD_ID = "/{standard_id}";
+	
+	
+	public static final String DIVISION = "/divisions";
+	public static final String DIVISION_ID = "/{division_id}";
+	
 }

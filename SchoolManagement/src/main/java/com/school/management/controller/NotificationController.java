@@ -17,7 +17,7 @@ import com.school.management.service.EmailService;
 
 @RestController
 @RequestMapping(value = UriConstants.NOTIFICATION)
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+//@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class NotificationController {
 	public static final Logger logger = LoggerFactory.getLogger(NotificationController.class);
 
