@@ -22,8 +22,9 @@ import com.school.management.model.SmResponseStatus;
 import com.school.management.service.HolidayService;
 
 @RestController
-@RequestMapping(value = UriConstants.HOLIDAY)
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@RequestMapping(value = UriConstants.HOLIDAYS)
+@CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
+		"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
 public class HolidayController {
 
 	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
@@ -91,28 +92,29 @@ public class HolidayController {
 		logger.info("Holiday date Sucessfully added with name [{}]", holidayModel.getName());
 		return smResponseStatus;
 	}
-	
+
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.DELETE)
 	public SmResponseStatus deleteHoliday(@PathVariable Long holiday_id) {
-		
+
 		logger.info("Request received to delete Holiday with id [{}]", holiday_id);
-		
+
 		SmResponseStatus smResponseStatus = null;
-		
-		if(holiday_id == null) {
+
+		if (holiday_id == null) {
 			String error = String.format("holiday_id can not be null/empty or zero");
 			logger.error(error);
 			throw new CustomException(error);
 		}
 		Boolean isExist = holidayService.existsById(holiday_id);
-		
-		if(isExist.equals(Boolean.FALSE)) {
-			String error = String.format("Holiday with id [%s] is not exist so aborting the delete Holiday operation",holiday_id);
+
+		if (isExist.equals(Boolean.FALSE)) {
+			String error = String.format("Holiday with id [%s] is not exist so aborting the delete Holiday operation",
+					holiday_id);
 			logger.error(error);
 			throw new CustomException(error);
 		}
 		smResponseStatus = holidayService.deleteHoliday(holiday_id);
-		
+
 		logger.info("Holiday deleted Successfully with id [{}]", holiday_id);
 		return smResponseStatus;
 	}
