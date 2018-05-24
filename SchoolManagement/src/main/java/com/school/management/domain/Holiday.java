@@ -1,6 +1,7 @@
 package com.school.management.domain;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,9 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "holiday")
@@ -24,10 +30,16 @@ public class Holiday {
 	private String name;
 
 	@Column(name = "discription")
-	private String discripation;
+	private String discription;
 
-	@Column(name = "date", updatable = false)
-	private LocalDateTime date;
+	// @DATE(DATE)
+	// private LocalDateTime date;
+
+	@Column(name = "date")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	@Temporal(TemporalType.DATE)
+	@NotNull
+	private Date date;
 
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -54,18 +66,18 @@ public class Holiday {
 	}
 
 	public String getDiscripation() {
-		return discripation;
+		return discription;
 	}
 
 	public void setDiscripation(String discripation) {
-		this.discripation = discripation;
+		this.discription = discripation;
 	}
 
-	public LocalDateTime getDate() {
+	public @NotNull Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

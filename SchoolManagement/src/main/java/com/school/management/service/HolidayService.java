@@ -23,17 +23,18 @@ public class HolidayService {
 
 	public SmResponseStatus addHoliday(HolidayModel holidayModel) {
 		String message = null;
-		Boolean isDivisionExist = null;
+		Boolean isHolidayExist = null;
 		Holiday holiday = wrapHoliday(null, holidayModel);
 
-		isDivisionExist = holidayDaoImpl.isExistByName(holidayModel.getName());
-		logger.info("Is Division exist: [{}]", isDivisionExist);
-		if (isDivisionExist.equals(Boolean.FALSE)) {
+		isHolidayExist = holidayDaoImpl.isExistByName(holidayModel.getName());
+		logger.info("Is Holiday exist: [{}]", isHolidayExist);
+		if (isHolidayExist.equals(Boolean.FALSE)) {
 			holidayDaoImpl.saveHoliday(holiday);
 		} else {
-			String error = String.format("Holiday date is already exist with name [%s]", holidayModel.getName());
-			logger.error(error);
-			throw new CustomException(error);
+			
+			message = String.format("Holiday date is already exist with name [%s]", holidayModel.getName());
+			logger.error(message);
+			throw new CustomException(message);
 		}
 		return new SmResponseStatus(message);
 	}

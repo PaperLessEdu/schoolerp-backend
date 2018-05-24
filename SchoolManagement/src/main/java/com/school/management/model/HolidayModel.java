@@ -1,16 +1,16 @@
 package com.school.management.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 import com.school.management.domain.Holiday;
 
 public class HolidayModel {
 
-	private Long holiday_id;
-
 	private String name;
 
-	private LocalDateTime date;
+	private Long holiday_id;
+
+	private Date date;
 
 	private String discription;
 
@@ -30,11 +30,11 @@ public class HolidayModel {
 		this.name = name;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

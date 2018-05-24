@@ -23,11 +23,11 @@ import com.school.management.service.HolidayService;
 
 @RestController
 @RequestMapping(value = UriConstants.HOLIDAYS)
-@CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
-		"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
+//@CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
+	//	"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
 public class HolidayController {
 
-	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
+	public static final Logger logger = LoggerFactory.getLogger(HolidayController.class);
 
 	@Autowired
 	public HolidayService holidayService;
@@ -67,7 +67,7 @@ public class HolidayController {
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public HolidayModel getHoliday(@PathVariable Long holiday_id) {
 
-		logger.info("Request received to fetch Division details by holiday_id");
+		logger.info("Request received to fetch Holiday details by holiday_id");
 
 		HolidayModel holidayModel = holidayService.getHoliday(holiday_id);
 
