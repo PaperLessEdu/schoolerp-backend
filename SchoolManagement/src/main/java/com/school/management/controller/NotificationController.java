@@ -48,7 +48,7 @@ public class NotificationController {
 	@RequestMapping(value = UriConstants.SEND_SMS, method = RequestMethod.POST, produces = AppConstants.JSON)
 	public SmResponseStatus sendSms(@RequestBody SmsModel smsModel) {
 
-		logger.trace("Request received to send sms [{}]", smsModel);
+		logger.debug("Request received to send sms [{}]", smsModel);
 		String message = "sms sent";
 		try {
 			smsService.sendSms(smsModel);
