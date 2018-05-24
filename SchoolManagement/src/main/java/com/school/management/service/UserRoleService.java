@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import com.school.management.dao.UserRoleDaoImpl;
-import com.school.management.domain.Employee;
 import com.school.management.domain.UserRole;
 import com.school.management.model.SmResponseStatus;
 
