@@ -34,7 +34,7 @@ public class SmsService {
 		String message = "&message=" + smsModel.getBody();
 		String sender = "&sender=" + smsSenderID;
 		String numbers = "&numbers=" + smsModel.getPhonenumber();
-		final String uri = smsServerUrl + "send/?" + apiKey + numbers + message + sender;
+		final String uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
 
 		logger.debug("sms url:" + uri);
 		RestTemplate restTemplate = new RestTemplate();

@@ -49,9 +49,9 @@ public class NotificationController {
 	public SmResponseStatus sendSms(@RequestBody SmsModel smsModel) {
 
 		logger.debug("Request received to send sms [{}]", smsModel);
-		String message = "sms sent";
+		String message =null;
 		try {
-			smsService.sendSms(smsModel);
+			message = smsService.sendSms(smsModel);
 		} catch (Exception e) {
 			message = String.format("Failed to send email " + e.getMessage());
 			logger.error(message, e);
