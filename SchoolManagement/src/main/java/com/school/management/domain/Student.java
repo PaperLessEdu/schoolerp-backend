@@ -1,11 +1,13 @@
 package com.school.management.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -47,11 +49,13 @@ public class Student {
 	@Column(name = "religion")
 	private String religion;
 	
-	@Column(name = "standard")
-	private String standard;
+	@ManyToOne(targetEntity = Standard.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="standard_id",referencedColumnName="standard_id")
+	private Standard standard;
 	
-	@Column(name = "division")
-	private String division;
+	@ManyToOne(targetEntity = Division.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="division_id",referencedColumnName="division_id")
+	private Division division;
 	
 	@Column(name = "nationality")
 	private String nationality;
@@ -174,19 +178,19 @@ public class Student {
 		this.religion = religion;
 	}
 
-	public String getStandard() {
+	public Standard getStandard() {
 		return standard;
 	}
 
-	public void setStandard(String standard) {
+	public void setStandard(Standard standard) {
 		this.standard = standard;
 	}
 
-	public String getDivision() {
+	public Division getDivision() {
 		return division;
 	}
 
-	public void setDivision(String division) {
+	public void setDivision(Division division) {
 		this.division = division;
 	}
 

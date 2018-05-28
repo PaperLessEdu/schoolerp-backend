@@ -5,7 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.ParentDaoImpl;
+import com.school.management.dao.StandardDaoImpl;
 import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.Parent;
 import com.school.management.domain.Student;
@@ -21,6 +23,12 @@ public class StudentService {
 	
 	@Autowired
 	private ParentDaoImpl parentDaoImpl;
+	
+	@Autowired
+	private DivisionDaoImpl divisionDaoImpl;
+	
+	@Autowired
+	private StandardDaoImpl standardDaoImpl;
 	
 	public static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 	
@@ -72,14 +80,14 @@ public class StudentService {
 		student.setCountry(studentModel.getCountry());
 		student.setDob(studentModel.getDob());
 		student.setCity(studentModel.getCity());
-		student.setDivision(studentModel.getDivision());
+		student.setDivision(divisionDaoImpl.getDivision(studentModel.getDivision()));
 		student.setGender(studentModel.getGender());
 		student.setMiddleName(studentModel.getMiddleName());
 		student.setNationality(studentModel.getNationality());
 		student.setPermanentAddress(studentModel.getPermanentAddress());
 		student.setPostalCode(studentModel.getPostalCode());
 		student.setReligion(studentModel.getReligion());
-		student.setStandard(studentModel.getStandard());
+		student.setStandard(standardDaoImpl.getStandard(studentModel.getStandard()));
 		student.setState(studentModel.getState());
 		return student;
 		

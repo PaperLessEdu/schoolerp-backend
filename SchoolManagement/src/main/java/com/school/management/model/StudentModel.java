@@ -24,9 +24,9 @@ public class StudentModel {
 	
 	private String religion;
 	
-	private String standard;
+	private long standard;
 	
-	private String division;
+	private long division;
 	
 	private String nationality;
 	
@@ -119,20 +119,20 @@ public class StudentModel {
 	public void setReligion(String religion) {
 		this.religion = religion;
 	}
-
-	public String getStandard() {
+	
+	public long getStandard() {
 		return standard;
 	}
 
-	public void setStandard(String standard) {
+	public void setStandard(long standard) {
 		this.standard = standard;
 	}
 
-	public String getDivision() {
+	public long getDivision() {
 		return division;
 	}
 
-	public void setDivision(String division) {
+	public void setDivision(long division) {
 		this.division = division;
 	}
 
@@ -245,9 +245,9 @@ public class StudentModel {
 		
 		this.religion = student.getReligion();
 		
-		this.standard = student.getStandard();
+		this.standard = student.getStandard().getStandard_id();
 		
-		this.division = student.getDivision();
+		this.division = student.getDivision().getDivision_id();
 		
 		this.nationality = student.getNationality();
 		
