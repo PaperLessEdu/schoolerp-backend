@@ -3,10 +3,9 @@ package com.school.management.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.school.management.domain.Employee;
+import com.school.management.domain.Parent;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long> {
-	
+public interface ParentRepository extends JpaRepository<Parent, Long>{
 
 }

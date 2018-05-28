@@ -6,7 +6,7 @@ import com.school.management.domain.Division;
 
 public interface DivisionDao {
 
-public void saveDivision(Division division);
+	public void saveDivision(Division division);
 	
 	public boolean isExistByName(String name);
 	
