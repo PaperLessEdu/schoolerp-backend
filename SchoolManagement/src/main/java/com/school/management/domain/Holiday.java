@@ -9,14 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "holiday")
@@ -32,14 +27,15 @@ public class Holiday {
 	@Column(name = "discription")
 	private String discription;
 
-	// @DATE(DATE)
-	// private LocalDateTime date;
-
 	@Column(name = "date")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	@Temporal(TemporalType.DATE)
-	@NotNull
+	@CreationTimestamp
 	private Date date;
+
+	// private Date date;
+	// @Column(name = "date")
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	// @Temporal(TemporalType.DATE)
+	// @NotNull
 
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -48,6 +44,23 @@ public class Holiday {
 	@Column(name = "last_update_dt")
 	@UpdateTimestamp
 	private LocalDateTime last_update_dt;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+	
+
+	public String getDiscription() {
+		return discription;
+	}
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
 
 	public long getHoliday_id() {
 		return holiday_id;
@@ -63,22 +76,6 @@ public class Holiday {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDiscripation() {
-		return discription;
-	}
-
-	public void setDiscripation(String discripation) {
-		this.discription = discripation;
-	}
-
-	public @NotNull Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
 	}
 
 	public LocalDateTime getCreate_dt() {

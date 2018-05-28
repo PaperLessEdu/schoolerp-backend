@@ -32,10 +32,15 @@ public class HolidayService {
 			holidayDaoImpl.saveHoliday(holiday);
 		} else {
 			
-			message = String.format("Holiday date is already exist with name [%s]", holidayModel.getName());
-			logger.error(message);
-			throw new CustomException(message);
+			String error = String.format("Holiday date is already exist with name [%s]", holidayModel.getName());
+			logger.error(error);
+			throw new CustomException(error);
 		}
+		
+		logger.info("Holiday saved Sucessfully with name [{}]", holiday.getName());
+		
+		message = String.format("Holiday saved Sucessfully with name [%s]", holiday.getName());
+		
 		return new SmResponseStatus(message);
 	}
 
@@ -135,6 +140,7 @@ public class HolidayService {
 			holiday.setHoliday_id(holidayModel.getHoliday_id());
 		}
 		holiday.setName(holidayModel.getName());
+		holiday.setDiscription(holidayModel.getDiscription());
 
 		return holiday;
 	}
