@@ -12,7 +12,7 @@ public class HolidayModel {
 
 	private Long holiday_id;
 
-	@DateTimeFormat(pattern="yyyy-MM-dd") 
+	@DateTimeFormat(pattern="dd-MM-yyyy") 
 	private Date date;
 
 	private String discription;
