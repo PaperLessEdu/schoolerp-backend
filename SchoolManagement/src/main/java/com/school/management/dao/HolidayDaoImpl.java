@@ -17,7 +17,7 @@ public class HolidayDaoImpl implements HolidayDao {
 	@Autowired
 	private HolidayRepository holidayRepository;
 
-	public static final Logger logger = LoggerFactory.getLogger(DivisionDaoImpl.class);
+	public static final Logger logger = LoggerFactory.getLogger(HolidayDaoImpl.class);
 
 	@Override
 	public void saveHoliday(Holiday holiday) {
@@ -92,7 +92,7 @@ public class HolidayDaoImpl implements HolidayDao {
 		try {
 			holidayRepository.deleteById(holiday_id);
 		} catch (Exception e) {
-			String error = String.format("Error occured while deleting division with holiday_id [%s]", holiday_id);
+			String error = String.format("Error occured while deleting holiday_id [%s]", holiday_id);
 			logger.error(error);
 			throw e;
 		}
