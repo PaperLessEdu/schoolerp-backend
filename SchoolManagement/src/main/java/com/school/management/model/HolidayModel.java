@@ -2,6 +2,8 @@ package com.school.management.model;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.school.management.domain.Holiday;
 
 public class HolidayModel {
@@ -10,6 +12,7 @@ public class HolidayModel {
 
 	private Long holiday_id;
 
+	@DateTimeFormat(pattern="yyyy-MM-dd") 
 	private Date date;
 
 	private String discription;
@@ -49,7 +52,7 @@ public class HolidayModel {
 	public void wrapDetails(Holiday holiday) {
 		this.holiday_id = holiday.getHoliday_id();
 		this.name = holiday.getName();
-		this.discription = holiday.getDiscripation();
+		this.discription = holiday.getDiscription();
 		this.date = holiday.getDate();
 
 	}

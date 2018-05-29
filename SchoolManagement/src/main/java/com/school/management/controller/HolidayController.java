@@ -6,7 +6,6 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,13 +64,13 @@ public class HolidayController {
 	}
 
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public HolidayModel getHoliday(@PathVariable Long holiday_id) {
+	public HolidayModel getHoliday(@PathVariable Long holidays_id) {
 
-		logger.info("Request received to fetch Holiday details by holiday_id");
+		logger.info("Request received to fetch Holiday details by holiday_id"+holidays_id);
 
-		HolidayModel holidayModel = holidayService.getHoliday(holiday_id);
+		HolidayModel holidayModel = holidayService.getHoliday(holidays_id);
 
-		logger.info("Holiday by id [{}] fetched successfully", holiday_id);
+		logger.info("Holiday by id [{}] fetched successfully", holidays_id);
 
 		return holidayModel;
 	}

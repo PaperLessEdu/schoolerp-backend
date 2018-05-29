@@ -28,7 +28,6 @@ public class Holiday {
 	private String discription;
 
 	@Column(name = "date")
-	@CreationTimestamp
 	private Date date;
 
 	// private Date date;
@@ -52,7 +51,6 @@ public class Holiday {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
 
 	public String getDiscription() {
 		return discription;
