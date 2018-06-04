@@ -1,6 +1,7 @@
 package com.school.management.domain;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,10 +25,16 @@ public class Holiday {
 	private String name;
 
 	@Column(name = "discription")
-	private String discripation;
+	private String discription;
 
-	@Column(name = "date", updatable = false)
-	private LocalDateTime date;
+	@Column(name = "date")
+	private Date date;
+
+	// private Date date;
+	// @Column(name = "date")
+	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+	// @Temporal(TemporalType.DATE)
+	// @NotNull
 
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -36,6 +43,22 @@ public class Holiday {
 	@Column(name = "last_update_dt")
 	@UpdateTimestamp
 	private LocalDateTime last_update_dt;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public String getDiscription() {
+		return discription;
+	}
+
+	public void setDiscription(String discription) {
+		this.discription = discription;
+	}
 
 	public long getHoliday_id() {
 		return holiday_id;
@@ -51,22 +74,6 @@ public class Holiday {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getDiscripation() {
-		return discripation;
-	}
-
-	public void setDiscripation(String discripation) {
-		this.discripation = discripation;
-	}
-
-	public LocalDateTime getDate() {
-		return date;
-	}
-
-	public void setDate(LocalDateTime date) {
-		this.date = date;
 	}
 
 	public LocalDateTime getCreate_dt() {

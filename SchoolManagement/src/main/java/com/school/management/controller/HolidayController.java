@@ -27,7 +27,7 @@ import com.school.management.service.HolidayService;
 		"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
 public class HolidayController {
 
-	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
+	public static final Logger logger = LoggerFactory.getLogger(HolidayController.class);
 
 	@Autowired
 	public HolidayService holidayService;
@@ -65,19 +65,19 @@ public class HolidayController {
 	}
 
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public HolidayModel getHoliday(@PathVariable Long holiday_id) {
+	public HolidayModel getHoliday(@PathVariable Long holidays_id) {
 
-		logger.info("Request received to fetch Division details by holiday_id");
+		logger.info("Request received to fetch Holiday details by holiday_id"+holidays_id);
 
-		HolidayModel holidayModel = holidayService.getHoliday(holiday_id);
+		HolidayModel holidayModel = holidayService.getHoliday(holidays_id);
 
-		logger.info("Holiday by id [{}] fetched successfully", holiday_id);
+		logger.info("Holiday by id [{}] fetched successfully", holidays_id);
 
 		return holidayModel;
 	}
 
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.PUT, produces = AppConstants.JSON)
-	public SmResponseStatus updateHoliday(@PathVariable Long holiday_id, @RequestBody HolidayModel holidayModel) {
+	public SmResponseStatus updateHoliday(@PathVariable Long holidays_id, @RequestBody HolidayModel holidayModel) {
 
 		logger.info("Request received to update Holiday with name [{}]", holidayModel.getName());
 
@@ -87,35 +87,36 @@ public class HolidayController {
 			logger.error(error);
 			throw new CustomException(error);
 		}
-		smResponseStatus = holidayService.updateHoliday(holiday_id, holidayModel);
+		holidayModel.setHoliday_id(holidays_id);
+		smResponseStatus = holidayService.updateHoliday(holidays_id, holidayModel);
 
 		logger.info("Holiday date Sucessfully added with name [{}]", holidayModel.getName());
 		return smResponseStatus;
 	}
 
 	@RequestMapping(value = UriConstants.HOLIDAY_ID, method = RequestMethod.DELETE)
-	public SmResponseStatus deleteHoliday(@PathVariable Long holiday_id) {
+	public SmResponseStatus deleteHoliday(@PathVariable Long holidays_id) {
 
-		logger.info("Request received to delete Holiday with id [{}]", holiday_id);
+		logger.info("Request received to delete Holiday with id [{}]", holidays_id);
 
 		SmResponseStatus smResponseStatus = null;
 
-		if (holiday_id == null) {
+		if (holidays_id == null) {
 			String error = String.format("holiday_id can not be null/empty or zero");
 			logger.error(error);
 			throw new CustomException(error);
 		}
-		Boolean isExist = holidayService.existsById(holiday_id);
+		Boolean isExist = holidayService.existsById(holidays_id);
 
 		if (isExist.equals(Boolean.FALSE)) {
 			String error = String.format("Holiday with id [%s] is not exist so aborting the delete Holiday operation",
-					holiday_id);
+					holidays_id);
 			logger.error(error);
 			throw new CustomException(error);
 		}
-		smResponseStatus = holidayService.deleteHoliday(holiday_id);
+		smResponseStatus = holidayService.deleteHoliday(holidays_id);
 
-		logger.info("Holiday deleted Successfully with id [{}]", holiday_id);
+		logger.info("Holiday deleted Successfully with id [{}]", holidays_id);
 		return smResponseStatus;
 	}
 

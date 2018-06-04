@@ -1,16 +1,19 @@
 package com.school.management.model;
 
-import java.time.LocalDateTime;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.school.management.domain.Holiday;
 
 public class HolidayModel {
 
-	private Long holiday_id;
-
 	private String name;
 
-	private LocalDateTime date;
+	private Long holiday_id;
+
+	@DateTimeFormat(pattern="dd-MM-yyyy") 
+	private Date date;
 
 	private String discription;
 
@@ -30,11 +33,11 @@ public class HolidayModel {
 		this.name = name;
 	}
 
-	public LocalDateTime getDate() {
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
@@ -49,7 +52,7 @@ public class HolidayModel {
 	public void wrapDetails(Holiday holiday) {
 		this.holiday_id = holiday.getHoliday_id();
 		this.name = holiday.getName();
-		this.discription = holiday.getDiscripation();
+		this.discription = holiday.getDiscription();
 		this.date = holiday.getDate();
 
 	}
