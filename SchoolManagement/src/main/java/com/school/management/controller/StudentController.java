@@ -1,17 +1,22 @@
 package com.school.management.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
+import com.school.management.domain.Student;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.StudentModel;
 import com.school.management.service.StudentService;
@@ -40,6 +45,28 @@ public class StudentController {
 		smResponseStatus = studentService.addStudent(studentModel);
 		
 		return smResponseStatus;
+		
+	}
+	
+	@RequestMapping(value = UriConstants.BLANK , method = RequestMethod.GET, produces = AppConstants.JSON)
+	public List<Student> getStudentsByStandardAndDivision(@RequestParam(value = "standardId", required = false) Long standardId, @RequestParam(value = "divisionId", required = false) Long divisionId) {
+		
+		if(standardId != null) {
+			logger.info("Request received to fetch Student List with standard and division [{}] [{}]",standardId, divisionId);
+		} else {
+			logger.info("Request received to fetch Student List ");
+		}
+		
+		if(standardId == null && divisionId != null) {
+			String error = String.format("Invalid request");
+			logger.error(error);
+			new CustomException(error);
+		}
+		
+		List<Student> studentList = studentService.getStudentsByStandardAndDivision(standardId, divisionId);
+		
+		logger.info("Students successfully fetched");
+		return studentList;
 		
 	}
 }

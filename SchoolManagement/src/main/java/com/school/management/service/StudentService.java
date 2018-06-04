@@ -1,5 +1,8 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +68,20 @@ public class StudentService {
 			throw e;
 		}
 		return new SmResponseStatus(message);
+		
+	}
+	
+	public List<Student> getStudentsByStandardAndDivision(Long standardId, Long divisionId) {
+		
+		try {
+			List<Student> studentList  = studentDaoImpl.getStudentsByStandardAndDivision(standardId, divisionId);
+			return studentList;
+		} catch(Exception e) {
+			String error = String.format(
+					"Error occured while saving student data with standard [%s] and division [%s]",standardId, divisionId);
+			logger.error(error, e);
+			throw e;
+		}
 		
 	}
 	
