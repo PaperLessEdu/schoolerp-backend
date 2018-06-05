@@ -47,13 +47,13 @@ public class StudentService {
 				student.setFather(parentDaoImpl.saveParent(fatherParent));
 			}
 			
-			if(studentModel.getFathersDetails() != null ) {
-				Parent motherParent = wrapParent(studentModel.getFathersDetails());
+			if(studentModel.getMothersDetails() != null ) {
+				Parent motherParent = wrapParent(studentModel.getMothersDetails());
 				student.setMother(parentDaoImpl.saveParent(motherParent));
 			}
 			
-			if(studentModel.getFathersDetails() != null) {
-				Parent guardianParent = wrapParent(studentModel.getFathersDetails());
+			if(studentModel.getGuardianDetails() != null) {
+				Parent guardianParent = wrapParent(studentModel.getGuardianDetails());
 				student.setGuardian(parentDaoImpl.saveParent(guardianParent));
 			}
 			
