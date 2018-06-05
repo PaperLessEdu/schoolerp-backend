@@ -46,19 +46,11 @@ public class HolidayService {
 
 	public SmResponseStatus updateHoliday(Long holiday_id, HolidayModel holidayModel) {
 		String message = null;
-		Boolean isHolidayExist = null;
+
 		try {
 			Holiday holiday = wrapHoliday(holiday_id, holidayModel);
-			isHolidayExist = holidayDaoImpl.isExistByName(holidayModel.getName());
-			logger.info("Is Holiday exist: [{}]", isHolidayExist);
 
-			if (isHolidayExist.equals(Boolean.FALSE)) {
-				holidayDaoImpl.updateHoliday(holiday);
-			} else {
-				String error = String.format("Updated holiday is already exist with name [%s]", holidayModel.getName());
-				logger.error(error);
-				throw new CustomException(error);
-			}
+			holidayDaoImpl.updateHoliday(holiday);
 
 			logger.info("Holiday updated Sucessfully with name [{}] ", holidayModel.getName());
 
