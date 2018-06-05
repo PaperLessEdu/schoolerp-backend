@@ -75,7 +75,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>schoolManagement</finalName>
+		<finalName>schoolManagementProd</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
