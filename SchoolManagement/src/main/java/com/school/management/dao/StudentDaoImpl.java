@@ -46,26 +46,44 @@ public class StudentDaoImpl implements StudentDao{
 
 	@Override
 	public void deleteStudent(Long id) {
-		// TODO Auto-generated method stub
+		
+		try {
+			studentRepository.deleteById(id);
+		} catch(Exception e) {
+			String error = String.format("Error occured while deleting student with id [%s]", id);
+			logger.error(error);
+			throw e;
+		}
 		
 	}
 
 	@Override
 	public Boolean existsById(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Boolean isExist = Boolean.FALSE;
+		try {
+			isExist = studentRepository.existsById(id);
+			
+		} catch(Exception e) {
+			String error = String.format("Error occured while checking student with id [%s]", id);
+			logger.error(error);
+			isExist = Boolean.FALSE;
+			throw e;
+		}
+		return isExist;
 	}
 
-	@Override
-	public List<Student> getStudentList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Student getStudent(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		Student student = new Student();
+		try {
+			student = studentRepository.getOne(id);
+			return student;
+		} catch(Exception e) {
+			String error  = String.format("Error occured while fteching student data with id [%s]",id);
+			logger.error(error);
+			throw e;
+		}
 	}
 
 	@Override

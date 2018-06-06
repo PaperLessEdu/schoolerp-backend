@@ -12,8 +12,6 @@ public interface StudentDao {
 	
 	public Boolean existsById(Long id);
 	
-	public List<Student> getStudentList();
-	
 	public Student getStudent(Long id);
 	
 	public List<Student> getStudentsByStandardAndDivision(Long standardId, Long divisionId);

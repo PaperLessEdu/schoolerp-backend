@@ -17,6 +17,7 @@ import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
 import com.school.management.domain.Student;
+import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.StudentModel;
 import com.school.management.service.StudentService;
@@ -67,6 +68,69 @@ public class StudentController {
 		
 		logger.info("Students successfully fetched");
 		return studentList;
+		
+	}
+	
+	/**
+	 * Endpoint to get Student details by id
+	 * @param 		studentId
+	 * @return 		Student
+	 */
+	@RequestMapping(value = UriConstants.STUDENT_ID, method = RequestMethod.GET, produces = AppConstants.JSON)
+	public StudentModel getEmployee(@PathVariable Long studentId) {
+
+		logger.info("Request received to fetch Student details by studentid");
+		
+		StudentModel studentModel = studentService.getStudentById(studentId);
+		
+		logger.info("Student by id [{}] fetched successfully", studentId);
+		
+		return studentModel;
+
+	}
+	
+	/**
+	 * Endpoint to update student
+	 * @param	StudentId
+	 * @param	StudentModel
+	 * @return  SmResponseStatus
+	 */
+	@RequestMapping(value = UriConstants.STUDENT_ID, method = RequestMethod.PUT, produces = AppConstants.JSON)
+	public SmResponseStatus updateEmployee(@PathVariable Long studentId, @RequestBody StudentModel studentModel) {
+
+		logger.info("Request received to fetch Student details by studentid");
+		
+		SmResponseStatus smResponseStatus = studentService.updateStudent(studentId, studentModel);
+		
+		logger.info("Student by id [{}] fetched successfully", studentId);
+		
+		return smResponseStatus;
+
+	}
+	
+	@RequestMapping(value = UriConstants.STUDENT_ID, method = RequestMethod.DELETE)
+	public SmResponseStatus deleteStudent(@PathVariable Long studentId) {
+		
+		logger.info("Request received to delete Student with id [{}]", studentId);
+		
+		SmResponseStatus smResponseStatus = null;
+		
+		if(studentId == null) {
+			String error = String.format("Student id can not be null/empty or zero");
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		Boolean isExist = studentService.existsById(studentId);
+		
+		if(isExist.equals(Boolean.FALSE)) {
+			String error = String.format("Student with id [%s] is not exist so aborting the delete Student operation",studentId);
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		smResponseStatus = studentService.deleteStudent(studentId);
+		
+		logger.info("Student deleted Successfully with id [{}]", studentId);
+		return smResponseStatus;
 		
 	}
 }
