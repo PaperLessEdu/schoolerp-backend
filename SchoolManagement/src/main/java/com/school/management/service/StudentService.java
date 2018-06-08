@@ -1,6 +1,5 @@
 package com.school.management.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;

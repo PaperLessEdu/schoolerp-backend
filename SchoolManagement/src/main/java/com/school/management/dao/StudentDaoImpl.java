@@ -22,6 +22,8 @@ import com.school.management.domain.Student;
 import com.school.management.repository.StudentRepository;
 
 
+
+
 @Component
 public class StudentDaoImpl implements StudentDao{
 

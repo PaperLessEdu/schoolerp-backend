@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.school.management.domain.Attendance;
-import com.school.management.domain.Division;
 import com.school.management.repository.AttendanceRepository;
 
 @Component
@@ -18,7 +17,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Autowired
 	private AttendanceRepository attendanceRepository;
 
-	public static final Logger logger = LoggerFactory.getLogger(DivisionDaoImpl.class);
+	public static final Logger logger = LoggerFactory.getLogger(AttendanceDaoImpl.class);
 
 	@Override
 	public void saveAttendance(Attendance attendance) {
@@ -27,7 +26,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			attendanceRepository.save(attendance);
 		} catch (Exception e) {
 			String error = String.format("Error occured while saving attendance");
-			logger.error(error);
+			logger.error(error,e);
 			throw e;
 		}
 	}
@@ -63,7 +62,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			attendanceList = attendanceRepository.findAll();
 		} catch(Exception e) {
 			String error = String.format("Error occured while fetching attendance list.");
-			logger.error(error);
+			logger.error(error,e);
 			throw e;
 		}
 		return attendanceList;
