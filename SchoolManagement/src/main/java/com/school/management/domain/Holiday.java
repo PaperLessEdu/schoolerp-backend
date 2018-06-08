@@ -30,12 +30,6 @@ public class Holiday {
 	@Column(name = "date")
 	private Date date;
 
-	// private Date date;
-	// @Column(name = "date")
-	// @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
-	// @Temporal(TemporalType.DATE)
-	// @NotNull
-
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
 	private LocalDateTime create_dt;

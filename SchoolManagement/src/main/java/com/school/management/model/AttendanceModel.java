@@ -74,7 +74,6 @@ public class AttendanceModel {
 
 	public void wrapDetails(Attendance attendance) {
 		this.attendance_id = attendance.getAttendance_id();
-		// Student id missing in student model
 		this.student = attendance.getStudent().getStudent_id();
 		this.standard = attendance.getStandard().getStandard_id();
 		this.division = attendance.getDivision().getDivision_id();
