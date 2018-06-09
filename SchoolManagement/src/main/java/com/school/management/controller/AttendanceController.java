@@ -18,8 +18,7 @@ import com.school.management.service.AttendanceService;
 
 @RestController
 @RequestMapping(value = UriConstants.ATTENDANCE)
-//@CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
-//		"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin(origins = { "http://dev.cloudscripts.co.in", "http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
 public class AttendanceController {
 
 	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
