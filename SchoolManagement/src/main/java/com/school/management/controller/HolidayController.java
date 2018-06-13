@@ -24,7 +24,7 @@ import com.school.management.service.HolidayService;
 @RestController
 @RequestMapping(value = UriConstants.HOLIDAYS)
 @CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
-		"http://localhost:9090" }, maxAge = 4800, allowCredentials = "false")
+		"http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
 public class HolidayController {
 
 	public static final Logger logger = LoggerFactory.getLogger(HolidayController.class);
