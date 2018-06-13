@@ -21,7 +21,7 @@ public class AttendanceModel {
 
 	private String is_present;
 
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	private Date date;
 
 	public Long getAttendance_id() {
