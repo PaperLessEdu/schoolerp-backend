@@ -13,6 +13,7 @@ import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.StandardDaoImpl;
 import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.Attendance;
+import com.school.management.domain.Division;
 import com.school.management.model.AttendanceModel;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.StudentModel;
@@ -32,31 +33,7 @@ public class AttendanceService {
 	@Autowired
 	private StandardDaoImpl standardDaoImpl;
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceService.class);
-
-	/*
-	 * public SmResponseStatus addAttendanceService(AttendanceModel
-	 * attendanceModel) { String message = null; Boolean isAttendanceExist =
-	 * null; Attendance attendance = wrapAttendance(null, attendanceModel);
-	 * 
-	 * isAttendanceExist =
-	 * attendanceDaoImpl.isExistById(attendanceModel.getIs_present());
-	 * 
-	 * logger.info("Is Attendance exist: [{}]", isAttendanceExist); if
-	 * (isAttendanceExist.equals(Boolean.FALSE)) {
-	 * attendanceDaoImpl.saveAttendance(attendance); } else { String error =
-	 * String.format("Attendance is already exist with present [%s]",
-	 * attendanceModel.getIs_present()); logger.error(error); throw new
-	 * CustomException(error); }
-	 * 
-	 * logger.info("Attendance saved Sucessfully with name [{}]",
-	 * attendance.getAttendance_id());
-	 * 
-	 * message = String.format("Attendance saved Sucessfully with name [%s]",
-	 * attendance.getAttendance_id());
-	 * 
-	 * return new SmResponseStatus(message);
-	 */
-
+	
 	public SmResponseStatus addAttendanceService(AttendanceModel attendanceModel) {
 
 		String result = "sucess";
@@ -78,13 +55,12 @@ public class AttendanceService {
 
 			att.setDate(attendanceModel.getDate());
 
-//			if (lsStudent.contains(attendanceModel.getAttendance_id())) {// absent
-																			// {
+			//if (lsStudent.contains(attendanceModel.getAttendance_id())) {// absent
+					
 				att.setIsPresent("false");
-	//		} else {
-		//		att.setIsPresent("true");
-		//	}
-
+				//} else {
+				//att.setIsPresent("true");
+				//}
 			lsAttendance.add(att);
 		}
 		System.out.println(lsAttendance.toString());
@@ -101,6 +77,21 @@ public class AttendanceService {
 
 		return new SmResponseStatus(result);
 	}
+	
+	public List<Attendance> getAttendanceList() {
+
+		List<Attendance> attendanceList = new ArrayList<>();
+		try {
+			attendanceList = attendanceDaoImpl.getAttendanceList();
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching attendance List");
+			logger.error(error, e);
+			throw e;
+		}
+		return attendanceList;
+
+	}
+
 
 	private Attendance wrapAttendance(Long attendance_id, AttendanceModel attendanceModel) {
 
