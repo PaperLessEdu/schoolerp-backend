@@ -13,7 +13,6 @@ import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.StandardDaoImpl;
 import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.Attendance;
-import com.school.management.domain.Division;
 import com.school.management.model.AttendanceModel;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.StudentModel;
