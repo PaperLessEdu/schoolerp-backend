@@ -97,14 +97,12 @@ public class AttendanceService {
 
 		List<AttendanceReportResponse> response = new ArrayList<>();
 
-		List<Attendance> attendancelist = attendanceDaoImpl.getAtttendanceReport(
+		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(
 				attendanceReportRequester.getDivision_id(), attendanceReportRequester.getDivision_id());
 
-		for (Attendance atendance : attendancelist) {
-
-		}
 		logger.info(" attendace = " + attendancelist);
-		return response;
+		
+		return attendancelist;
 	}
 
 	private Attendance wrapAttendance(Long attendance_id, AttendanceModel attendanceModel) {

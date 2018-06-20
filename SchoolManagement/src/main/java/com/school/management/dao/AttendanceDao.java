@@ -3,6 +3,7 @@ package com.school.management.dao;
 import java.util.List;
 
 import com.school.management.domain.Attendance;
+import com.school.management.model.AttendanceReportResponse;
 
 public interface AttendanceDao {
 
@@ -20,6 +21,6 @@ public interface AttendanceDao {
 
 	public void updateAttendance(Attendance attendance);
 
-	public List<Attendance> getAtttendanceReport(Long standardId, Long divisionId);
+	public List<AttendanceReportResponse> getAtttendanceReport(Long standardId, Long divisionId);
 
 }

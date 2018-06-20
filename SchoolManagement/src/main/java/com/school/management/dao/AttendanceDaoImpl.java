@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import com.school.management.domain.Attendance;
 import com.school.management.domain.Division;
 import com.school.management.domain.Standard;
+import com.school.management.model.AttendanceReportResponse;
 import com.school.management.repository.AttendanceRepository;
 import com.school.management.repository.DivisionRepository;
 import com.school.management.repository.StandardRepository;
@@ -102,7 +103,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	}
 
 	@Override
-	public List<Attendance> getAtttendanceReport(Long standardId, Long divisionId) {
+	public List<AttendanceReportResponse> getAtttendanceReport(Long standardId, Long divisionId) {
 
 		Standard s = new Standard();
 		s.setStandard_id(standardId);
@@ -110,7 +111,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		d.setDivision_id(divisionId);
 		logger.info("student " + s.toString() + "divison " + d.toString());
 
-		return attendanceRepository.generateReport(s, d);
+		return attendanceRepository.generateReport(standardId, divisionId);
 
 	}
 

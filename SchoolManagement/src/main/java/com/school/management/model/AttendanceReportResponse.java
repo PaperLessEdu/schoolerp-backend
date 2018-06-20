@@ -1,6 +1,7 @@
 package com.school.management.model;
 
 /**
+ * com.school.management.model.AttendanceReportResponse
  * 
  * @author Pavan.Pawar
  *
@@ -10,6 +11,12 @@ public class AttendanceReportResponse {
 	private Long student_id;
 
 	private Long absentDays;
+
+	public AttendanceReportResponse(Long student_id, Long absentDays) {
+		super();
+		this.student_id = student_id;
+		this.absentDays = absentDays;
+	}
 
 	public Long getStudent_id() {
 		return student_id;
