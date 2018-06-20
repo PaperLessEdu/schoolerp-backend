@@ -19,6 +19,8 @@ import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.domain.Attendance;
 import com.school.management.model.AttendanceModel;
+import com.school.management.model.AttendanceReportRequester;
+import com.school.management.model.AttendanceReportResponse;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.AttendanceService;
 
@@ -52,7 +54,8 @@ public class AttendanceController {
 	}
 
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public List<Attendance> getAttendanceList(@RequestParam("standard") Long standard, @RequestParam("division")  Long division,
+	public List<Attendance> getAttendanceList(@RequestParam("standard") Long standard,
+			@RequestParam("division") Long division,
 			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
 
 		logger.info("Request received to fetch attedance List for div" + division + " standard " + standard
@@ -67,4 +70,13 @@ public class AttendanceController {
 		return attendanceList;
 
 	}
+
+	@RequestMapping(value = UriConstants.ATTENDANCE_REPORT, method = RequestMethod.POST, produces = AppConstants.JSON)
+	public List<AttendanceReportResponse> getattendaceReport(
+			@RequestBody AttendanceReportRequester attendanceReportRequester) {
+		logger.info("report request for [{}]", attendanceReportRequester.toString());
+
+		return attendanceService.generateAtendanceReport(attendanceReportRequester);
+	}
+
 }

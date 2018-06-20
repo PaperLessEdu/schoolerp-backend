@@ -9,13 +9,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.school.management.domain.Attendance;
+import com.school.management.domain.Division;
+import com.school.management.domain.Standard;
 import com.school.management.repository.AttendanceRepository;
+import com.school.management.repository.DivisionRepository;
+import com.school.management.repository.StandardRepository;
 
 @Component
 public class AttendanceDaoImpl implements AttendanceDao {
 
 	@Autowired
 	private AttendanceRepository attendanceRepository;
+
+	@Autowired
+	private StandardRepository standardRepository;
+
+	@Autowired
+	private DivisionRepository divisionRepository;
 
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceDaoImpl.class);
 
@@ -26,11 +36,10 @@ public class AttendanceDaoImpl implements AttendanceDao {
 			attendanceRepository.save(attendance);
 		} catch (Exception e) {
 			String error = String.format("Error occured while saving attendance");
-			logger.error(error,e);
+			logger.error(error, e);
 			throw e;
 		}
 	}
-
 
 	/*
 	 * @Override public boolean existsById(Long attendance_id) { Boolean isExist
@@ -47,7 +56,7 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		Attendance attendance = new Attendance();
 		try {
 			attendance = attendanceRepository.getOne(attendance_id);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while fetching attendance details.");
 			logger.error(error);
 			throw e;
@@ -60,9 +69,9 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		List<Attendance> attendanceList = new ArrayList<>();
 		try {
 			attendanceList = attendanceRepository.findAll();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while fetching attendance list.");
-			logger.error(error,e);
+			logger.error(error, e);
 			throw e;
 		}
 		return attendanceList;
@@ -86,11 +95,23 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		return false;
 	}
 
-
 	@Override
 	public boolean isExistById(String is_present) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public List<Attendance> getAtttendanceReport(Long standardId, Long divisionId) {
+
+		Standard s = new Standard();
+		s.setStandard_id(standardId);
+		Division d = new Division();
+		d.setDivision_id(divisionId);
+		logger.info("student " + s.toString() + "divison " + d.toString());
+
+		return attendanceRepository.generateReport(s, d);
+
 	}
 
 }

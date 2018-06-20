@@ -41,6 +41,8 @@ public class UriConstants {
 
 	public static final String ATTENDANCE = "/attendance";
 	
+	public static final String ATTENDANCE_REPORT = "/report";
+	
 	public static final String STUDENT = "/students";
 	
 	public static final String STUDENT_ID = "/{studentId}";

@@ -20,4 +20,6 @@ public interface AttendanceDao {
 
 	public void updateAttendance(Attendance attendance);
 
+	public List<Attendance> getAtttendanceReport(Long standardId, Long divisionId);
+
 }
