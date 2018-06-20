@@ -14,6 +14,8 @@ import com.school.management.dao.StandardDaoImpl;
 import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.Attendance;
 import com.school.management.model.AttendanceModel;
+import com.school.management.model.AttendanceReportRequester;
+import com.school.management.model.AttendanceReportResponse;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.StudentModel;
 
@@ -32,13 +34,12 @@ public class AttendanceService {
 	@Autowired
 	private StandardDaoImpl standardDaoImpl;
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceService.class);
-	
+
 	public SmResponseStatus addAttendanceService(AttendanceModel attendanceModel) {
 
 		String result = "sucess";
 		SmResponseStatus response = null;
 
-		
 		// List<Long> lsids = attendanceModel.getAttendance_id();
 
 		List<Attendance> lsAttendance = new ArrayList<>();
@@ -54,12 +55,13 @@ public class AttendanceService {
 
 			att.setDate(attendanceModel.getDate());
 
-			//if (lsStudent.contains(attendanceModel.getAttendance_id())) {// absent
-					
-				att.setIsPresent("false");
-				//} else {
-				//att.setIsPresent("true");
-				//}
+			// if (lsStudent.contains(attendanceModel.getAttendance_id())) {//
+			// absent
+
+			att.setIsPresent("false");
+			// } else {
+			// att.setIsPresent("true");
+			// }
 			lsAttendance.add(att);
 		}
 		System.out.println(lsAttendance.toString());
@@ -76,7 +78,7 @@ public class AttendanceService {
 
 		return new SmResponseStatus(result);
 	}
-	
+
 	public List<Attendance> getAttendanceList() {
 
 		List<Attendance> attendanceList = new ArrayList<>();
@@ -91,6 +93,17 @@ public class AttendanceService {
 
 	}
 
+	public List<AttendanceReportResponse> generateAtendanceReport(AttendanceReportRequester attendanceReportRequester) {
+
+		List<AttendanceReportResponse> response = new ArrayList<>();
+
+		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(
+				attendanceReportRequester.getDivision_id(), attendanceReportRequester.getDivision_id());
+
+		logger.info(" attendace = " + attendancelist);
+		
+		return attendancelist;
+	}
 
 	private Attendance wrapAttendance(Long attendance_id, AttendanceModel attendanceModel) {
 

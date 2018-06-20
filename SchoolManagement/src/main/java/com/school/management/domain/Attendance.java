@@ -87,4 +87,10 @@ public class Attendance {
 		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return "Attendance [attendance_id=" + attendance_id + ", student=" + student + ", standard=" + standard
+				+ ", division=" + division + ", isPresent=" + isPresent + ", date=" + date + "]";
+	}
+
 }
