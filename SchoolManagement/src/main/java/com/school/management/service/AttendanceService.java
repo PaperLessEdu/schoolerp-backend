@@ -13,6 +13,7 @@ import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.StandardDaoImpl;
 import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.Attendance;
+import com.school.management.domain.Student;
 import com.school.management.model.AttendanceModel;
 import com.school.management.model.AttendanceReportRequester;
 import com.school.management.model.AttendanceReportResponse;
@@ -95,13 +96,26 @@ public class AttendanceService {
 
 	public List<AttendanceReportResponse> generateAtendanceReport(AttendanceReportRequester attendanceReportRequester) {
 
-		List<AttendanceReportResponse> response = new ArrayList<>();
-
 		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(
 				attendanceReportRequester.getDivision_id(), attendanceReportRequester.getDivision_id());
 
+		for (AttendanceReportResponse a : attendancelist) {
+
+			Student s = studentDaoImpl.getStudent(a.getStudent_id());
+			if (s != null) {
+				a.setFirstName(s.getFirstName());
+				a.setLastName(s.getLastName());
+				a.setMiddleName(s.getMiddleName());
+			} else {
+				a.setFirstName("NA");
+				a.setLastName("NA");
+				a.setMiddleName("NA");
+			}
+
+		}
+
 		logger.info(" attendace = " + attendancelist);
-		
+
 		return attendancelist;
 	}
 

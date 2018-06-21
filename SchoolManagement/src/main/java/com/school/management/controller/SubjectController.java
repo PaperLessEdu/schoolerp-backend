@@ -17,7 +17,6 @@ import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
 import com.school.management.domain.Subject;
-import com.school.management.model.AddToEmployeeRequest;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.model.SubjectModel;
 import com.school.management.service.SubjectService;
