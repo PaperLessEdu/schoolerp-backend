@@ -13,6 +13,8 @@ public class ParentModel {
 	private String phoneNumber;
 	
 	private String emailId;
+	
+	private String birthdate;
 
 	public String getName() {
 		return name;
@@ -54,11 +56,20 @@ public class ParentModel {
 		this.emailId = emailId;
 	}
 	
+	public String getBirthdate() {
+		return birthdate;
+	}
+
+	public void setBirthdate(String birthdate) {
+		this.birthdate = birthdate;
+	}
+
 	public void wrapDetails(Parent parent) {
 		this.name = parent.getName();
 		this.occupation = parent.getOccupation();
 		this.qualification = parent.getQualification();
 		this.phoneNumber = parent.getPhoneNumber();
 		this.emailId = parent.getEmailId();
+		this.birthdate = parent.getBirthDate();
 	}
 }

@@ -160,6 +160,9 @@ public class StudentService {
 		student.setReligion(studentModel.getReligion());
 		student.setStandard(standardDaoImpl.getStandard(studentModel.getStandard()));
 		student.setState(studentModel.getState());
+		student.setRollNo(studentModel.getRollNo());
+		student.setDoctorName(studentModel.getDoctorName());
+		student.setDoctorPhoneNo(studentModel.getDoctorPhoneNo());
 		return student;
 		
 	}
@@ -205,6 +208,7 @@ public class StudentService {
 		parent.setOccupation(parentModel.getOccupation());
 		parent.setPhoneNumber(parentModel.getPhoneNumber());
 		parent.setQualification(parentModel.getQualification());
+		parent.setBirthDate(parentModel.getBirthdate());
 		
 		return parent;
 	}

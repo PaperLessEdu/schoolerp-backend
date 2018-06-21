@@ -30,6 +30,9 @@ public class Parent {
 	@Column(name = "emailId")
 	private String emailId;
 
+	@Column(name = "birth_date")
+	private String birthDate;
+
 	public long getParent_id() {
 		return parent_id;
 	}
@@ -77,5 +80,13 @@ public class Parent {
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
-	
+
+	public String getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(String birthDate) {
+		this.birthDate = birthDate;
+	}
+
 }

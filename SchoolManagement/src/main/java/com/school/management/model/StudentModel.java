@@ -3,6 +3,8 @@ package com.school.management.model;
 import com.school.management.domain.Student;
 
 public class StudentModel {
+	
+	private long id;
 
 	private String academicYear;
 	
@@ -42,11 +44,26 @@ public class StudentModel {
 	
 	private String postalCode;
 	
+	private long rollNo;
+	
+	private String doctorName;
+	
+	private String doctorPhoneNo;
+	
 	private ParentModel fathersDetails;
 	
 	private ParentModel mothersDetails;
 	
 	private ParentModel guardianDetails;
+
+	
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public String getAcademicYear() {
 		return academicYear;
@@ -224,7 +241,33 @@ public class StudentModel {
 		this.category = category;
 	}
 
+	public long getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(long rollNo) {
+		this.rollNo = rollNo;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	public String getDoctorPhoneNo() {
+		return doctorPhoneNo;
+	}
+
+	public void setDoctorPhoneNo(String doctorPhoneNo) {
+		this.doctorPhoneNo = doctorPhoneNo;
+	}
+
 	public void wrapDetails(Student student) {
+		
+		this.id = student.getStudent_id();
 		this.academicYear = student.getAcademicYear();
 		
 		this.firstName = student.getFirstName();
@@ -262,6 +305,12 @@ public class StudentModel {
 		this.city = student.getCity();
 		
 		this.postalCode = student.getPostalCode();
+		
+		this.rollNo = student.getRollNo();
+		
+		this.doctorName = student.getDoctorName();
+		
+		this.doctorPhoneNo = student.getDoctorPhoneNo();
 		
 		ParentModel fatherParentModel = new ParentModel();
 		fatherParentModel.wrapDetails(student.getFather());

@@ -270,6 +270,7 @@ public class AddToEmployeeRequest {
 		this.roleId = employee.getUserRole().getId();
 		this.employeeType = employee.getEmployeeType();
 		this.dateOfJoining = employee.getDateOfJoining();
+		this.postalCode = employee.getPostalCode();
 	}
 	
 }

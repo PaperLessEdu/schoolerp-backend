@@ -200,6 +200,7 @@ public class EmployeeService {
 		employee.setCity(addToEmployeeRequest.getCity());
 		employee.setState(addToEmployeeRequest.getState());
 		employee.setPostalCode(addToEmployeeRequest.getPostalCode());
+		employee.setEmployeeType(addToEmployeeRequest.getEmployeeType());
 		
 		return employee;
 	}

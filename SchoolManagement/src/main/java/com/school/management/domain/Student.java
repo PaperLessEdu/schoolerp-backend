@@ -49,11 +49,11 @@ public class Student {
 	@Column(name = "religion")
 	private String religion;
 	
-	@ManyToOne(targetEntity = Standard.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Standard.class)
 	@JoinColumn(name="standard_id",referencedColumnName="standard_id")
 	private Standard standard;
 	
-	@ManyToOne(targetEntity = Division.class, cascade = CascadeType.ALL)
+	@ManyToOne(targetEntity = Division.class)
 	@JoinColumn(name="division_id",referencedColumnName="division_id")
 	private Division division;
 	
@@ -77,6 +77,15 @@ public class Student {
 	
 	@Column(name = "postalCode")
 	private String postalCode;
+	
+	@Column(name = "roll_No")
+	private long rollNo;
+	
+	@Column(name = "doctor_name")
+	private String doctorName;
+	
+	@Column(name = "doctor_phone_number")
+	private String doctorPhoneNo;
 	
 	@OneToOne(targetEntity = Parent.class)
 	@JoinColumn(name = "fatherId", referencedColumnName = "parent_id")
@@ -274,4 +283,28 @@ public class Student {
 		this.guardian = guardian;
 	}
 
+	public long getRollNo() {
+		return rollNo;
+	}
+
+	public void setRollNo(long rollNo) {
+		this.rollNo = rollNo;
+	}
+
+	public String getDoctorName() {
+		return doctorName;
+	}
+
+	public void setDoctorName(String doctorName) {
+		this.doctorName = doctorName;
+	}
+
+	public String getDoctorPhoneNo() {
+		return doctorPhoneNo;
+	}
+
+	public void setDoctorPhoneNo(String doctorPhoneNo) {
+		this.doctorPhoneNo = doctorPhoneNo;
+	}
+ 
 }
