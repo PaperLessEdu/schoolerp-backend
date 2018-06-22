@@ -15,7 +15,7 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
 	@Query("SELECT " +
 		       "    new com.school.management.model.AttendanceReportResponse(v.student.student_id, count(v)) " +
 		       "FROM " +
-		       "    Attendance v  WHERE (v.standard.standard_id = :standard OR v.division.division_id = :division) " +
+		       "    Attendance v  WHERE (v.standard.standard_id = :standard AND v.division.division_id = :division) " +
 		       "GROUP BY " +
 		       "    v.student ")
 	public List<AttendanceReportResponse> generateReport(@Param("standard") Long standard, @Param("division") Long division);
