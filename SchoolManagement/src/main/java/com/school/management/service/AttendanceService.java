@@ -96,8 +96,7 @@ public class AttendanceService {
 
 	public List<AttendanceReportResponse> generateAtendanceReport(AttendanceReportRequester attendanceReportRequester) {
 
-		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(
-				attendanceReportRequester.getDivision_id(), attendanceReportRequester.getDivision_id());
+		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(attendanceReportRequester.getStandard_id(), attendanceReportRequester.getDivision_id());
 
 		for (AttendanceReportResponse a : attendancelist) {
 
