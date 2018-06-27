@@ -1,6 +1,7 @@
 package com.school.management.dao;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.school.management.domain.Attendance;
-import com.school.management.domain.Division;
-import com.school.management.domain.Standard;
 import com.school.management.model.AttendanceReportResponse;
 import com.school.management.repository.AttendanceRepository;
 import com.school.management.repository.DivisionRepository;
@@ -105,14 +104,16 @@ public class AttendanceDaoImpl implements AttendanceDao {
 	@Override
 	public List<AttendanceReportResponse> getAtttendanceReport(Long standardId, Long divisionId) {
 
-		Standard s = new Standard();
-		s.setStandard_id(standardId);
-		Division d = new Division();
-		d.setDivision_id(divisionId);
-		logger.info("student " + s.toString() + "divison " + d.toString());
-
 		return attendanceRepository.generateReport(standardId, divisionId);
 
+	}
+
+	@Override
+	public List<AttendanceReportResponse> getAtttendanceReportWithDate(Long standardId, Long divisionId, Date startDate,
+			Date endDate) {
+
+		logger.info(" start date :" + startDate + " end date : " + endDate);
+		return attendanceRepository.generateReportWithDate(standardId, divisionId, startDate, endDate);
 	}
 
 }
