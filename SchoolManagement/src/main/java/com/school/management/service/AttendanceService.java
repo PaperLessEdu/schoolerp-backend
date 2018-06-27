@@ -98,7 +98,7 @@ public class AttendanceService {
 		Date endDate = null;
 
 		List<AttendanceReportResponse> attendancelist = null;
-		if (attendanceReportRequester.getMonth() == 0) {
+		if (attendanceReportRequester.getMonth() == null) {
 
 			attendancelist = attendanceDaoImpl.getAtttendanceReport(attendanceReportRequester.getStandard_id(),
 					attendanceReportRequester.getDivision_id());
