@@ -1,5 +1,6 @@
 package com.school.management.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.school.management.domain.Attendance;
@@ -22,5 +23,8 @@ public interface AttendanceDao {
 	public void updateAttendance(Attendance attendance);
 
 	public List<AttendanceReportResponse> getAtttendanceReport(Long standardId, Long divisionId);
+
+	public List<AttendanceReportResponse> getAtttendanceReportWithDate(Long standardId, Long divisionId, Date startDate,
+			Date endDate);
 
 }

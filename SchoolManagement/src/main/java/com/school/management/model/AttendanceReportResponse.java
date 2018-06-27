@@ -1,5 +1,7 @@
 package com.school.management.model;
 
+import java.time.LocalDateTime;
+
 /**
  * com.school.management.model.AttendanceReportResponse
  * 
@@ -15,6 +17,9 @@ public class AttendanceReportResponse {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+
+	private LocalDateTime startdate;
+	private LocalDateTime enddate;
 
 	public AttendanceReportResponse(Long student_id, Long absentDays) {
 		super();
@@ -62,10 +67,27 @@ public class AttendanceReportResponse {
 		this.lastName = lastName;
 	}
 
+	public LocalDateTime getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(LocalDateTime startdate) {
+		this.startdate = startdate;
+	}
+
+	public LocalDateTime getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(LocalDateTime enddate) {
+		this.enddate = enddate;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceReportResponse [student_id=" + student_id + ", absentDays=" + absentDays + ", firstName="
-				+ firstName + ", middleName=" + middleName + ", lastName=" + lastName + "]";
+				+ firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", startdate=" + startdate
+				+ ", enddate=" + enddate + "]";
 	}
 
 }
