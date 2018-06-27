@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +26,7 @@ import com.school.management.service.AttendanceService;
 
 @RestController
 @RequestMapping(value = UriConstants.ATTENDANCE)
-//@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost"}, maxAge = 4800, allowCredentials = "false")
 public class AttendanceController {
 
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceController.class);
