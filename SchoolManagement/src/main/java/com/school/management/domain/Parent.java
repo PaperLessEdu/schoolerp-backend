@@ -32,6 +32,12 @@ public class Parent {
 
 	@Column(name = "birth_date")
 	private String birthDate;
+	
+	@Column(name = "monthlyIncome")
+	private String monthlyIncome;
+	
+	@Column(name = "relationship")
+	private String relationship;
 
 	public long getParent_id() {
 		return parent_id;
@@ -87,6 +93,22 @@ public class Parent {
 
 	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
+	}
+
+	public String getMonthlyIncome() {
+		return monthlyIncome;
+	}
+
+	public void setMonthlyIncome(String monthlyIncome) {
+		this.monthlyIncome = monthlyIncome;
+	}
+
+	public String getRelationship() {
+		return relationship;
+	}
+
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
 	}
 
 }

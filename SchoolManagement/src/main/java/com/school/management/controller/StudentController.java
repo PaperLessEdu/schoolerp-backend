@@ -39,7 +39,7 @@ public class StudentController {
 		if(studentModel.getFirstName() == null || studentModel.getLastName() == null) {
 			String error = String.format("Student first name/last name can not be empty");
 			logger.error(error);
-			new CustomException(error);
+			throw new CustomException(error);
 		}
 		
 		smResponseStatus = studentService.addStudent(studentModel);
@@ -60,7 +60,7 @@ public class StudentController {
 		if(standardId == null && divisionId != null) {
 			String error = String.format("Invalid request");
 			logger.error(error);
-			new CustomException(error);
+			throw new CustomException(error);
 		}
 		
 		List<Student> studentList = studentService.getStudentsByStandardAndDivision(standardId, divisionId);

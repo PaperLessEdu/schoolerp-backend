@@ -40,4 +40,9 @@ public class AcademicYearDaoImpl implements AcademicYearDao {
 
 	}
 
+	@Override
+	public AcademicYear getAcademicYear(Long accademicYearID) {
+		return academicYearRepository.getOne(accademicYearID);
+	}
+
 }

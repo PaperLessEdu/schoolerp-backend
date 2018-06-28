@@ -15,6 +15,10 @@ public class ParentModel {
 	private String emailId;
 	
 	private String birthdate;
+	
+	private String monthlyIncome;
+	
+	private String relationship;
 
 	public String getName() {
 		return name;
@@ -64,6 +68,22 @@ public class ParentModel {
 		this.birthdate = birthdate;
 	}
 
+	public String getMonthlyIncome() {
+		return monthlyIncome;
+	}
+
+	public void setMonthlyIncome(String monthlyIncome) {
+		this.monthlyIncome = monthlyIncome;
+	}
+
+	public String getRelationship() {
+		return relationship;
+	}
+
+	public void setRelationship(String relationship) {
+		this.relationship = relationship;
+	}
+
 	public void wrapDetails(Parent parent) {
 		this.name = parent.getName();
 		this.occupation = parent.getOccupation();
@@ -71,5 +91,7 @@ public class ParentModel {
 		this.phoneNumber = parent.getPhoneNumber();
 		this.emailId = parent.getEmailId();
 		this.birthdate = parent.getBirthDate();
+		this.setMonthlyIncome(parent.getMonthlyIncome());
+		this.setRelationship(parent.getRelationship());
 	}
 }

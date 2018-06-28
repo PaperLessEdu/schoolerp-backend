@@ -6,7 +6,7 @@ public class StudentModel {
 	
 	private long id;
 
-	private String academicYear;
+	private long academicYear;
 	
 	private String firstName;
 	
@@ -50,12 +50,21 @@ public class StudentModel {
 	
 	private String doctorPhoneNo;
 	
+	private String doctorAddress;
+	
 	private ParentModel fathersDetails;
 	
 	private ParentModel mothersDetails;
 	
 	private ParentModel guardianDetails;
-
+		
+	private String admissionDate;
+	
+	private String schoolType;
+	
+	private String previousSchoolName;
+	
+	private String birthPlace;
 	
 	public long getId() {
 		return id;
@@ -65,11 +74,11 @@ public class StudentModel {
 		this.id = id;
 	}
 
-	public String getAcademicYear() {
+	public long getAcademicYear() {
 		return academicYear;
 	}
 
-	public void setAcademicYear(String academicYear) {
+	public void setAcademicYear(long academicYear) {
 		this.academicYear = academicYear;
 	}
 
@@ -265,10 +274,50 @@ public class StudentModel {
 		this.doctorPhoneNo = doctorPhoneNo;
 	}
 
+	public String getDoctorAddress() {
+		return doctorAddress;
+	}
+
+	public void setDoctorAddress(String doctorAddress) {
+		this.doctorAddress = doctorAddress;
+	}
+
+	public String getAdmissionDate() {
+		return admissionDate;
+	}
+
+	public void setAdmissionDate(String admissionDate) {
+		this.admissionDate = admissionDate;
+	}
+
+	public String getSchoolType() {
+		return schoolType;
+	}
+
+	public void setSchoolType(String schoolType) {
+		this.schoolType = schoolType;
+	}
+
+	public String getPreviousSchoolName() {
+		return previousSchoolName;
+	}
+
+	public void setPreviousSchoolName(String previousSchoolName) {
+		this.previousSchoolName = previousSchoolName;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}
+
 	public void wrapDetails(Student student) {
 		
 		this.id = student.getStudent_id();
-		this.academicYear = student.getAcademicYear();
+		this.academicYear = student.getAcademicYear().getAcademicYearId();
 		
 		this.firstName = student.getFirstName();
 		
@@ -312,6 +361,16 @@ public class StudentModel {
 		
 		this.doctorPhoneNo = student.getDoctorPhoneNo();
 		
+		this.doctorAddress = student.getDoctorAddress();
+		
+		this.admissionDate = student.getAdmissionDate();
+		
+		this.schoolType = student.getSchoolType();
+		
+		this.previousSchoolName = student.getPreviousSchoolName();
+		
+		this.birthPlace = student.getBirthPlace();
+		
 		ParentModel fatherParentModel = new ParentModel();
 		fatherParentModel.wrapDetails(student.getFather());
 		this.fathersDetails = fatherParentModel;
@@ -323,5 +382,6 @@ public class StudentModel {
 		ParentModel guardianParentModel = new ParentModel();
 		guardianParentModel.wrapDetails(student.getGuardian());
 		this.guardianDetails = guardianParentModel;
+		
 	}
 }
