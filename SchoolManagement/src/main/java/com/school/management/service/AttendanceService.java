@@ -1,6 +1,7 @@
 package com.school.management.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -18,7 +19,6 @@ import com.school.management.model.AttendanceModel;
 import com.school.management.model.AttendanceReportRequester;
 import com.school.management.model.AttendanceReportResponse;
 import com.school.management.model.SmResponseStatus;
-import com.school.management.model.StudentModel;
 
 @Service
 public class AttendanceService {
@@ -39,7 +39,6 @@ public class AttendanceService {
 	public SmResponseStatus addAttendanceService(AttendanceModel attendanceModel) {
 
 		String result = "sucess";
-		SmResponseStatus response = null;
 
 		// List<Long> lsids = attendanceModel.getAttendance_id();
 
@@ -47,7 +46,6 @@ public class AttendanceService {
 
 		for (Long student : attendanceModel.getStudentIds()) {
 			Attendance att = new Attendance();
-			StudentModel studentmodel = new StudentModel();
 
 			att.setStudent(studentDaoImpl.getStudent(student));
 
@@ -96,9 +94,95 @@ public class AttendanceService {
 
 	public List<AttendanceReportResponse> generateAtendanceReport(AttendanceReportRequester attendanceReportRequester) {
 
-		List<AttendanceReportResponse> attendancelist = attendanceDaoImpl.getAtttendanceReport(
-				attendanceReportRequester.getDivision_id(), attendanceReportRequester.getDivision_id());
+		Date startDate = null;
+		Date endDate = null;
 
+		List<AttendanceReportResponse> attendancelist = null;
+		if (attendanceReportRequester.getMonth() == null) {
+
+			attendancelist = attendanceDaoImpl.getAtttendanceReport(attendanceReportRequester.getStandard_id(),
+					attendanceReportRequester.getDivision_id());
+		} else {
+			
+			int i = (int) (long) attendanceReportRequester.getMonth();
+
+			switch (i) {
+			case 1:
+				startDate = new Date("1/1/2018");
+				endDate = new Date("1/31/2018");
+
+				break;
+			case 2:
+				startDate = new Date("2/1/2018");
+				endDate = new Date("2/28/2018");
+
+				break;
+			case 3:
+				startDate = new Date("3/1/2018");
+				endDate = new Date("3/31/2018");
+
+				break;
+
+			case 4:
+				startDate = new Date("4/1/2018");
+				endDate = new Date("4/30/2018");
+
+				break;
+
+			case 5:
+				startDate = new Date("5/1/2018");
+				endDate = new Date("5/31/2018");
+				break;
+
+			case 6:
+				startDate = new Date("6/1/2018");
+				endDate = new Date("6/30/2018");
+
+				break;
+
+			case 7:
+				startDate = new Date("7/1/2018");
+				endDate = new Date("7/31/2018");
+
+				break;
+
+			case 8:
+				startDate = new Date("8/1/2018");
+				endDate = new Date("8/31/2018");
+
+				break;
+
+			case 9:
+				startDate = new Date("9/1/2018");
+				endDate = new Date("9/30/2018");
+
+				break;
+
+			case 10:
+				startDate = new Date("10/1/2018");
+				endDate = new Date("10/31/2018");
+
+				break;
+
+			case 11:
+				startDate = new Date("11/1/2018");
+				endDate = new Date("11/30/2018");
+
+				break;
+
+			case 12:
+				startDate = new Date("12/1/2018");
+				endDate = new Date("12/31/2018");
+
+				break;
+
+			}
+
+			// call new query with date
+			attendancelist = attendanceDaoImpl.getAtttendanceReportWithDate(attendanceReportRequester.getStandard_id(),
+					attendanceReportRequester.getDivision_id(), startDate, endDate);
+
+		}
 		for (AttendanceReportResponse a : attendancelist) {
 
 			Student s = studentDaoImpl.getStudent(a.getStudent_id());

@@ -6,6 +6,8 @@ package com.school.management.model;
  *
  */
 public class AttendanceReportRequester {
+	
+	private Long month;
 
 	private Long standard_id;
 
@@ -26,10 +28,20 @@ public class AttendanceReportRequester {
 	public void setDivision_id(Long division_id) {
 		this.division_id = division_id;
 	}
+	
+
+	public Long getMonth() {
+		return month;
+	}
+
+	public void setMonth(Long month) {
+		this.month = month;
+	}
 
 	@Override
 	public String toString() {
-		return "AttendanceReportRequester [standard_id=" + standard_id + ", division_id=" + division_id + "]";
+		return "AttendanceReportRequester [month=" + month + ", standard_id=" + standard_id + ", division_id="
+				+ division_id + "]";
 	}
 
 }
