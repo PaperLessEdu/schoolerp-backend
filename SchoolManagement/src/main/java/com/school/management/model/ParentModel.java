@@ -85,13 +85,13 @@ public class ParentModel {
 	}
 
 	public void wrapDetails(Parent parent) {
-		this.name = parent.getName();
-		this.occupation = parent.getOccupation();
-		this.qualification = parent.getQualification();
-		this.phoneNumber = parent.getPhoneNumber();
-		this.emailId = parent.getEmailId();
-		this.birthdate = parent.getBirthDate();
-		this.setMonthlyIncome(parent.getMonthlyIncome());
-		this.setRelationship(parent.getRelationship());
+		this.name = parent.getName() != null ? parent.getName() : "";
+		this.occupation = parent.getOccupation() != null ? parent.getOccupation() : "";
+		this.qualification = parent.getQualification() != null ? parent.getOccupation(): "";
+		this.phoneNumber = parent.getPhoneNumber()!= null ? parent.getPhoneNumber() :"";
+		this.emailId = parent.getEmailId() != null ? parent.getEmailId() : "";
+		this.birthdate = parent.getBirthDate()!=null ?parent.getBirthDate() :"";
+		this.monthlyIncome = parent.getMonthlyIncome() !=null ? parent.getMonthlyIncome() : null;
+		this.relationship = parent.getRelationship() != null ?parent.getRelationship() : "";
 	}
 }

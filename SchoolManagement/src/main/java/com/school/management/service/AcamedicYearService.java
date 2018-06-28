@@ -62,7 +62,9 @@ public class AcamedicYearService {
 		academicYear.setName(academicYearModel.getName());
 		academicYear.setStartDate(academicYearModel.getStartDate());
 		academicYear.setEndDate(academicYearModel.getEndDate());
-		academicYear.setCurrent(academicYearModel.isCurrent());
+		if(academicYearModel.isCurrent()) {
+			academicYear.setCurrent(academicYearModel.isCurrent());
+		}
 		academicYear.setWeekendType(academicYearModel.getWeekendType());
 
 		return academicYear;

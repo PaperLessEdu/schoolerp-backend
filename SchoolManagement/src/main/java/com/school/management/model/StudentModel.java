@@ -317,7 +317,10 @@ public class StudentModel {
 	public void wrapDetails(Student student) {
 		
 		this.id = student.getStudent_id();
-		this.academicYear = student.getAcademicYear().getAcademicYearId();
+		
+		if(student.getAcademicYear() != null) {
+			this.academicYear = Long.valueOf(student.getAcademicYear().getAcademicYearId()) != null ?student.getAcademicYear().getAcademicYearId() : null;
+		}
 		
 		this.firstName = student.getFirstName();
 		
@@ -355,21 +358,21 @@ public class StudentModel {
 		
 		this.postalCode = student.getPostalCode();
 		
-		this.rollNo = student.getRollNo();
+		this.rollNo = Long.valueOf(student.getRollNo()) != null ? student.getRollNo(): null;
 		
-		this.doctorName = student.getDoctorName();
+		this.doctorName = student.getDoctorName() != null ? student.getDoctorName(): "";
 		
-		this.doctorPhoneNo = student.getDoctorPhoneNo();
+		this.doctorPhoneNo = student.getDoctorPhoneNo() != null ? student.getDoctorPhoneNo(): "";
 		
-		this.doctorAddress = student.getDoctorAddress();
+		this.doctorAddress = student.getDoctorAddress() != null ? student.getDoctorAddress(): "";
 		
-		this.admissionDate = student.getAdmissionDate();
+		this.admissionDate = student.getAdmissionDate() !=null ? student.getAdmissionDate() : "";
 		
-		this.schoolType = student.getSchoolType();
+		this.schoolType = student.getSchoolType() != null ? student.getSchoolType(): "";
 		
-		this.previousSchoolName = student.getPreviousSchoolName();
+		this.previousSchoolName = student.getPreviousSchoolName() != null ? student.getPreviousSchoolName():"";
 		
-		this.birthPlace = student.getBirthPlace();
+		this.birthPlace = student.getBirthPlace() !=null ? student.getBirthPlace() : "";
 		
 		ParentModel fatherParentModel = new ParentModel();
 		fatherParentModel.wrapDetails(student.getFather());
