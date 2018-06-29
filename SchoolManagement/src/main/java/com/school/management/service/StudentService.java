@@ -174,7 +174,9 @@ public class StudentService {
 		student.setSchoolType(studentModel.getSchoolType());
 		student.setPreviousSchoolName(studentModel.getPreviousSchoolName());
 		student.setBirthPlace(studentModel.getBirthPlace());
-		student.setAcademicYear(academicYearDaoImpl.getAcademicYear(studentModel.getAcademicYear()));
+		if(academicYearDaoImpl.checkIfExists(studentModel.getAcademicYear())) {
+			student.setAcademicYear(academicYearDaoImpl.getAcademicYear(studentModel.getAcademicYear()));
+		}
 		return student;
 		
 	}
