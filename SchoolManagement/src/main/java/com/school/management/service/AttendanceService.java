@@ -34,6 +34,7 @@ public class AttendanceService {
 
 	@Autowired
 	private StandardDaoImpl standardDaoImpl;
+	
 	public static final Logger logger = LoggerFactory.getLogger(AttendanceService.class);
 
 	public SmResponseStatus addAttendanceService(AttendanceModel attendanceModel) {
@@ -103,7 +104,7 @@ public class AttendanceService {
 			attendancelist = attendanceDaoImpl.getAtttendanceReport(attendanceReportRequester.getStandard_id(),
 					attendanceReportRequester.getDivision_id());
 		} else {
-			
+
 			int i = (int) (long) attendanceReportRequester.getMonth();
 
 			switch (i) {
@@ -179,26 +180,58 @@ public class AttendanceService {
 			}
 
 			// call new query with date
-			attendancelist = attendanceDaoImpl.getAtttendanceReportWithDate(attendanceReportRequester.getStandard_id(),
-					attendanceReportRequester.getDivision_id(), startDate, endDate);
+			attendancelist = attendanceDaoImpl.getAtttendanceReportWithDate(attendanceReportRequester.getStandard_id(),attendanceReportRequester.getDivision_id(), startDate, endDate);
 
 		}
-		for (AttendanceReportResponse a : attendancelist) {
+		for (AttendanceReportResponse absentlst : attendancelist) {
 
-			Student s = studentDaoImpl.getStudent(a.getStudent_id());
+			Student s = studentDaoImpl.getStudent(absentlst.getStudent_id());
 			if (s != null) {
-				a.setFirstName(s.getFirstName());
-				a.setLastName(s.getLastName());
-				a.setMiddleName(s.getMiddleName());
-			} else {
-				a.setFirstName("NA");
-				a.setLastName("NA");
-				a.setMiddleName("NA");
-			}
+				absentlst.setFirstName(s.getFirstName());
+				absentlst.setLastName(s.getLastName());
+				absentlst.setMiddleName(s.getMiddleName());
+				absentlst.setStartdate(startDate);
+				absentlst.setEnddate(endDate);
 
+				//List<Attendance> getabsentdateofStudent()= new ArrayList();
+				List<Date> responseDate = new ArrayList();
+				
+				//for (Long student : attendanceModel.getStudentIds()) {
+					//Attendance attendancebydate = new Attendance();
+
+					
+				// List<AttendanceReportResponse> getabsentdateofStudent(Student
+				// student_id, Division division_id, Standard standard_id){
+
+				/*
+				 * for(AttendanceReportResponse
+				 * attendace:getabsentdateofStudent(student_id, division_id,
+				 * standard_id)) {
+				 * 
+				 * }
+				 */ // todo
+					// getabsentdatdateofStudent(studeid,divid,stdid,startdate,enddate)
+					// todo you got respone as List<Attendance> attlist
+					// TO_DO List<Date> responseDate = new ArrayLiat();
+					// for(Attendance attendace :attlist)
+					// {
+					// responseDate.add(attendace.getDate());
+					// }	
+					
+					
+					
+				absentlst.setDate(responseDate);
+
+			} else {
+				absentlst.setFirstName("NA");
+				absentlst.setLastName("NA");
+				absentlst.setMiddleName("NA");
+			}
 		}
 
 		logger.info(" attendace = " + attendancelist);
+
+
 
 		return attendancelist;
 	}
