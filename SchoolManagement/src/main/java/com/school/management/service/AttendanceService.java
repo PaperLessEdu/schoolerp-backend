@@ -209,6 +209,8 @@ public class AttendanceService {
 				 * standard_id)) {
 				 * 
 				 * }
+				 * 
+				 * 
 				 */ // todo
 					// getabsentdatdateofStudent(studeid,divid,stdid,startdate,enddate)
 					// todo you got respone as List<Attendance> attlist
