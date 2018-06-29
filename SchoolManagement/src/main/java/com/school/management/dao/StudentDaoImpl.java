@@ -107,7 +107,7 @@ public class StudentDaoImpl implements StudentDao{
 			
 			if(standardId != null && divisionId != null) {
 				criteria.where(builder.and(builder.equal(standard.get("standard_id"),standardId),builder.equal(division.get("division_id"),divisionId)));
-			} else if(standardId != null && divisionId != null) {
+			} else if(standardId != null && divisionId == null) {
 				criteria.where(builder.equal(standard.get("standard_id"),standardId));
 			}
 			

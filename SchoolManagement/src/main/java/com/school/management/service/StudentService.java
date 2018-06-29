@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.school.management.core.CustomException;
+import com.school.management.dao.AcademicYearDao;
+import com.school.management.dao.AcademicYearDaoImpl;
 import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.ParentDaoImpl;
 import com.school.management.dao.StandardDaoImpl;
@@ -33,6 +35,9 @@ public class StudentService {
 	@Autowired
 	private StandardDaoImpl standardDaoImpl;
 	
+	@Autowired
+	private AcademicYearDaoImpl academicYearDaoImpl;
+	
 	public static final Logger logger = LoggerFactory.getLogger(StudentService.class);
 	
 	public SmResponseStatus addStudent(StudentModel studentModel) {
@@ -57,6 +62,7 @@ public class StudentService {
 				student.setGuardian(parentDaoImpl.saveParent(guardianParent));
 			}
 			
+
 			studentDaoImpl.saveStudent(student);
 			
 			message = String.format("Student saved successfully with first name [%s]", student.getFirstName());
@@ -141,9 +147,9 @@ public class StudentService {
 		if(studentId != null) {
 			student.setStudent_id(studentId);
 		}
+
 		student.setFirstName(studentModel.getFirstName());
 		student.setLastName(studentModel.getLastName());
-		student.setAcademicYear(studentModel.getAcademicYear());
 		student.setBloodGroup(studentModel.getBloodGroup());
 		student.setCategory(studentModel.getCategory());
 		student.setCaste(studentModel.getCaste());
@@ -163,6 +169,12 @@ public class StudentService {
 		student.setRollNo(studentModel.getRollNo());
 		student.setDoctorName(studentModel.getDoctorName());
 		student.setDoctorPhoneNo(studentModel.getDoctorPhoneNo());
+		student.setDoctorAddress(studentModel.getDoctorAddress());
+		student.setAdmissionDate(studentModel.getAdmissionDate());
+		student.setSchoolType(studentModel.getSchoolType());
+		student.setPreviousSchoolName(studentModel.getPreviousSchoolName());
+		student.setBirthPlace(studentModel.getBirthPlace());
+		student.setAcademicYear(academicYearDaoImpl.getAcademicYear(studentModel.getAcademicYear()));
 		return student;
 		
 	}
@@ -209,6 +221,8 @@ public class StudentService {
 		parent.setPhoneNumber(parentModel.getPhoneNumber());
 		parent.setQualification(parentModel.getQualification());
 		parent.setBirthDate(parentModel.getBirthdate());
+		parent.setMonthlyIncome(parentModel.getMonthlyIncome());
+		parent.setRelationship(parentModel.getRelationship());
 		
 		return parent;
 	}
