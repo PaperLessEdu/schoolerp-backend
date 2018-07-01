@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.school.management.domain.AcademicYear;
 import com.school.management.domain.Division;
 import com.school.management.domain.Standard;
 import com.school.management.domain.Student;
@@ -102,6 +103,8 @@ public class StudentDaoImpl implements StudentDao{
 			Join<Student,Standard> standard = student.join("standard");
 			
 			Join<Student,Division> division = student.join("division");
+			
+			Join<Student,AcademicYear> academicYear = student.join("academicYear");
 			
 			criteria.select(student);
 			

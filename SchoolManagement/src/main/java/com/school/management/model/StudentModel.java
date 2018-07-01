@@ -1,13 +1,14 @@
 package com.school.management.model;
 
+import javax.persistence.Column;
+
+import com.school.management.domain.AcademicYear;
 import com.school.management.domain.Student;
 
 public class StudentModel {
 	
 	private long id;
 
-	private long academicYear;
-	
 	private String firstName;
 	
 	private String middleName;
@@ -66,20 +67,18 @@ public class StudentModel {
 	
 	private String birthPlace;
 	
+	private AcademicYearModel academicYearModel;
+	
+	private Long adharNo;
+
+	private Long castValidityNo;
+	
 	public long getId() {
 		return id;
 	}
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public long getAcademicYear() {
-		return academicYear;
-	}
-
-	public void setAcademicYear(long academicYear) {
-		this.academicYear = academicYear;
 	}
 
 	public String getFirstName() {
@@ -314,13 +313,33 @@ public class StudentModel {
 		this.birthPlace = birthPlace;
 	}
 
+	public AcademicYearModel getAcademicYearModel() {
+		return academicYearModel;
+	}
+
+	public void setAcademicYearModel(AcademicYearModel academicYearModel) {
+		this.academicYearModel = academicYearModel;
+	}
+
+	public long getAdharNo() {
+		return adharNo;
+	}
+
+	public void setAdharNo(long adharNo) {
+		this.adharNo = adharNo;
+	}
+
+	public long getCastValidityNo() {
+		return castValidityNo;
+	}
+
+	public void setCastValidityNo(long castValidityNo) {
+		this.castValidityNo = castValidityNo;
+	}
+
 	public void wrapDetails(Student student) {
 		
 		this.id = student.getStudent_id();
-		
-		if(student.getAcademicYear() != null) {
-			this.academicYear = Long.valueOf(student.getAcademicYear().getAcademicYearId()) != null ?student.getAcademicYear().getAcademicYearId() : null;
-		}
 		
 		this.firstName = student.getFirstName();
 		
@@ -374,6 +393,10 @@ public class StudentModel {
 		
 		this.birthPlace = student.getBirthPlace() !=null ? student.getBirthPlace() : "";
 		
+		this.adharNo = student.getAdharNo() != null ? student.getAdharNo() :null;
+		
+		this.castValidityNo = student.getCastValidityNo() != null ? student.getCastValidityNo() :null;
+		
 		ParentModel fatherParentModel = new ParentModel();
 		fatherParentModel.wrapDetails(student.getFather());
 		this.fathersDetails = fatherParentModel;
@@ -385,6 +408,10 @@ public class StudentModel {
 		ParentModel guardianParentModel = new ParentModel();
 		guardianParentModel.wrapDetails(student.getGuardian());
 		this.guardianDetails = guardianParentModel;
+		
+		AcademicYearModel academicYearModel = new AcademicYearModel();
+		academicYearModel.wrapDetails(student.getAcademicYear());
+		this.academicYearModel = academicYearModel;
 		
 	}
 }

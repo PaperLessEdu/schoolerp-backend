@@ -101,7 +101,7 @@ public class Student {
 	@Column(name = "admissionDate")
 	private String admissionDate;
 	
-	@OneToOne(targetEntity = AcademicYear.class)
+	@ManyToOne(targetEntity = AcademicYear.class)
 	@JoinColumn(name = "academicYearId", referencedColumnName = "id")
 	private AcademicYear academicYear;
 	
@@ -113,6 +113,12 @@ public class Student {
 	
 	@Column(name = "birthPlace")
 	private String birthPlace;
+	
+	@Column(name= "adharNo")
+	private Long adharNo;
+	
+	@Column(name = "castValidityNo")
+	private Long castValidityNo;
 	
 	public long getStudent_id() {
 		return student_id;
@@ -360,6 +366,22 @@ public class Student {
 
 	public void setBirthPlace(String birthPlace) {
 		this.birthPlace = birthPlace;
+	}
+
+	public Long getAdharNo() {
+		return adharNo;
+	}
+
+	public void setAdharNo(Long adharNo) {
+		this.adharNo = adharNo;
+	}
+
+	public Long getCastValidityNo() {
+		return castValidityNo;
+	}
+
+	public void setCastValidityNo(Long castValidityNo) {
+		this.castValidityNo = castValidityNo;
 	}
 	
 }
