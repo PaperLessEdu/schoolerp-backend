@@ -115,10 +115,10 @@ public class Student {
 	private String birthPlace;
 	
 	@Column(name= "adharNo")
-	private Long adharNo;
+	private String adharNo;
 	
 	@Column(name = "castValidityNo")
-	private Long castValidityNo;
+	private String castValidityNo;
 	
 	public long getStudent_id() {
 		return student_id;
@@ -368,19 +368,19 @@ public class Student {
 		this.birthPlace = birthPlace;
 	}
 
-	public Long getAdharNo() {
+	public String getAdharNo() {
 		return adharNo;
 	}
 
-	public void setAdharNo(Long adharNo) {
+	public void setAdharNo(String adharNo) {
 		this.adharNo = adharNo;
 	}
 
-	public Long getCastValidityNo() {
+	public String getCastValidityNo() {
 		return castValidityNo;
 	}
 
-	public void setCastValidityNo(Long castValidityNo) {
+	public void setCastValidityNo(String castValidityNo) {
 		this.castValidityNo = castValidityNo;
 	}
 	

@@ -1,8 +1,6 @@
 package com.school.management.model;
 
-import javax.persistence.Column;
 
-import com.school.management.domain.AcademicYear;
 import com.school.management.domain.Student;
 
 public class StudentModel {
@@ -69,9 +67,9 @@ public class StudentModel {
 	
 	private AcademicYearModel academicYearModel;
 	
-	private Long adharNo;
+	private String adharNo;
 
-	private Long castValidityNo;
+	private String castValidityNo;
 	
 	public long getId() {
 		return id;
@@ -321,19 +319,19 @@ public class StudentModel {
 		this.academicYearModel = academicYearModel;
 	}
 
-	public long getAdharNo() {
+	public String getAdharNo() {
 		return adharNo;
 	}
 
-	public void setAdharNo(long adharNo) {
+	public void setAdharNo(String adharNo) {
 		this.adharNo = adharNo;
 	}
 
-	public long getCastValidityNo() {
+	public String getCastValidityNo() {
 		return castValidityNo;
 	}
 
-	public void setCastValidityNo(long castValidityNo) {
+	public void setCastValidityNo(String castValidityNo) {
 		this.castValidityNo = castValidityNo;
 	}
 
