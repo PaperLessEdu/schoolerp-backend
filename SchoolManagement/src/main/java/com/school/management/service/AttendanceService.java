@@ -1,7 +1,9 @@
 package com.school.management.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -45,8 +47,6 @@ public class AttendanceService {
 
 		String result = "sucess";
 
-		// List<Long> lsids = attendanceModel.getAttendance_id();
-
 		List<Attendance> lsAttendance = new ArrayList<>();
 
 		for (Long student : attendanceModel.getStudentIds()) {
@@ -59,16 +59,10 @@ public class AttendanceService {
 
 			att.setDate(attendanceModel.getDate());
 
-			// if (lsStudent.contains(attendanceModel.getAttendance_id())) {//
-			// absent
-
 			att.setIsPresent("false");
-			// } else {
-			// att.setIsPresent("true");
-			// }
 			lsAttendance.add(att);
 		}
-		System.out.println(lsAttendance.toString());
+		logger.info(lsAttendance.toString());
 
 		for (Attendance atteStore : lsAttendance) {
 			try {
@@ -101,10 +95,10 @@ public class AttendanceService {
 
 		Date startDate = null;
 		Date endDate = null;
-
+		boolean isAllreport = false;
 		List<AttendanceReportResponse> attendancelist = null;
-		if (attendanceReportRequester.getMonth() == null) {
-
+		if (attendanceReportRequester.getMonth() == null || attendanceReportRequester.getMonth() == 0) {
+			isAllreport = true;
 			attendancelist = attendanceDaoImpl.getAtttendanceReport(attendanceReportRequester.getStandard_id(),
 					attendanceReportRequester.getDivision_id());
 		} else {
@@ -198,9 +192,17 @@ public class AttendanceService {
 				absentlst.setStartdate(startDate);
 				absentlst.setEnddate(endDate);
 
-				// List<Attendance> getabsentdateofStudent()= new ArrayList();
-				List<Date> responseDate = new ArrayList();
+				if (isAllreport) {
+					// TODO get date for cuttent accadimic yest start date and
+					// end date
+					startDate = new GregorianCalendar(2015, Calendar.JANUARY, 1).getTime();
 
+					endDate = new GregorianCalendar(2035, Calendar.DECEMBER, 31).getTime();
+
+				}
+				List<Date> responseDate = new ArrayList<Date>();
+
+				// prepare absent list
 				List<Attendance> attendanceLists = attendanceRepository.getabsentdateofStudent(
 						attendanceReportRequester.getStandard_id(), attendanceReportRequester.getDivision_id(),
 						startDate, endDate, s.getStudent_id());
@@ -209,29 +211,6 @@ public class AttendanceService {
 					responseDate.add(attendance.getDate());
 
 				}
-				// for (Long student : attendanceModel.getStudentIds()) {
-				// Attendance attendancebydate = new Attendance();
-
-				// List<AttendanceReportResponse> getabsentdateofStudent(Student
-				// student_id, Division division_id, Standard standard_id){
-
-				/*
-				 * for(AttendanceReportResponse
-				 * attendace:getabsentdateofStudent(student_id, division_id,
-				 * standard_id)) {
-				 * 
-				 * }
-				 * 
-				 * 
-				 */
-				// todo
-				// getabsentdatdateofStudent(studeid,divid,stdid,startdate,enddate)
-				// todo you got respone as List<Attendance> attlist
-				// TO_DO List<Date> responseDate = new ArrayLiat();
-				// for(Attendance attendace :attlist)
-				// {
-				// responseDate.add(attendace.getDate());
-				// }
 
 				absentlst.setDate(responseDate);
 
