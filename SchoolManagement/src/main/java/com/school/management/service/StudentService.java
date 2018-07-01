@@ -62,9 +62,6 @@ public class StudentService {
 				student.setGuardian(parentDaoImpl.saveParent(guardianParent));
 			}
 			
-			if(studentModel.getAcademicYearModel() != null) {
-				student.setAcademicYear(academicYearDaoImpl.getAcademicYear(studentModel.getAcademicYearModel().getAcademicYearId()));
-			}
 
 			studentDaoImpl.saveStudent(student);
 			
@@ -177,8 +174,9 @@ public class StudentService {
 		student.setSchoolType(studentModel.getSchoolType());
 		student.setPreviousSchoolName(studentModel.getPreviousSchoolName());
 		student.setBirthPlace(studentModel.getBirthPlace());
-		student.setAdharNo(studentModel.getAdharNo());
-		student.setCastValidityNo(studentModel.getCastValidityNo());
+		if(academicYearDaoImpl.checkIfExists(studentModel.getAcademicYear())) {
+			student.setAcademicYear(academicYearDaoImpl.getAcademicYear(studentModel.getAcademicYear()));
+		}
 		return student;
 		
 	}
