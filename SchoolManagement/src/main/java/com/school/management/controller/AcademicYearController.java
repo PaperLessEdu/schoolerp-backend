@@ -26,7 +26,7 @@ import com.school.management.service.AcamedicYearService;
  */
 @RestController
 @RequestMapping(value = UriConstants.ACADEMIC_YEAR)
-@CrossOrigin(origins = { "http://dev.cloudscripts.co.in", "http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin(origins = { "http://*.cloudscripts.co.in", "http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
 public class AcademicYearController {
 
 	@Autowired

@@ -23,7 +23,7 @@ import com.school.management.service.HolidayService;
 
 @RestController
 @RequestMapping(value = UriConstants.HOLIDAYS)
-@CrossOrigin(origins = { "http://dev.cloudscripts.co.in",
+@CrossOrigin(origins = { "http://*.cloudscripts.co.in",
 		"http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
 public class HolidayController {
 
