@@ -21,7 +21,7 @@ import com.school.management.service.UserRoleService;
 
 @RestController
 @RequestMapping(value = UriConstants.USERROLES)
-@CrossOrigin( origins = {"http://*.cloudscripts.co.in"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = { "http://starbk.cloudscripts.co.in","http://demo.cloudscripts.co.in"}, maxAge = 4800, allowCredentials = "false")
 public class UserRoleController {
 
 	public static final Logger logger = LoggerFactory.getLogger(UserRoleController.class);

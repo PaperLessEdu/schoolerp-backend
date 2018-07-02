@@ -23,7 +23,7 @@ import com.school.management.service.SubjectService;
 
 @RestController
 @RequestMapping(value = UriConstants.SUBJECTS)
-@CrossOrigin(origins = { "http://*.cloudscripts.co.in", "http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin(origins = {  "http://starbk.cloudscripts.co.in","http://demo.cloudscripts.co.in", "http://localhost:4200" }, maxAge = 4800, allowCredentials = "false")
 public class SubjectController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SubjectController.class);

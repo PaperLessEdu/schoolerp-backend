@@ -23,7 +23,7 @@ import com.school.management.service.DivisionService;
 
 @RestController
 @RequestMapping (value = UriConstants.DIVISION)
-@CrossOrigin( origins = {"http://*.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = { "http://starbk.cloudscripts.co.in","http://demo.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class DivisionController {
 
 	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
