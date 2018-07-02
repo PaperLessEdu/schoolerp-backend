@@ -23,7 +23,7 @@ import com.school.management.service.StudentService;
 
 @RestController
 @RequestMapping(value =  UriConstants.STUDENT)
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = { "http://starbk.cloudscripts.co.in","http://demo.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
