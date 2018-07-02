@@ -45,4 +45,11 @@ public class AcademicYearDaoImpl implements AcademicYearDao {
 		return academicYearRepository.getOne(accademicYearID);
 	}
 
+	@Override
+	public boolean checkIfExists(Long accademicYearID) {
+		return academicYearRepository.existsById(accademicYearID);
+	}
+	
+	
+
 }

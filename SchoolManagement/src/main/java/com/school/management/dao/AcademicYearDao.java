@@ -15,4 +15,6 @@ public interface AcademicYearDao {
 	public void deleteById(Long accademicYearID);
 	
 	public AcademicYear getAcademicYear(Long accademicYearID);
+	
+	public boolean checkIfExists(Long accademicYearID);
 }
