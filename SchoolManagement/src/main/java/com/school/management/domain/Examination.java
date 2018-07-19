@@ -14,12 +14,13 @@ import javax.persistence.Table;
 public class Examination {
 
 	@Id
+	@Column(name = "exam_master_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long exam_master_id;
+	private long exammasterid;
 
-	//@ManyToOne(targetEntity = AcademicYear.class)
-	//@JoinColumn(name = "academicYearId", referencedColumnName = "academicYearId")
-	//private AcademicYear academicYearId;
+	@ManyToOne(targetEntity = AcademicYear.class)
+	@JoinColumn(name = "academicYearId", referencedColumnName = "academic_Year_Id")
+	private AcademicYear academicyear;
 
 	@ManyToOne(targetEntity = Standard.class)
 	@JoinColumn(name = "standard_id", referencedColumnName = "standard_id")
@@ -28,15 +29,22 @@ public class Examination {
 	@Column(name = "name")
 	private String name;
 
-	public long getExam_master_id() {
-		return exam_master_id;
+	public long getExammasterid() {
+		return exammasterid;
 	}
 
-	public void setExam_master_id(long exam_master_id) {
-		this.exam_master_id = exam_master_id;
+	public void setExammasterid(long exammasterid) {
+		this.exammasterid = exammasterid;
 	}
 
-	
+	public AcademicYear getAcademicyear() {
+		return academicyear;
+	}
+
+	public void setAcademicyear(AcademicYear academicyear) {
+		this.academicyear = academicyear;
+	}
+
 	public Standard getStandard() {
 		return standard;
 	}
@@ -53,6 +61,5 @@ public class Examination {
 		this.name = name;
 	}
 
-	
-
+		
 }

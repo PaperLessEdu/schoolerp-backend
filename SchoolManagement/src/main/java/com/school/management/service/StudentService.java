@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.school.management.core.CustomException;
-import com.school.management.dao.AcademicYearDao;
 import com.school.management.dao.AcademicYearDaoImpl;
 import com.school.management.dao.DivisionDaoImpl;
 import com.school.management.dao.ParentDaoImpl;

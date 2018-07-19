@@ -1,6 +1,5 @@
 package com.school.management.model;
 
-import com.school.management.domain.Employee;
 import com.school.management.domain.Subject;
 
 public class SubjectModel {

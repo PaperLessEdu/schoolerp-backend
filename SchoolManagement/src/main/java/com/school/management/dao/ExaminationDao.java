@@ -5,4 +5,6 @@ import com.school.management.domain.Examination;
 public interface ExaminationDao {
 
 	public void saveExamination(Examination examination);
+	
+
 }

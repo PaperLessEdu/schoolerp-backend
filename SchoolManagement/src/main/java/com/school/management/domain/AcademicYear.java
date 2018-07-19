@@ -22,7 +22,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Table(name = "academic_year")
 public class AcademicYear {
 	@Id
-	@Column(name = "id")
+	@Column(name = "academic_Year_Id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long academicYearId;
 

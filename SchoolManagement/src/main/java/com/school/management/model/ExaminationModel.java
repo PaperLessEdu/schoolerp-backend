@@ -46,9 +46,9 @@ public class ExaminationModel {
 		this.name = name;
 	}
 
-	public void wrapDetails(Examination examination) {
-		this.exam_master_id = examination.getExam_master_id();
-		//this.academicYearId = examination.getAcademicYearId();
+	public void wrapExamination(Examination examination) {
+		this.exam_master_id = examination.getExammasterid();
+		this.academicYearId = examination.getAcademicyear();
 		this.standard = examination.getStandard();
 
 	}
