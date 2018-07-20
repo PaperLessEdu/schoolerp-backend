@@ -8,4 +8,6 @@ import com.school.management.domain.Examination;
 @Repository
 public interface ExaminationRepository extends JpaRepository<Examination, Long> {
 
+	boolean existsByName(String name);
+
 }

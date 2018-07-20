@@ -14,20 +14,20 @@ import com.school.management.model.SmResponseStatus;
 public class ExaminationService {
 
 	@Autowired
-	private ExaminationDaoImpl ExaminationDaoImpl;
+	private ExaminationDaoImpl examinationDaoImpl;
 
 	public static final Logger logger = LoggerFactory.getLogger(ExaminationService.class);
 
 	public SmResponseStatus addExamination(ExaminationModel examinationModel) {
 
 		String message = null;
-		Boolean isRoleExist = null;
+		Boolean isExaminationExist = null;
 
 		Examination examination = wrapExmination(null, examinationModel);
 
-		// isExaminationExist =
-		// divisionDaoImpl.isExistByName(divisionModel.getName());
-		// logger.info("Is Division exist: [{}]",isDivisionExist);
+		isExaminationExist =examinationDaoImpl.isExistByName(examinationModel.getName());
+		
+		logger.info("Is Division exist: [{}]",isExaminationExist);
 		return new SmResponseStatus(message);
 	}
 

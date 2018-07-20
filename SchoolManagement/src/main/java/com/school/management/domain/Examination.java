@@ -19,7 +19,7 @@ public class Examination {
 	private long exammasterid;
 
 	@ManyToOne(targetEntity = AcademicYear.class)
-	@JoinColumn(name = "academicYearId", referencedColumnName = "academic_Year_Id")
+	@JoinColumn(name = "academicYearId", referencedColumnName = "id")
 	private AcademicYear academicyear;
 
 	@ManyToOne(targetEntity = Standard.class)
@@ -44,7 +44,7 @@ public class Examination {
 	public void setAcademicyear(AcademicYear academicyear) {
 		this.academicyear = academicyear;
 	}
-
+	
 	public Standard getStandard() {
 		return standard;
 	}
@@ -61,5 +61,4 @@ public class Examination {
 		this.name = name;
 	}
 
-		
 }

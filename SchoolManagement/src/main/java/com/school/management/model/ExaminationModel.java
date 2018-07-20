@@ -50,6 +50,7 @@ public class ExaminationModel {
 		this.exam_master_id = examination.getExammasterid();
 		this.academicYearId = examination.getAcademicyear();
 		this.standard = examination.getStandard();
+		this.name= examination.getName();
 
 	}
 }
