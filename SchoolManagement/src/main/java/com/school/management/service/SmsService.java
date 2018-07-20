@@ -28,10 +28,7 @@ public class SmsService {
 
 	@Value("${sms.prodSenderId}")
 	private String prodSenderId;
-	
-	
-	
-	
+
 	@Value("${sms.envoriment}")
 	private String envoriment;
 
@@ -48,9 +45,9 @@ public class SmsService {
 		try {
 			String systemApikay = StringUtils.trim(System.getProperty(API_KEY_SYSTEM_PROPERTY));
 
-			String userName = "username="+StringUtils.trim(System.getProperty(SMS_USERNAME_SYSTEM_PROPERTY));
+			String userName = "username=" + StringUtils.trim(System.getProperty(SMS_USERNAME_SYSTEM_PROPERTY));
 
-			String password = "&password="+StringUtils.trim(System.getProperty(SMS_PASSWORD_SYSTEM_PROPERTY));
+			String password = "&password=" + StringUtils.trim(System.getProperty(SMS_PASSWORD_SYSTEM_PROPERTY));
 
 			String apiKey;
 
@@ -63,11 +60,8 @@ public class SmsService {
 			if (envoriment.equalsIgnoreCase("dev")) {
 
 				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
-			}else if(envoriment.equalsIgnoreCase("prod"))
-			{
-				uri = smsServerUrl + "/pushsms.php?" + userName+password+ numbers + message + prodSenderId;
-				
-			//	https://smsleads.in/pushsms.php?username=cloudscripts&password=Pa@@word123&sender=BLUEIT&numbers=9028437425&message=YOUR_MESSAGE
+			} else if (envoriment.equalsIgnoreCase("prod")) {
+				uri = smsServerUrl + "/pushsms.php?" + userName + password + numbers + message + prodSenderId;
 			}
 
 			logger.debug("sms url:" + uri);
