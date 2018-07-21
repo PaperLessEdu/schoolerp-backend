@@ -32,6 +32,9 @@ public class SmsService {
 	@Value("${sms.envoriment}")
 	private String envoriment;
 
+	@Value("${sms.prodserver}")
+	private String smsServerProdUrl;
+
 	private static final String API_KEY_SYSTEM_PROPERTY = "sms.apikey";
 
 	private static final String SMS_USERNAME_SYSTEM_PROPERTY = "sms.usrname";
@@ -55,15 +58,15 @@ public class SmsService {
 			String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
 			String sender = "&sender=" + URLEncoder.encode(smsSenderID, "UTF-8");
 			String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
-			
-			String prodSender ="&sender="+URLEncoder.encode(prodSenderId, "UTF-8");
+
+			String prodSender = "&sender=" + URLEncoder.encode(prodSenderId, "UTF-8");
 
 			String uri = "";
 			if (envoriment.equalsIgnoreCase("dev")) {
 
 				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
 			} else if (envoriment.equalsIgnoreCase("prod")) {
-				uri = smsServerUrl + "/pushsms.php?" + userName + password + numbers + message + prodSender;
+				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + numbers + message + prodSender;
 			}
 
 			logger.debug("sms url:" + uri);
