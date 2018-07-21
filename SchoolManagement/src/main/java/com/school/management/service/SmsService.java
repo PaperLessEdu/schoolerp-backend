@@ -55,13 +55,15 @@ public class SmsService {
 			String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
 			String sender = "&sender=" + URLEncoder.encode(smsSenderID, "UTF-8");
 			String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
+			
+			String prodSender ="&sender="+URLEncoder.encode(prodSenderId, "UTF-8");
 
 			String uri = "";
 			if (envoriment.equalsIgnoreCase("dev")) {
 
 				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
 			} else if (envoriment.equalsIgnoreCase("prod")) {
-				uri = smsServerUrl + "/pushsms.php?" + userName + password + numbers + message + prodSenderId;
+				uri = smsServerUrl + "/pushsms.php?" + userName + password + numbers + message + prodSender;
 			}
 
 			logger.debug("sms url:" + uri);
