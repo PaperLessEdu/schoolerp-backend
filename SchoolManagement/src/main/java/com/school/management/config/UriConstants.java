@@ -52,4 +52,6 @@ public class UriConstants {
 	
 	public static final String ACADEMIC_YEAR_ID = "/{academicyear_id}";
 	
+	public static final String SCHOOL_PROFILE="/schoolProfile";
+	
 }
