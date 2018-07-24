@@ -57,16 +57,18 @@ public class SmsService {
 			apiKey = "apikey=" + URLEncoder.encode(systemApikay, "UTF-8");
 			String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
 			String sender = "&sender=" + URLEncoder.encode(smsSenderID, "UTF-8");
-			String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
+			//String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
+			String numbers = "&numbers=" + smsModel.getPhonenumber();
 
 			String prodSender = "&sender=" + URLEncoder.encode(prodSenderId, "UTF-8");
-
+			String enableProdUnicod = "&unicode=1";
 			String uri = "";
 			if (envoriment.equalsIgnoreCase("dev")) {
 
 				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
 			} else if (envoriment.equalsIgnoreCase("prod")) {
-				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + numbers + message + prodSender;
+				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + prodSender + numbers + message
+						+ enableProdUnicod;
 			}
 
 			logger.debug("sms url:" + uri);
