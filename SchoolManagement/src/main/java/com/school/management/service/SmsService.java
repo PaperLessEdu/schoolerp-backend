@@ -55,7 +55,8 @@ public class SmsService {
 			String apiKey;
 
 			apiKey = "apikey=" + URLEncoder.encode(systemApikay, "UTF-8");
-			String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
+			//String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
+			String message = "&message=" + smsModel.getBody();
 			String sender = "&sender=" + URLEncoder.encode(smsSenderID, "UTF-8");
 			//String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
 			String numbers = "&numbers=" + smsModel.getPhonenumber();
