@@ -62,14 +62,14 @@ public class SmsService {
 			String numbers = "&numbers=" + smsModel.getPhonenumber();
 
 			String prodSender = "&sender=" + URLEncoder.encode(prodSenderId, "UTF-8");
-			String enableProdUnicod = "&unicode=1";
+			//String enableProdUnicod = "&unicode=1";
 			String uri = "";
 			if (envoriment.equalsIgnoreCase("dev")) {
 
 				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
 			} else if (envoriment.equalsIgnoreCase("prod")) {
-				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + prodSender + numbers + message
-						+ enableProdUnicod;
+				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + prodSender + numbers + message;
+			
 			}
 
 			logger.debug("sms url:" + uri);
