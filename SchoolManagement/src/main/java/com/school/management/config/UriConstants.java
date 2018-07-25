@@ -54,4 +54,5 @@ public class UriConstants {
 	
 	public static final String SCHOOL_PROFILE="/schoolProfile";
 	
+	public static final String SCHOOL_PROFILE_ID="/{schoolProfile_id}";
 }

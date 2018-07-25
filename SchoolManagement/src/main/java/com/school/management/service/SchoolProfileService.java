@@ -30,6 +30,25 @@ public class SchoolProfileService {
 		return new SmResponseStatus(message);
 	}
 
+	public SchoolProfileModel getSchoolProfile(Long schoolprofile_id) {
+
+		SchoolProfileModel schoolModel = new SchoolProfileModel();
+
+		try {
+			SchoolProfile schoolProfile = schoolProfileDaoImpl.getSchoolProfile(schoolprofile_id);
+
+			SchoolProfileModel profile = null;
+			schoolModel.wrapProfile(profile);
+
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching schoolprofile details [%s]", schoolprofile_id);
+			logger.error(error, e);
+			throw e;
+		}
+		return schoolModel;
+
+	}
+
 	private SchoolProfile wrapSchool(Long id, SchoolProfileModel schoolModel) {
 		SchoolProfile school = new SchoolProfile();
 

@@ -8,8 +8,6 @@ import org.springframework.stereotype.Component;
 import com.school.management.domain.SchoolProfile;
 import com.school.management.repository.SchoolProfileRepository;
 
-
-
 @Component
 public class SchoolProfileDaoImpl implements SchoolProfileDao {
 
@@ -20,7 +18,6 @@ public class SchoolProfileDaoImpl implements SchoolProfileDao {
 
 	@Override
 	public void saveSchoolProfile(SchoolProfile school) {
-		
 
 		try {
 			schoolRepository.save(school);
@@ -29,6 +26,21 @@ public class SchoolProfileDaoImpl implements SchoolProfileDao {
 			logger.error(error);
 			throw e;
 		}
+	}
+
+	@Override
+	public SchoolProfile getSchoolProfile(Long schoolProfile_id) {
+
+		SchoolProfile schoolProfile = new SchoolProfile();
+		try {
+			schoolProfile = schoolRepository.getOne(schoolProfile_id);
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching schoolprofile details.");
+			logger.error(error);
+			throw e;
+		}
+		return schoolProfile;
+
 	}
 
 }
