@@ -1,5 +1,8 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,22 @@ public class ExaminationService {
 		
 		logger.info("Is Division exist: [{}]",isExaminationExist);
 		return new SmResponseStatus(message);
+	}
+	
+	public List<Examination> getExaminationList() {
+
+		List<Examination> examinationList = new ArrayList<>();
+			
+		try {
+			examinationList = examinationDaoImpl.getExaminationList();
+			
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching examination List");
+			logger.error(error, e);
+			throw e;
+		}
+		return examinationList;
+
 	}
 
 	private Examination wrapExmination(Long exam_master_id, ExaminationModel examinationModel) {

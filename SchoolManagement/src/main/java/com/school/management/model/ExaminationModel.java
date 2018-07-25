@@ -30,6 +30,7 @@ public class ExaminationModel {
 		this.academicYearId = academicYearId;
 	}
 
+	
 	public Standard getStandard() {
 		return standard;
 	}
