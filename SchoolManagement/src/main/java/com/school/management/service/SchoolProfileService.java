@@ -1,5 +1,8 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,22 +33,37 @@ public class SchoolProfileService {
 		return new SmResponseStatus(message);
 	}
 
-	public SchoolProfileModel getSchoolProfile(Long schoolprofile_id) {
+	public SchoolProfileModel getSchoolProfile(Long school_id) {
 
+		SchoolProfile profile = null;
 		SchoolProfileModel schoolModel = new SchoolProfileModel();
 
 		try {
-			SchoolProfile schoolProfile = schoolProfileDaoImpl.getSchoolProfile(schoolprofile_id);
 
-			SchoolProfileModel profile = null;
+			profile = schoolProfileDaoImpl.getSchoolProfile(school_id);
+
 			schoolModel.wrapProfile(profile);
 
 		} catch (Exception e) {
-			String error = String.format("Error occured while fetching schoolprofile details [%s]", schoolprofile_id);
+			String error = String.format("Error occured while fetching schoolprofile details [%s]", school_id);
 			logger.error(error, e);
 			throw e;
 		}
 		return schoolModel;
+
+	}
+
+	public List<SchoolProfile> getSchoolList() {
+
+		List<SchoolProfile> schoolList = new ArrayList<>();
+		try {
+			schoolList = schoolProfileDaoImpl.getSchoolList();
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching school List");
+			logger.error(error, e);
+			throw e;
+		}
+		return schoolList;
 
 	}
 

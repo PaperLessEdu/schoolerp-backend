@@ -1,5 +1,7 @@
 package com.school.management.model;
 
+import com.school.management.domain.SchoolProfile;
+
 /**
  * 
  * @author Aniket
@@ -7,7 +9,7 @@ package com.school.management.model;
  */
 public class SchoolProfileModel {
 
-	private long id;
+	private Long id;
 	private String branch_name;
 	private String address;
 	private String pincode;
@@ -54,22 +56,12 @@ public class SchoolProfileModel {
 		this.emailid = emailid;
 	}
 
-	public void wrapProfile(SchoolProfileModel profile) {
-
-		this.branch_name = profile.getBranch_name();
-		this.address = profile.getAddress();
-		this.pincode = profile.getPincode();
-		this.phone_no = profile.getPhone_no();
-		this.emailid = profile.getEmailid();
-		this.id = profile.getId();
-
-	}
-
-	public long getId() {
+	
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -77,6 +69,16 @@ public class SchoolProfileModel {
 	public String toString() {
 		return "SchoolProfileModel [branch_name=" + branch_name + ", address=" + address + ", pincode=" + pincode
 				+ ", phone_no=" + phone_no + ", emailid=" + emailid + "]";
+	}
+
+	public void wrapProfile(SchoolProfile profile) {
+		this.branch_name = profile.getBranch_name();
+		this.address = profile.getAddress();
+		this.pincode = profile.getPincode();
+		this.phone_no = profile.getPhone_no();
+		this.emailid = profile.getEmailid();
+		this.id = profile.getId();
+
 	}
 
 }
