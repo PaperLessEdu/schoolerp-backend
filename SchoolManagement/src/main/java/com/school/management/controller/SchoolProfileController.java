@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
-import com.school.management.domain.SchoolProfile;
 import com.school.management.model.SchoolProfileModel;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.SchoolProfileService;
@@ -34,7 +33,7 @@ public class SchoolProfileController {
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.POST, produces = AppConstants.JSON)
 	public SmResponseStatus addSchoolProfile(@RequestBody SchoolProfileModel schoolProfileModel) {
 
-		logger.info("Got request for academic year [{}]", schoolProfileModel.toString());
+		logger.info("Got request for schoolprofile  [{}]", schoolProfileModel.toString());
 		return schoolprofileService.addSchoolProfile(schoolProfileModel);
 	}
 

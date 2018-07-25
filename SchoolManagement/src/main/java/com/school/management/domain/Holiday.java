@@ -1,4 +1,4 @@
-package com.school.management.domain;
+	 package com.school.management.domain;
 
 import java.time.LocalDateTime;
 import java.util.Date;

@@ -1,7 +1,13 @@
 package com.school.management.model;
 
+/**
+ * 
+ * @author Aniket
+ *
+ */
 public class SchoolProfileModel {
 
+	private long id;
 	private String branch_name;
 	private String address;
 	private String pincode;
@@ -55,6 +61,22 @@ public class SchoolProfileModel {
 		this.pincode = profile.getPincode();
 		this.phone_no = profile.getPhone_no();
 		this.emailid = profile.getEmailid();
+		this.id = profile.getId();
 
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "SchoolProfileModel [branch_name=" + branch_name + ", address=" + address + ", pincode=" + pincode
+				+ ", phone_no=" + phone_no + ", emailid=" + emailid + "]";
+	}
+
 }

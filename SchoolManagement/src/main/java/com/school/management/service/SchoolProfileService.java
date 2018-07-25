@@ -10,39 +10,38 @@ import com.school.management.domain.SchoolProfile;
 import com.school.management.model.SchoolProfileModel;
 import com.school.management.model.SmResponseStatus;
 
-
 @Service
 
 public class SchoolProfileService {
-@Autowired
-private SchoolProfileDaoImpl schoolprofileDaoImpl;
-	
+
+	@Autowired
+	private SchoolProfileDaoImpl schoolProfileDaoImpl;
+
 	public static final Logger logger = LoggerFactory.getLogger(SchoolProfileService.class);
-	
+
 	public SmResponseStatus addSchoolProfile(SchoolProfileModel schoolModel) {
 		String message = null;
-		Boolean isSchoolProfileExist = null;
 		SchoolProfile school = wrapSchool(null, schoolModel);
-		
-		/*isSchoolProfileExist = schoolprofileDaoImpl.isExistByName(schoolModel.getBranch_name());
-		logger.info("Is school profile exist: [{}]",isDivisionExist);
-		if(isDivisionExist.equals(Boolean.FALSE)) {
-			divisionDaoImpl.saveDivision(division);
-		} else {
-			String error = String.format("Division is already exist with name [%s]", divisionModel.getName());
-			logger.error(error);
-			throw new CustomException(error);
-		}
-		
-		logger.info("Division saved Sucessfully with name [{}]", division.getName());
-		
-		message = String.format("Division saved Sucessfully with name [%s]", division.getName());
-*/		
-		return null;
+
+		schoolProfileDaoImpl.saveSchoolProfile(school);
+
+		message = String.format("school profile saved Sucessfully with name [%s]", school.getBranch_name());
+
+		return new SmResponseStatus(message);
 	}
 
-	private SchoolProfile wrapSchool(Object object, SchoolProfileModel schoolModel) {
-		// TODO Auto-generated method stub
-		return null;
+	private SchoolProfile wrapSchool(Long id, SchoolProfileModel schoolModel) {
+		SchoolProfile school = new SchoolProfile();
+
+		if (id != null) {
+			school.setId(schoolModel.getId());
+		}
+
+		school.setAddress(schoolModel.getAddress());
+		school.setBranch_name(schoolModel.getBranch_name());
+		school.setEmailid(schoolModel.getEmailid());
+		school.setPhone_no(schoolModel.getPhone_no());
+		school.setPincode(schoolModel.getPincode());
+		return school;
 	}
 }

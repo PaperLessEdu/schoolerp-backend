@@ -3,10 +3,14 @@ package com.school.management.dao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.school.management.domain.SchoolProfile;
 import com.school.management.repository.SchoolProfileRepository;
 
+
+
+@Component
 public class SchoolProfileDaoImpl implements SchoolProfileDao {
 
 	@Autowired
@@ -16,7 +20,7 @@ public class SchoolProfileDaoImpl implements SchoolProfileDao {
 
 	@Override
 	public void saveSchoolProfile(SchoolProfile school) {
-		// TODO Auto-generated method stub
+		
 
 		try {
 			schoolRepository.save(school);
