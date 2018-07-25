@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,17 +43,17 @@ public class SchoolProfileController {
 	}
 
 	@RequestMapping(value = UriConstants.SCHOOL_PROFILE_ID, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public SchoolProfileModel getSchoolProfile(@PathVariable Long school_id) {
+	public SchoolProfileModel getSchoolProfile(@PathVariable Long schoolprofileid) {
 
 		logger.info("Request received to fetch schoolprofile details by schoolprofile_id");
 
-		SchoolProfileModel schoolProfileModel = schoolprofileService.getSchoolProfile(school_id);
+		SchoolProfileModel schoolProfileModel = schoolprofileService.getSchoolProfile(schoolprofileid);
 
-		logger.info("School iD by id [{}] fetched successfully", school_id);
+		logger.info("School iD by id [{}] fetched successfully", schoolprofileid);
 
 		return schoolProfileModel;
 	}
-	@RequestMapping(value = UriConstants.SCHOOL_PROFILE_LIST, method = RequestMethod.GET, produces = AppConstants.JSON)
+	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
 	public List<SchoolProfile> getSchoolList() {
 
 		logger.info("Request received to fetch School List");
