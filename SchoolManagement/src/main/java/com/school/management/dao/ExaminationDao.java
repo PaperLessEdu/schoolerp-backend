@@ -6,7 +6,7 @@ import com.school.management.domain.Examination;
 
 public interface ExaminationDao {
 
-	public void saveExamination(Examination examination);
+	public Examination saveExamination(Examination examination);
 
 	public boolean isExistByName(String name);
 

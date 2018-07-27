@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.school.management.domain.Division;
 import com.school.management.domain.Examination;
 import com.school.management.repository.ExaminationRepository;
 
@@ -22,15 +21,16 @@ public class ExaminationDaoImpl implements ExaminationDao {
 	public static final Logger logger = LoggerFactory.getLogger(ExaminationDaoImpl.class);
 
 	@Override
-	public void saveExamination(Examination examination) {
+	public Examination saveExamination(Examination examination) {
+		Examination result = null;
 		try {
-			examinationRepository.save(examination);
+			result = examinationRepository.save(examination);
 		} catch (Exception e) {
 			String error = String.format("Error occured while saving examination");
 			logger.error(error);
 			throw e;
 		}
-
+		return result;
 	}
 
 	@Override
