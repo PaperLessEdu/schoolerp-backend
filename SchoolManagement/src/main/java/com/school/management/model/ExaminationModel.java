@@ -1,42 +1,29 @@
 package com.school.management.model;
 
-import com.school.management.domain.AcademicYear;
-import com.school.management.domain.Examination;
-import com.school.management.domain.Standard;
+import java.util.ArrayList;
 
 public class ExaminationModel {
 
-	private Long exam_master_id;
-
-	private AcademicYear academicYearId;
-
-	private Standard standard;
-
+	private long exam_master_id;
+	private long academicYearId;
+	private long standardId;
 	private String name;
+	private ArrayList<ExamScheduleModel> examSchedule;
 
-	public Long getExam_master_id() {
-		return exam_master_id;
-	}
-
-	public void setExam_master_id(Long exam_master_id) {
-		this.exam_master_id = exam_master_id;
-	}
-
-	public AcademicYear getAcademicYearId() {
+	public long getAcademicYearId() {
 		return academicYearId;
 	}
 
-	public void setAcademicYearId(AcademicYear academicYearId) {
+	public void setAcademicYearId(long academicYearId) {
 		this.academicYearId = academicYearId;
 	}
 
-	
-	public Standard getStandard() {
-		return standard;
+	public long getStandardId() {
+		return standardId;
 	}
 
-	public void setStandard(Standard standard) {
-		this.standard = standard;
+	public void setStandardId(long standardId) {
+		this.standardId = standardId;
 	}
 
 	public String getName() {
@@ -47,11 +34,37 @@ public class ExaminationModel {
 		this.name = name;
 	}
 
-	public void wrapExamination(Examination examination) {
-		this.exam_master_id = examination.getExammasterid();
-		this.academicYearId = examination.getAcademicyear();
-		this.standard = examination.getStandard();
-		this.name= examination.getName();
-
+	public ArrayList<ExamScheduleModel> getExamSchedule() {
+		return examSchedule;
 	}
+
+	public void setExamSchedule(ArrayList<ExamScheduleModel> examSchedule) {
+		this.examSchedule = examSchedule;
+	}
+
+	
+	
+	
+	public long getExam_master_id() {
+		return exam_master_id;
+	}
+
+	public void setExam_master_id(long exam_master_id) {
+		this.exam_master_id = exam_master_id;
+	}
+
+	@Override
+	public String toString() {
+		return "ExaminationModel [exam_master_id=" + exam_master_id + ", academicYearId=" + academicYearId
+				+ ", standardId=" + standardId + ", name=" + name + ", examSchedule=" + examSchedule + "]";
+	}
+
+	/*
+	 * public void wrapExamination(Examination examination) {
+	 * this.exam_master_id = examination.getExammasterid(); this.academicYearId
+	 * = examination.getAcademicyear(); this.standard =
+	 * examination.getStandard(); this.name= examination.getName();
+	 * 
+	 * }
+	 */
 }
