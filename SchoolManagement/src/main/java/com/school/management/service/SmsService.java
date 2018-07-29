@@ -26,7 +26,20 @@ public class SmsService {
 	@Value("${sms.senderId}")
 	private String smsSenderID;
 
+	@Value("${sms.prodSenderId}")
+	private String prodSenderId;
+
+	@Value("${sms.envoriment}")
+	private String envoriment;
+
+	@Value("${sms.prodserver}")
+	private String smsServerProdUrl;
+
 	private static final String API_KEY_SYSTEM_PROPERTY = "sms.apikey";
+
+	private static final String SMS_USERNAME_SYSTEM_PROPERTY = "sms.usrname";
+
+	private static final String SMS_PASSWORD_SYSTEM_PROPERTY = "sms.password";
 
 	public static final Logger logger = LoggerFactory.getLogger(SmsService.class);
 
@@ -35,13 +48,29 @@ public class SmsService {
 		try {
 			String systemApikay = StringUtils.trim(System.getProperty(API_KEY_SYSTEM_PROPERTY));
 
+			String userName = "username=" + StringUtils.trim(System.getProperty(SMS_USERNAME_SYSTEM_PROPERTY));
+
+			String password = "&password=" + StringUtils.trim(System.getProperty(SMS_PASSWORD_SYSTEM_PROPERTY));
+
 			String apiKey;
 
 			apiKey = "apikey=" + URLEncoder.encode(systemApikay, "UTF-8");
-			String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
+			//String message = "&message=" + URLEncoder.encode(smsModel.getBody(), "UTF-8");
+			String message = "&message=" + smsModel.getBody();
 			String sender = "&sender=" + URLEncoder.encode(smsSenderID, "UTF-8");
-			String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
-			final String uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
+			//String numbers = "&numbers=" + URLEncoder.encode(smsModel.getPhonenumber(), "UTF-8");
+			String numbers = "&numbers=" + smsModel.getPhonenumber();
+
+			String prodSender = "&sender=" + URLEncoder.encode(prodSenderId, "UTF-8");
+			//String enableProdUnicod = "&unicode=1";
+			String uri = "";
+			if (envoriment.equalsIgnoreCase("dev")) {
+
+				uri = smsServerUrl + "/send/?" + apiKey + numbers + message + sender;
+			} else if (envoriment.equalsIgnoreCase("prod")) {
+				uri = smsServerProdUrl + "/pushsms.php?" + userName + password + prodSender + numbers + message;
+			
+			}
 
 			logger.debug("sms url:" + uri);
 			RestTemplate restTemplate = new RestTemplate();
