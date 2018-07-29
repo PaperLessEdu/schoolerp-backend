@@ -183,7 +183,7 @@ public class AttendanceService {
 
 		}
 		for (AttendanceReportResponse absentlst : attendancelist) {
-
+			
 			Student s = studentDaoImpl.getStudent(absentlst.getStudent_id());
 			if (s != null) {
 				absentlst.setFirstName(s.getFirstName());
