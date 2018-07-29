@@ -16,46 +16,55 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
-@Table (name = "exam_timetable")
+@Table(name = "exam_timetable")
 public class ScheduleExam {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long exam_timetable_id;
-	
+
 	@ManyToOne(targetEntity = Examination.class)
-	@JoinColumn(name="exam_master_id",referencedColumnName="exam_master_id")
+	@JoinColumn(name = "exam_master_id", referencedColumnName = "exam_master_id")
 	private Examination exam_master_id;
-	
+
 	@ManyToOne(targetEntity = Subject.class)
-	@JoinColumn(name="subject_id",referencedColumnName="subject_id")
+	@JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
 	private Subject subject_id;
-	
+
 	@ManyToOne(targetEntity = Standard.class)
-	@JoinColumn(name="standard_id",referencedColumnName="standard_id")
+	@JoinColumn(name = "standard_id", referencedColumnName = "standard_id")
 	private Standard standard;
-	
+
 	@Column(name = "examType")
 	private String examType;
-	
+
 	@Column(name = "date")
 	private Date date;
-	
+
+	@Column(name = "startTime")
+
+	private Date startTime;
+
+	@Column(name = "endTime")
+
+	private Date endTime;
+
+	@Column(name = "scoreType")
+	private String scoreType;
+
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
 	private LocalDateTime create_dt;
-	
+
 	@Column(name = "last_update_dt")
 	@UpdateTimestamp
 	private LocalDateTime last_update_dt;
 
 	@Column(name = "outOfMarks")
-	private Double outOfMarks;
-	
+	private Long outOfMarks;
+
 	@Column(name = "passingMarks")
-	private Double passingMarks;
-	
-	
+	private Long passingMarks;
 
 	public long getExam_timetable_id() {
 		return exam_timetable_id;
@@ -121,21 +130,53 @@ public class ScheduleExam {
 		this.last_update_dt = last_update_dt;
 	}
 
-	public Double getOutOfMarks() {
+	public Long getOutOfMarks() {
 		return outOfMarks;
 	}
 
-	public void setOutOfMarks(Double outOfMarks) {
+	public void setOutOfMarks(Long outOfMarks) {
 		this.outOfMarks = outOfMarks;
 	}
 
-	public Double getPassingMarks() {
+	public Long getPassingMarks() {
 		return passingMarks;
 	}
 
-	public void setPassingMarks(Double passingMarks) {
+	public void setPassingMarks(Long passingMarks) {
 		this.passingMarks = passingMarks;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "ScheduleExam [exam_timetable_id=" + exam_timetable_id + ", exam_master_id=" + exam_master_id
+				+ ", subject_id=" + subject_id + ", standard=" + standard + ", examType=" + examType + ", date=" + date
+				+ ", startTime=" + startTime + ", endTime=" + endTime + ", scoreType=" + scoreType + ", create_dt="
+				+ create_dt + ", last_update_dt=" + last_update_dt + ", outOfMarks=" + outOfMarks + ", passingMarks="
+				+ passingMarks + "]";
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
+	public String getScoreType() {
+		return scoreType;
+	}
+
+	public void setScoreType(String scoreType) {
+		this.scoreType = scoreType;
+	}
+
 }

@@ -13,8 +13,8 @@ public class ScheduleExamDaoImpl implements ScheduleExamDao {
 	private ScheduleExamRepository scheduleExamRepository;
 
 	@Override
-	public void saveScheduleExam(ScheduleExam scheduleExam) {
-		scheduleExamRepository.save(scheduleExam);
+	public ScheduleExam saveScheduleExam(ScheduleExam scheduleExam) {
+		return scheduleExamRepository.save(scheduleExam);
 	}
 
 }

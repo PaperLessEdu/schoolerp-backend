@@ -4,5 +4,5 @@ import com.school.management.domain.ScheduleExam;
 
 public interface ScheduleExamDao {
 
-	public void saveScheduleExam(ScheduleExam scheduleExam);
+	public ScheduleExam saveScheduleExam(ScheduleExam scheduleExam);
 }
