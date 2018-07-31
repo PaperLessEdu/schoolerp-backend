@@ -39,15 +39,15 @@ public class ScheduleExam {
 	private String examType;
 
 	@Column(name = "date")
-	private Date date;
+	private String date;
 
 	@Column(name = "startTime")
 
-	private Date startTime;
+	private String startTime;
 
 	@Column(name = "endTime")
 
-	private Date endTime;
+	private String endTime;
 
 	@Column(name = "scoreType")
 	private String scoreType;
@@ -106,14 +106,7 @@ public class ScheduleExam {
 		this.examType = examType;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
+	
 	public LocalDateTime getCreate_dt() {
 		return create_dt;
 	}
@@ -155,23 +148,32 @@ public class ScheduleExam {
 				+ passingMarks + "]";
 	}
 
-	public Date getStartTime() {
+	
+		public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(String startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public String getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
 
-	public String getScoreType() {
+		public String getScoreType() {
 		return scoreType;
 	}
 
