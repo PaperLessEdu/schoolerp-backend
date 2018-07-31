@@ -9,7 +9,7 @@ public class DistributionModel {
 	 */
 
 	private String examType;
-	private String date;
+	private Date date;
 	private String startTime;
 	private String endTime;
 	private String scoreType;
@@ -24,11 +24,12 @@ public class DistributionModel {
 		this.examType = examType;
 	}
 
-	public String getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 

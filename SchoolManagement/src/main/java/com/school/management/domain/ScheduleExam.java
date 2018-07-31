@@ -39,7 +39,7 @@ public class ScheduleExam {
 	private String examType;
 
 	@Column(name = "date")
-	private String date;
+	private Date date;
 
 	@Column(name = "startTime")
 
@@ -149,11 +149,12 @@ public class ScheduleExam {
 	}
 
 	
-		public String getDate() {
+		
+	public Date getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 
