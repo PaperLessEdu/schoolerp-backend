@@ -1,7 +1,9 @@
 package com.school.management.controller;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +19,12 @@ import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
 import com.school.management.core.CustomException;
 import com.school.management.domain.Division;
+import com.school.management.domain.Standard;
 import com.school.management.model.DivisionModel;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.DivisionService;
 
 @RestController
-@RequestMapping (value = UriConstants.DIVISION)
 @CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class DivisionController {
 
@@ -31,31 +33,32 @@ public class DivisionController {
 	@Autowired
 	public DivisionService divisionService;
 	
-	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.POST, produces = AppConstants.JSON)
-	public SmResponseStatus addDivision(@RequestBody DivisionModel divisionModel) {
+	@RequestMapping(value = UriConstants.DIVISION_BY_STANDARD, method = RequestMethod.POST, produces = AppConstants.JSON)
+	public SmResponseStatus addDivision(@PathVariable Long standard_id, @RequestBody DivisionModel divisionModel) {
 		
 		logger.info("Request received to add Division with name [{}]", divisionModel.getName());
 		
-		SmResponseStatus smResponseStatus = null;;
+		SmResponseStatus smResponseStatus = null;
 		if (divisionModel.getName() == null ) {
 			String error = String.format("Division name can not empty");
 			logger.error(error);
 			throw new CustomException(error);
 		}
-		smResponseStatus = divisionService.addDivision(divisionModel);
+		divisionModel.setStandard(new Standard(standard_id, "", null));
+		smResponseStatus = divisionService.addDivision(standard_id, divisionModel);
 		
 		logger.info("Division Sucessfully added with name [{}]", divisionModel.getName());
 		return smResponseStatus;
 	}
 	
-	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public List<Division> getDivisionList() {
+	@RequestMapping(value = UriConstants.DIVISION_BY_STANDARD, method = RequestMethod.GET, produces = AppConstants.JSON)
+	public List<Division> getDivisionList(@PathVariable Long standard_id) {
 
 		logger.info("Request received to fetch division List");
 		
 		List<Division> divisionList = new ArrayList<>();
 
-		divisionList = divisionService.getDivisionList();
+		divisionList = divisionService.getDivisionList(standard_id);
 		
 		logger.info("Division List fetched successfully");
 		
@@ -75,7 +78,7 @@ public class DivisionController {
 	}
 	
 	@RequestMapping(value = UriConstants.DIVISION_ID, method = RequestMethod.PUT, produces = AppConstants.JSON)
-	public SmResponseStatus updateDivision(@PathVariable Long division_id, @RequestBody DivisionModel divisionModel) {
+	public SmResponseStatus updateDivision(@PathVariable Long standard_id, @PathVariable Long division_id, @RequestBody DivisionModel divisionModel) {
 
 		logger.info("Request received to update Division with name [{}]",divisionModel.getName());
 		
@@ -85,6 +88,7 @@ public class DivisionController {
 			logger.error(error);
 			throw new CustomException(error);
 		}
+		divisionModel.setStandard(new Standard(standard_id, "", null));
 		smResponseStatus = divisionService.updateDivision(division_id, divisionModel);
 		
 		logger.info("Division Sucessfully added with name [{}]",divisionModel.getName());
