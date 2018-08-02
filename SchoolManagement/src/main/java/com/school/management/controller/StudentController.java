@@ -23,7 +23,7 @@ import com.school.management.service.StudentService;
 
 @RestController
 @RequestMapping(value =  UriConstants.STUDENT)
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = { "http://starbk.cloudscripts.co.in","http://demo.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class StudentController {
 
 	private static final Logger logger = LoggerFactory.getLogger(StudentController.class);
@@ -39,7 +39,7 @@ public class StudentController {
 		if(studentModel.getFirstName() == null || studentModel.getLastName() == null) {
 			String error = String.format("Student first name/last name can not be empty");
 			logger.error(error);
-			new CustomException(error);
+			throw new CustomException(error);
 		}
 		
 		smResponseStatus = studentService.addStudent(studentModel);
@@ -60,7 +60,7 @@ public class StudentController {
 		if(standardId == null && divisionId != null) {
 			String error = String.format("Invalid request");
 			logger.error(error);
-			new CustomException(error);
+			throw new CustomException(error);
 		}
 		
 		List<Student> studentList = studentService.getStudentsByStandardAndDivision(standardId, divisionId);

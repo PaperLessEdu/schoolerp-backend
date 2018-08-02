@@ -1,5 +1,8 @@
 package com.school.management.model;
 
+import java.util.Date;
+import java.util.List;
+
 /**
  * com.school.management.model.AttendanceReportResponse
  * 
@@ -15,6 +18,11 @@ public class AttendanceReportResponse {
 	private String firstName;
 	private String middleName;
 	private String lastName;
+
+	private Date startdate;
+	private Date enddate;
+
+	private List<Date> date;
 
 	public AttendanceReportResponse(Long student_id, Long absentDays) {
 		super();
@@ -62,10 +70,38 @@ public class AttendanceReportResponse {
 		this.lastName = lastName;
 	}
 
+	
+
+
+	public Date getStartdate() {
+		return startdate;
+	}
+
+	public void setStartdate(Date startdate) {
+		this.startdate = startdate;
+	}
+
+	public Date getEnddate() {
+		return enddate;
+	}
+
+	public void setEnddate(Date enddate) {
+		this.enddate = enddate;
+	}
+
+	public List<Date> getDate() {
+		return date;
+	}
+
+	public void setDate(List<Date> date) {
+		this.date = date;
+	}
+
 	@Override
 	public String toString() {
 		return "AttendanceReportResponse [student_id=" + student_id + ", absentDays=" + absentDays + ", firstName="
-				+ firstName + ", middleName=" + middleName + ", lastName=" + lastName + "]";
+				+ firstName + ", middleName=" + middleName + ", lastName=" + lastName + ", startdate=" + startdate
+				+ ", enddate=" + enddate + ", date=" + date + "]";
 	}
 
 }

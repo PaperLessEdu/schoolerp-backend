@@ -1,6 +1,5 @@
 package com.school.management.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +17,6 @@ public class Student {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long student_id;
-	
-	@Column(name = "academicYear")
-	private String academicYear;
 	
 	@Column(name = "firstName")
 	private String firstName;
@@ -87,6 +83,9 @@ public class Student {
 	@Column(name = "doctor_phone_number")
 	private String doctorPhoneNo;
 	
+	@Column(name = "doctor_address")
+	private String doctorAddress;
+	
 	@OneToOne(targetEntity = Parent.class)
 	@JoinColumn(name = "fatherId", referencedColumnName = "parent_id")
 	private Parent father;
@@ -98,21 +97,29 @@ public class Student {
 	@OneToOne(targetEntity = Parent.class)
 	@JoinColumn(name = "guardianId", referencedColumnName = "parent_id")
 	private Parent guardian;
-
+	
+	@Column(name = "admissionDate")
+	private String admissionDate;
+	
+	@OneToOne(targetEntity = AcademicYear.class)
+	@JoinColumn(name = "academicYearId", referencedColumnName = "id")
+	private AcademicYear academicYear;
+	
+	@Column(name = "schoolType")
+	private String schoolType;
+	
+	@Column(name = "previousSchoolName")
+	private String previousSchoolName;
+	
+	@Column(name = "birthPlace")
+	private String birthPlace;
+	
 	public long getStudent_id() {
 		return student_id;
 	}
 
 	public void setStudent_id(long student_id) {
 		this.student_id = student_id;
-	}
-
-	public String getAcademicYear() {
-		return academicYear;
-	}
-
-	public void setAcademicYear(String academicYear) {
-		this.academicYear = academicYear;
 	}
 
 	public String getFirstName() {
@@ -306,5 +313,53 @@ public class Student {
 	public void setDoctorPhoneNo(String doctorPhoneNo) {
 		this.doctorPhoneNo = doctorPhoneNo;
 	}
- 
+
+	public String getDoctorAddress() {
+		return doctorAddress;
+	}
+
+	public void setDoctorAddress(String doctorAddress) {
+		this.doctorAddress = doctorAddress;
+	}
+
+	public String getAdmissionDate() {
+		return admissionDate;
+	}
+
+	public void setAdmissionDate(String admissionDate) {
+		this.admissionDate = admissionDate;
+	}
+
+	public AcademicYear getAcademicYear() {
+		return academicYear;
+	}
+
+	public void setAcademicYear(AcademicYear academicYear) {
+		this.academicYear = academicYear;
+	}
+
+	public String getSchoolType() {
+		return schoolType;
+	}
+
+	public void setSchoolType(String schoolType) {
+		this.schoolType = schoolType;
+	}
+
+	public String getPreviousSchoolName() {
+		return previousSchoolName;
+	}
+
+	public void setPreviousSchoolName(String previousSchoolName) {
+		this.previousSchoolName = previousSchoolName;
+	}
+
+	public String getBirthPlace() {
+		return birthPlace;
+	}
+
+	public void setBirthPlace(String birthPlace) {
+		this.birthPlace = birthPlace;
+	}
+	
 }

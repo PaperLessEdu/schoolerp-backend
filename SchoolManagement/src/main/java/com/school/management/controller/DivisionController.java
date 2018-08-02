@@ -25,7 +25,7 @@ import com.school.management.model.SmResponseStatus;
 import com.school.management.service.DivisionService;
 
 @RestController
-@CrossOrigin( origins = {"http://dev.cloudscripts.co.in", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
+@CrossOrigin( origins = { "http://dev.cloudscripts.co.in:8082","http://dev.cloudscripts.co.in:8081", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class DivisionController {
 
 	public static final Logger logger = LoggerFactory.getLogger(DivisionController.class);
