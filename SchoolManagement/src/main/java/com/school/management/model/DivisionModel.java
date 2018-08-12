@@ -3,12 +3,15 @@ package com.school.management.model;
 import java.time.LocalDateTime;
 
 import com.school.management.domain.Division;
+import com.school.management.domain.Standard;
 
 public class DivisionModel {
 
 private Long division_id;
 	
 	private String name;
+	
+	private Standard standard;
 	
 	private LocalDateTime create_dt;
 	
@@ -30,6 +33,14 @@ private Long division_id;
 		this.name = name;
 	}
 	
+	public Standard getStandard() {
+		return standard;
+	}
+
+	public void setStandard(Standard standard) {
+		this.standard = standard;
+	}
+
 	public void setCreate_dt(LocalDateTime create_dt) {
 		this.create_dt = create_dt;
 	}
@@ -45,6 +56,7 @@ private Long division_id;
 	public void wrapDetails(Division division) {
 		this.division_id = division.getDivision_id();
 		this.name = division.getName();
+		this.standard = division.getStandard();
 		this.create_dt = division.getCreate_dt();
 		this.last_update_dt = division.getLast_update_dt();
 	}	

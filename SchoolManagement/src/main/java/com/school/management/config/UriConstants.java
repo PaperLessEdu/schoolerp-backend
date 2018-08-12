@@ -33,7 +33,11 @@ public class UriConstants {
 
 	public static final String DIVISION = "/divisions";
 	
-	public static final String DIVISION_ID = "/{division_id}";
+	public static final String DIVISION_BY_STANDARD = "/standards/{standard_id}/divisions";
+	
+	public static final String DIVISION_ID = "/standards/{standard_id}/divisions/{division_id}";
+	
+	public static final String ADD_DIVISION_BY_STANDARD = "/standards/{standard_id}/divisions";
 
 	public static final String HOLIDAYS = "/holidays";
 	

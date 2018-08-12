@@ -106,6 +106,7 @@ public class ScheduleExam {
 		this.examType = examType;
 	}
 
+	
 	public LocalDateTime getCreate_dt() {
 		return create_dt;
 	}
@@ -147,6 +148,8 @@ public class ScheduleExam {
 				+ passingMarks + "]";
 	}
 
+	
+		
 	public Date getDate() {
 		return date;
 	}
@@ -171,7 +174,7 @@ public class ScheduleExam {
 		this.endTime = endTime;
 	}
 
-	public String getScoreType() {
+		public String getScoreType() {
 		return scoreType;
 	}
 

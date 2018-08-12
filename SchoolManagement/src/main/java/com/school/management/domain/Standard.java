@@ -1,20 +1,39 @@
 package com.school.management.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table (name = "standard")
 public class Standard {
+
+	public Standard() {
+		
+	}
+	
+	public Standard(long standard_id, String name, List<Division> divisions) {
+		super();
+		this.standard_id = standard_id;
+		this.name = name;
+		this.division = divisions;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +41,10 @@ public class Standard {
 
 	@Column(name = "name")
 	private String name;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="standard", cascade = CascadeType.ALL, targetEntity = Division.class)
+	@JsonManagedReference
+	private List<Division> division;
 	
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -47,6 +70,14 @@ public class Standard {
 		this.name = name;
 	}
 	
+	public List<Division> getDivision() {
+		return division;
+	}
+
+	public void setDivision(List<Division> division) {
+		this.division = division;
+	}
+
 	public LocalDateTime getCreate_dt() {
 		return create_dt;
 	}

@@ -24,6 +24,7 @@ public class DistributionModel {
 		this.examType = examType;
 	}
 
+	
 	public Date getDate() {
 		return date;
 	}

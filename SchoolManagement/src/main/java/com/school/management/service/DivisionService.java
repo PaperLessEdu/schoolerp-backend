@@ -1,7 +1,9 @@
 package com.school.management.service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.school.management.core.CustomException;
 import com.school.management.dao.DivisionDaoImpl;
+import com.school.management.dao.StandardDaoImpl;
 import com.school.management.domain.Division;
 import com.school.management.model.DivisionModel;
 import com.school.management.model.SmResponseStatus;
@@ -20,14 +23,25 @@ public class DivisionService {
 	@Autowired
 	private DivisionDaoImpl divisionDaoImpl;
 	
+	@Autowired
+	private StandardDaoImpl standardDaoImpl;
+	
 	public static final Logger logger = LoggerFactory.getLogger(DivisionService.class);
 	
-	public SmResponseStatus addDivision(DivisionModel divisionModel) {
+	public SmResponseStatus addDivision(Long standard_id, DivisionModel divisionModel) {
 		String message = null;
 		Boolean isDivisionExist = null;
+		Boolean isStandardExist = null;
 		Division division = wrapDivision(null, divisionModel);
 		
-		isDivisionExist = divisionDaoImpl.isExistByName(divisionModel.getName());
+		isStandardExist = standardDaoImpl.existsById(standard_id);
+		logger.info("Is standard exist: [{}]", isStandardExist);
+		if(isStandardExist.equals(Boolean.FALSE)){
+			String error = String.format("Standard is not exist with id= [%d]", standard_id);
+			logger.error(error);
+			throw new CustomException(error);
+		}
+		isDivisionExist = divisionDaoImpl.existsByNameAndStandard_id(divisionModel.getName(), standard_id);
 		logger.info("Is Division exist: [{}]",isDivisionExist);
 		if(isDivisionExist.equals(Boolean.FALSE)) {
 			divisionDaoImpl.saveDivision(division);
@@ -49,6 +63,7 @@ public class DivisionService {
 		Boolean isDivisionExist = null;
 		try {
 			Division division = wrapDivision(division_id, divisionModel);
+			
 			isDivisionExist = divisionDaoImpl.isExistByName(divisionModel.getName());
 			logger.info("Is Division exist: [{}]",isDivisionExist);
 			
@@ -72,11 +87,11 @@ public class DivisionService {
 		return new SmResponseStatus(message);
 	}
 	
-	public List<Division> getDivisionList() {
+	public List<Division> getDivisionList(Long standard_id) {
 
 		List<Division> divisionList = new ArrayList<>();
 		try {
-			divisionList = divisionDaoImpl.getDivisionList();
+			divisionList = divisionDaoImpl.getDivisionList(standard_id);
 		} catch (Exception e) {
 			String error = String.format("Error occured while fetching division List");
 			logger.error(error, e);
@@ -136,10 +151,10 @@ public class DivisionService {
 		Division division = new Division();
 		
 		if(division_id != null ) {
-			division.setDivision_id(divisionModel.getDivision_id());
+			division.setDivision_id(division_id);
 		}
 		division.setName(divisionModel.getName());
-		
+		division.setStandard(divisionModel.getStandard());
 		return division;
 	}
 }
