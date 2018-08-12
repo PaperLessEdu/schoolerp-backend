@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.school.management.config.AppConstants;
 import com.school.management.config.UriConstants;
-import com.school.management.core.CustomException;
-import com.school.management.domain.Examination;
+import com.school.management.model.ExamResultModel;
 import com.school.management.model.ExaminationModel;
+import com.school.management.model.ExaminationResponseModule;
 import com.school.management.model.SmResponseStatus;
 import com.school.management.service.ExaminationService;
 
@@ -53,17 +53,38 @@ public class ExamController {
 	}
 
 	@RequestMapping(value = UriConstants.BLANK, method = RequestMethod.GET, produces = AppConstants.JSON)
-	public List<Examination> getExaminationList() {
+	public List<ExaminationResponseModule> getExaminationList() {
 
 		logger.info("Request received to fetch Exam List");
 
-		List<Examination> examinationList = new ArrayList<>();
+		List<ExaminationResponseModule> examinationList = new ArrayList<>();
 
+		ExaminationResponseModule e = new ExaminationResponseModule();
+
+		examinationList.add(e);
 		examinationList = examinationService.getExaminationList();
 
 		logger.info("Examination List fetched successfully");
 
 		return examinationList;
+
+	}
+
+	@RequestMapping(value = UriConstants.FILLMARKS, method = RequestMethod.POST, produces = AppConstants.JSON)
+	public SmResponseStatus addMarks(@RequestBody ExamResultModel ExamResultModel) {
+
+		logger.info("ExamResultModel model : " + ExamResultModel.toString());
+		SmResponseStatus smResponseStatus = null;
+		/*
+		 * if (examinationModel.getExam_master_id() == null) { String error =
+		 * String.format("Examination can not be empty"); logger.error(error);
+		 * throw new CustomException(error); }
+		 */
+
+		// logger.info("Examination Sucessfully added ",
+		// examinationModel.getExam_master_id());
+
+		return smResponseStatus;
 
 	}
 }

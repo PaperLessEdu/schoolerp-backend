@@ -1,5 +1,7 @@
 package com.school.management.dao;
 
+import static org.hamcrest.CoreMatchers.is;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +52,7 @@ public class StandardDaoImpl implements StandardDao {
 		Boolean isExist = Boolean.FALSE;
 		try {
 			isExist = standardRepository.existsById(standard_id);
-			
+			logger.info("standard is exist "+isExist);
 		} catch(Exception e) {
 			String error = String.format("Error occured while checking standard with id [%s]", standard_id);
 			logger.error(error);
