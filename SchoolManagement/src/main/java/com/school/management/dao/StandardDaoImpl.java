@@ -1,7 +1,5 @@
 package com.school.management.dao;
 
-import static org.hamcrest.CoreMatchers.is;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,15 +16,15 @@ public class StandardDaoImpl implements StandardDao {
 
 	@Autowired
 	private StandardRepository standardRepository;
-	
+
 	public static final Logger logger = LoggerFactory.getLogger(StandardDaoImpl.class);
-	
+
 	@Override
 	public void saveStandard(Standard standard) {
-		
+
 		try {
 			standardRepository.save(standard);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while saving standard");
 			logger.error(error);
 			throw e;
@@ -39,7 +37,7 @@ public class StandardDaoImpl implements StandardDao {
 		boolean isExist = false;
 		try {
 			isExist = standardRepository.existsByName(name);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while checking standard existance");
 			logger.error(error);
 			throw e;
@@ -52,8 +50,8 @@ public class StandardDaoImpl implements StandardDao {
 		Boolean isExist = Boolean.FALSE;
 		try {
 			isExist = standardRepository.existsById(standard_id);
-			logger.info("standard is exist "+isExist);
-		} catch(Exception e) {
+			logger.info("standard is exist " + isExist);
+		} catch (Exception e) {
 			String error = String.format("Error occured while checking standard with id [%s]", standard_id);
 			logger.error(error);
 			isExist = Boolean.FALSE;
@@ -67,7 +65,7 @@ public class StandardDaoImpl implements StandardDao {
 		Standard standard = new Standard();
 		try {
 			standard = standardRepository.getOne(standard_id);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while fetching standard details.");
 			logger.error(error);
 			throw e;
@@ -80,7 +78,7 @@ public class StandardDaoImpl implements StandardDao {
 		List<Standard> standardList = new ArrayList<>();
 		try {
 			standardList = standardRepository.findAll();
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while fetching standard list.");
 			logger.error(error);
 			throw e;
@@ -92,7 +90,7 @@ public class StandardDaoImpl implements StandardDao {
 	public void deleteStandard(Long standard_id) {
 		try {
 			standardRepository.deleteById(standard_id);
-		} catch(Exception e) {
+		} catch (Exception e) {
 			String error = String.format("Error occured while deleting standard with standard_id [%s]", standard_id);
 			logger.error(error);
 			throw e;
