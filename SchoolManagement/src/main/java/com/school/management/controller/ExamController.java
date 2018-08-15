@@ -26,6 +26,7 @@ import com.school.management.service.ExaminationService;
  */
 @RestController
 @RequestMapping(value = UriConstants.EXAMINATION)
+@CrossOrigin( origins = {"http://dev.cloudscripts.co.in:8082","http://dev.cloudscripts.co.in:8081", "http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 public class ExamController {
 
 	private static final Logger logger = LoggerFactory.getLogger(ExamController.class);
