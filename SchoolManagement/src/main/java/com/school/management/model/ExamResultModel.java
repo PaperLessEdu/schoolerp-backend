@@ -1,5 +1,9 @@
 package com.school.management.model;
 
+import java.time.LocalDateTime;
+
+import com.school.management.domain.Standard;
+
 /**
  * 
  * @author Pavan.Pawar
@@ -13,16 +17,19 @@ public class ExamResultModel {
 	 * key of exam_timetable_id score
 	 */
 
-	private Long standardId;
+	private Standard standardId;
 	private Long exam_master_id;
 	private Long exam_timetable_id;
 	private String score;
+	private LocalDateTime create_dt;
 
-	public Long getStandardId() {
+	private LocalDateTime last_update_dt;
+
+	public Standard getStandardId() {
 		return standardId;
 	}
 
-	public void setStandardId(Long standardId) {
+	public void setStandardId(Standard standardId) {
 		this.standardId = standardId;
 	}
 
@@ -50,10 +57,27 @@ public class ExamResultModel {
 		this.score = score;
 	}
 
+	public LocalDateTime getCreate_dt() {
+		return create_dt;
+	}
+
+	public void setCreate_dt(LocalDateTime create_dt) {
+		this.create_dt = create_dt;
+	}
+
+	public LocalDateTime getLast_update_dt() {
+		return last_update_dt;
+	}
+
+	public void setLast_update_dt(LocalDateTime last_update_dt) {
+		this.last_update_dt = last_update_dt;
+	}
+
 	@Override
 	public String toString() {
 		return "ExamResultModel [standardId=" + standardId + ", exam_master_id=" + exam_master_id
-				+ ", exam_timetable_id=" + exam_timetable_id + ", score=" + score + "]";
+				+ ", exam_timetable_id=" + exam_timetable_id + ", score=" + score + ", create_dt=" + create_dt
+				+ ", last_update_dt=" + last_update_dt + "]";
 	}
 
 }

@@ -112,4 +112,12 @@ public class ExamResult {
 		this.last_update_dt = last_update_dt;
 	}
 
+	@Override
+	public String toString() {
+		return "ExamResult [examResultId=" + examResultId + ", standard=" + standard + ", examination=" + examination
+				+ ", scheduleExam=" + scheduleExam + ", score=" + score + ", create_dt=" + create_dt
+				+ ", last_update_dt=" + last_update_dt + "]";
+	}
+
+	
 }

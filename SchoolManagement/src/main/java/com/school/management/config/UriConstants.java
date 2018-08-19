@@ -69,4 +69,6 @@ public class UriConstants {
 	public static final String SCHOOL_PROFILE_LIST="/{schoolprofilelist}";
 
 	public static final String FILLMARKS = "/fillmarks";
+	
+	public static final String EXAMINATION_RESULT ="/examinationResult";
 }
