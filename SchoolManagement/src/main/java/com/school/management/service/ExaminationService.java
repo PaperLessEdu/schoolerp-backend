@@ -144,7 +144,7 @@ public class ExaminationService {
 						ExamDistributionResponse examDistributionResponse = new ExamDistributionResponse();
 						examDistributionResponse.setDate(scheduleExam.getDate());
 						examDistributionResponse.setEndTime(scheduleExam.getEndTime());
-						examDistributionResponse.setStartTime(scheduleExam.getStartTime());						
+						examDistributionResponse.setStartTime(scheduleExam.getStartTime());
 						examDistributionResponse.setExamType(scheduleExam.getExamType());
 						examDistributionResponse.setMarksOutOf(scheduleExam.getOutOfMarks());
 						examDistributionResponse.setPassingMarks(scheduleExam.getPassingMarks());
@@ -234,4 +234,18 @@ public class ExaminationService {
 		return examination;
 	}
 
+	public Boolean existsById(Long examinationId) {
+
+		Boolean isExist = Boolean.FALSE;
+		try {
+			isExist = examinationDaoImpl.existsById(examinationId);
+		} catch (Exception e) {
+			String error = String.format("Error occured while fetching examination data with id [%s]", examinationId);
+			logger.error(error, e);
+			throw e;
+		}
+		return isExist;
+		//dsfsdfds
+
+	}
 }
