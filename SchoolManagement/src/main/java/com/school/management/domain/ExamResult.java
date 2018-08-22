@@ -45,8 +45,25 @@ public class ExamResult {
 	@JoinColumn(name = "exam_timetable_id", referencedColumnName = "exam_timetable_id")
 	private ScheduleExam scheduleExam;
 
-	@Column(name = "score")
-	private String score;
+	@ManyToOne(targetEntity = Student.class)
+	@JoinColumn(name = "student_id", referencedColumnName = "student_id")
+	private Student student_id;
+
+	@ManyToOne(targetEntity = Subject.class)
+	@JoinColumn(name = "subject_id", referencedColumnName = "subject_id")
+	private Subject subject;
+
+	@Column(name = "exam_type")
+	private String examType;
+
+	@Column(name = "score_type")
+	private String scoreType;
+
+	@Column(name = "mark")
+	private Long mark;
+
+	@Column(name = "grade")
+	private String grade;
 
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -88,12 +105,53 @@ public class ExamResult {
 		this.scheduleExam = scheduleExam;
 	}
 
-	public String getScore() {
-		return score;
+	public Student getStudent() {
+		return student_id;
 	}
 
-	public void setScore(String score) {
-		this.score = score;
+	public void setStudent(Student student_id) {
+		this.student_id = student_id;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+
+	
+	public String getExamType() {
+		return examType;
+	}
+
+	public void setExamType(String examType) {
+		this.examType = examType;
+	}
+
+	public String getScoreType() {
+		return scoreType;
+	}
+
+	public void setScoreType(String scoreType) {
+		this.scoreType = scoreType;
+	}
+
+	public Long getMark() {
+		return mark;
+	}
+
+	public void setMark(Long mark) {
+		this.mark = mark;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
 
 	public LocalDateTime getCreate_dt() {
@@ -115,9 +173,9 @@ public class ExamResult {
 	@Override
 	public String toString() {
 		return "ExamResult [examResultId=" + examResultId + ", standard=" + standard + ", examination=" + examination
-				+ ", scheduleExam=" + scheduleExam + ", score=" + score + ", create_dt=" + create_dt
+				+ ", scheduleExam=" + scheduleExam + ", student_id=" + student_id + ", subject=" + subject + ", examtype="
+				+ examType + ", scoreType =" + scoreType + ", mark=" + mark + ", grade=" + grade + ", create_dt=" + create_dt
 				+ ", last_update_dt=" + last_update_dt + "]";
 	}
 
-	
 }

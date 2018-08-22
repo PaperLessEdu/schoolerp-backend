@@ -16,6 +16,8 @@ public class ExamResultService {
 
 	@Autowired
 	private ExamResultDaoImpl examResultDaoImpl;
+	
+	
 
 	public static final Logger logger = LoggerFactory.getLogger(ExamResultService.class);
 
@@ -26,14 +28,34 @@ public class ExamResultService {
 
 		ExamResult examResult = wrapExamResult(null, examResultModel);
 		isExamResultExist = examResultDaoImpl.existsById(examResultModel.getExam_master_id());
+		
+		
+/*		List<ExamResult> ExamResult = new ArrayList<>();
+
+		for (Long student : examResultModel.getStandardId()) {
+			Attendance att = new Attendance();
+
+			att.setStudent(studentDaoImpl.getStudent(student));
+
+			att.setDivision(divisionDapImpl.getDivision(attendanceModel.getDivision()));
+			att.setStandard(standardDaoImpl.getStandard(attendanceModel.getStandard()));
+
+			att.setDate(attendanceModel.getDate());
+
+			att.setIsPresent("false");
+			lsAttendance.add(att);
+		}
+		logger.info(lsAttendance.toString());
+
+				
+		*/
 
 		logger.info("Is ExamResult exist: [{}]", isExamResultExist);
 		if (isExamResultExist.equals(Boolean.FALSE)) {
 			examResultDaoImpl.saveExamination(examResult);
 		} else {
 
-			String error = String.format("Examination Result is already exist with name [%s]",
-					examResultModel.getExam_master_id());
+			String error = String.format("Examination Result is already exist with name [%s]",examResultModel.getExam_master_id());
 			logger.error(error);
 			throw new CustomException(error);
 		}
@@ -54,7 +76,14 @@ public class ExamResultService {
 		}
 
 		examResult.setStandard(examResultModel.getStandardId());
-		examResult.setScore(examResultModel.getScore());
+		
+		examResult.setStudent(examResultModel.getExam_studentId());
+		examResult.setStandard(examResultModel.getStandardId());
+		examResult.setSubject(examResultModel.getExam_subjectId());
+		examResult.setExamType(examResultModel.getExamType());
+		examResult.setScoreType(examResultModel.getScoreType());
+		examResult.setMark(examResultModel.getMarks());
+		examResult.setGrade(examResultModel.getGrade());
 		examResult.setCreate_dt(examResultModel.getCreate_dt());
 		examResult.setLast_update_dt(examResultModel.getLast_update_dt());
 

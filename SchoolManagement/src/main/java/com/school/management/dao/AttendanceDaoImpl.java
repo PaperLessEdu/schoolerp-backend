@@ -115,8 +115,5 @@ public class AttendanceDaoImpl implements AttendanceDao {
 		logger.info(" start date :" + startDate + " end date : " + endDate);
 		return attendanceRepository.generateReportWithDate(standardId, divisionId, startDate, endDate);
 	}
-	
-	
-	
 
 }
