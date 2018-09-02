@@ -1,5 +1,8 @@
 package com.school.management.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.school.management.core.CustomException;
 import com.school.management.dao.ExamResultDaoImpl;
+import com.school.management.dao.StudentDaoImpl;
 import com.school.management.domain.ExamResult;
 import com.school.management.model.ExamResultModel;
 import com.school.management.model.SmResponseStatus;
@@ -17,6 +21,8 @@ public class ExamResultService {
 	@Autowired
 	private ExamResultDaoImpl examResultDaoImpl;
 	
+	@Autowired
+	private StudentDaoImpl studentDaoImpl;
 	
 
 	public static final Logger logger = LoggerFactory.getLogger(ExamResultService.class);
@@ -29,13 +35,14 @@ public class ExamResultService {
 		ExamResult examResult = wrapExamResult(null, examResultModel);
 		isExamResultExist = examResultDaoImpl.existsById(examResultModel.getExam_master_id());
 		
-		
-/*		List<ExamResult> ExamResult = new ArrayList<>();
+		List<ExamResult> ExamResultFinal = new ArrayList<>();
 
-		for (Long student : examResultModel.getStandardId()) {
-			Attendance att = new Attendance();
-
-			att.setStudent(studentDaoImpl.getStudent(student));
+		for (Long student : examResultModel.getStudentIds()) {
+			ExamResult exam = new ExamResult();
+			
+			exam.setStudent(studentDaoImpl.getStudent(student));
+			
+			/*
 
 			att.setDivision(divisionDapImpl.getDivision(attendanceModel.getDivision()));
 			att.setStandard(standardDaoImpl.getStandard(attendanceModel.getStandard()));
@@ -46,9 +53,9 @@ public class ExamResultService {
 			lsAttendance.add(att);
 		}
 		logger.info(lsAttendance.toString());
-
+*/
 				
-		*/
+		
 
 		logger.info("Is ExamResult exist: [{}]", isExamResultExist);
 		if (isExamResultExist.equals(Boolean.FALSE)) {

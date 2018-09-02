@@ -1,6 +1,7 @@
 package com.school.management.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import com.school.management.domain.Standard;
 import com.school.management.domain.Student;
@@ -32,6 +33,7 @@ public class ExamResultModel {
 	private LocalDateTime create_dt;
 
 	private LocalDateTime last_update_dt;
+	private ArrayList<Long> studentIds;
 
 	public Standard getStandardId() {
 		return standardId;
@@ -119,6 +121,15 @@ public class ExamResultModel {
 
 	public void setGrade(String grade) {
 		this.grade = grade;
+	}
+
+	
+	public ArrayList<Long> getStudentIds() {
+		return studentIds;
+	}
+
+	public void setStudentIds(ArrayList<Long> studentIds) {
+		this.studentIds = studentIds;
 	}
 
 	@Override
