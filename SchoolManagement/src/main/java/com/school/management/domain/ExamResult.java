@@ -61,9 +61,13 @@ public class ExamResult {
 
 	@Column(name = "mark")
 	private Long mark;
+	
+	@Column(name = "outOfMark")
+	private Long outOfMark;
 
 	@Column(name = "grade")
 	private String grade;
+	
 
 	@Column(name = "create_dt", updatable = false)
 	@CreationTimestamp
@@ -169,13 +173,32 @@ public class ExamResult {
 	public void setLast_update_dt(LocalDateTime last_update_dt) {
 		this.last_update_dt = last_update_dt;
 	}
+	
+
+	public Student getStudent_id() {
+		return student_id;
+	}
+
+	public void setStudent_id(Student student_id) {
+		this.student_id = student_id;
+	}
+
+	public Long getOutOfMark() {
+		return outOfMark;
+	}
+
+	public void setOutOfMark(Long outOfMark) {
+		this.outOfMark = outOfMark;
+	}
 
 	@Override
 	public String toString() {
 		return "ExamResult [examResultId=" + examResultId + ", standard=" + standard + ", examination=" + examination
-				+ ", scheduleExam=" + scheduleExam + ", student_id=" + student_id + ", subject=" + subject + ", examtype="
-				+ examType + ", scoreType =" + scoreType + ", mark=" + mark + ", grade=" + grade + ", create_dt=" + create_dt
-				+ ", last_update_dt=" + last_update_dt + "]";
+				+ ", scheduleExam=" + scheduleExam + ", student_id=" + student_id + ", subject=" + subject
+				+ ", examType=" + examType + ", scoreType=" + scoreType + ", mark=" + mark + ", outOfMark=" + outOfMark
+				+ ", grade=" + grade + ", create_dt=" + create_dt + ", last_update_dt=" + last_update_dt + "]";
 	}
 
+	
+	
 }

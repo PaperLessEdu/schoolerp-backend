@@ -20,7 +20,7 @@ public class ExamResultModel {
 	 * key of exam_timetable_id score
 	 */
 
-	private Standard standardId;
+	private Standard standard_id;
 	private Long exam_master_id;
 	private Long exam_timetable_id;
 	private Student exam_studentId;
@@ -29,18 +29,17 @@ public class ExamResultModel {
 	private String examType;
 	private String scoreType;
 	private Long marks;
+	private Long outOfMark;
 	private String grade;
-	private LocalDateTime create_dt;
-
-	private LocalDateTime last_update_dt;
 	private ArrayList<Long> studentIds;
 
-	public Standard getStandardId() {
-		return standardId;
+	
+	public Standard getStandard_id() {
+		return standard_id;
 	}
 
-	public void setStandardId(Standard standardId) {
-		this.standardId = standardId;
+	public void setStandard_id(Standard standard_id) {
+		this.standard_id = standard_id;
 	}
 
 	public Long getExam_master_id() {
@@ -67,21 +66,6 @@ public class ExamResultModel {
 		this.scoreType = scoreType;
 	}
 
-	public LocalDateTime getCreate_dt() {
-		return create_dt;
-	}
-
-	public void setCreate_dt(LocalDateTime create_dt) {
-		this.create_dt = create_dt;
-	}
-
-	public LocalDateTime getLast_update_dt() {
-		return last_update_dt;
-	}
-
-	public void setLast_update_dt(LocalDateTime last_update_dt) {
-		this.last_update_dt = last_update_dt;
-	}
 
 	public Student getExam_studentId() {
 		return exam_studentId;
@@ -131,13 +115,28 @@ public class ExamResultModel {
 	public void setStudentIds(ArrayList<Long> studentIds) {
 		this.studentIds = studentIds;
 	}
+	
+
+	public Long getOutOfMark() {
+		return outOfMark;
+	}
+
+	public void setOutOfMark(Long outOfMark) {
+		this.outOfMark = outOfMark;
+	}
 
 	@Override
 	public String toString() {
-		return "ExamResultModel [standardId=" + standardId + ", exam_master_id=" + exam_master_id
+		return "ExamResultModel [standard_id=" + standard_id + ", exam_master_id=" + exam_master_id
 				+ ", exam_timetable_id=" + exam_timetable_id + ", exam_studentId=" + exam_studentId
-				+ ", exam_subjectId=" + exam_subjectId + ", examType=" + examType + ", score=" + scoreType + ", marks="
-				+ marks + ", grade=" + grade + ", create_dt=" + create_dt + ", last_update_dt=" + last_update_dt + "]";
+				+ ", exam_subjectId=" + exam_subjectId + ", examType=" + examType + ", scoreType=" + scoreType
+				+ ", marks=" + marks + ", outOfMark=" + outOfMark + ", grade=" + grade + ", studentIds=" + studentIds
+				+ "]";
 	}
+
+	
+
+	
+
 
 }

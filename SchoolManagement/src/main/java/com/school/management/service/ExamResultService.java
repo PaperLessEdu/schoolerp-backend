@@ -54,9 +54,7 @@ public class ExamResultService {
 		}
 		logger.info(lsAttendance.toString());
 */
-				
-		
-
+		}		
 		logger.info("Is ExamResult exist: [{}]", isExamResultExist);
 		if (isExamResultExist.equals(Boolean.FALSE)) {
 			examResultDaoImpl.saveExamination(examResult);
@@ -71,6 +69,7 @@ public class ExamResultService {
 
 		message = String.format("Examination Result saved Sucessfully with name [%s]", examResult.getExamResultId());
 
+		
 		return new SmResponseStatus(message);
 	}
 
@@ -82,17 +81,18 @@ public class ExamResultService {
 			examResult.setExamResultId(examResultModel.getExam_master_id());
 		}
 
-		examResult.setStandard(examResultModel.getStandardId());
+		examResult.setStandard(examResultModel.getStandard_id());
 		
 		examResult.setStudent(examResultModel.getExam_studentId());
-		examResult.setStandard(examResultModel.getStandardId());
+		
 		examResult.setSubject(examResultModel.getExam_subjectId());
 		examResult.setExamType(examResultModel.getExamType());
 		examResult.setScoreType(examResultModel.getScoreType());
 		examResult.setMark(examResultModel.getMarks());
+		examResult.setOutOfMark(examResultModel.getOutOfMark());
 		examResult.setGrade(examResultModel.getGrade());
-		examResult.setCreate_dt(examResultModel.getCreate_dt());
-		examResult.setLast_update_dt(examResultModel.getLast_update_dt());
+		
+		
 
 		return examResult;
 	}
