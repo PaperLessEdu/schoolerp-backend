@@ -61,4 +61,11 @@ public class Examination {
 		this.name = name;
 	}
 
+	@Override
+	public String toString() {
+		return "Examination [exammasterid=" + exammasterid + ", academicyear=" + academicyear + ", standard=" + standard
+				+ ", name=" + name + "]";
+	}
+
 }
+
